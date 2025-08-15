@@ -39,6 +39,16 @@ export function Header() {
       ],
     },
     {
+      href: "/sektorler",
+      label: "Sektörler",
+      dropdown: [
+        { href: "/sektorler/savunma-sanayi", label: "Savunma Sanayi" },
+        { href: "/sektorler/denizcilik", label: "Denizcilik" },
+        { href: "/sektorler/endustriyel-sanayi", label: "Endüstriyel Sanayi" },
+        { href: "/sektorler/tarim", label: "Tarım" },
+      ],
+    },
+    {
       href: "/urunler",
       label: "Dragon Winch",
       dropdown: [

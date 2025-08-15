@@ -1,5 +1,11 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   ArrowRight,
   Anchor,
@@ -17,58 +23,87 @@ import {
   Shield,
   Zap,
   Eye,
-} from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import { HeroSlider } from "@/components/hero-slider"
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { HeroSlider } from "@/components/hero-slider";
 
 async function getFeaturedProducts() {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/api/products?per_page=6`,
+      `${
+        process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+      }/api/products?featured_by_category=true`,
       {
         cache: "no-store",
-      },
-    )
-    if (!response.ok) return []
-    const data = await response.json()
-    return data.products || []
+      }
+    );
+    if (!response.ok) return [];
+    const data = await response.json();
+    return data.products || [];
   } catch (error) {
-    console.error("Error fetching featured products:", error)
-    return []
+    console.error("Error fetching featured products:", error);
+    return [];
   }
 }
 
 export default async function HomePage() {
-  const featuredProducts = await getFeaturedProducts()
+  const featuredProducts = await getFeaturedProducts();
 
   const productCategories = [
     {
       icon: <Anchor className="w-8 h-8 text-[#d84948]" />,
       title: "Denizcilik Vinçleri",
-      description: "Gemi ve yat endüstrisi için özel tasarlanmış Dragon Winch çekme vinci tamburları",
-      features: ["Paslanmaz Çelik Yapı", "Yüksek Çekme Kapasitesi", "Deniz Suyu Dayanımı"],
+      description:
+        "Gemi ve yat endüstrisi için özel tasarlanmış Dragon Winch çekme vinci tamburları",
+      features: [
+        "Paslanmaz Çelik Yapı",
+        "Yüksek Çekme Kapasitesi",
+        "Deniz Suyu Dayanımı",
+      ],
     },
     {
       icon: <Truck className="w-8 h-8 text-[#d84948]" />,
       title: "Endüstriyel Vinçler",
-      description: "Ağır sanayi ve inşaat sektörü için güçlü ve dayanıklı vinç sistemleri",
-      features: ["Yüksek Tonaj Kapasitesi", "Çift Hızlı Sistem", "Güvenlik Fren Sistemi"],
+      description:
+        "Ağır sanayi ve inşaat sektörü için güçlü ve dayanıklı vinç sistemleri",
+      features: [
+        "Yüksek Tonaj Kapasitesi",
+        "Çift Hızlı Sistem",
+        "Güvenlik Fren Sistemi",
+      ],
     },
     {
       icon: <Ship className="w-8 h-8 text-[#d84948]" />,
       title: "Liman Ekipmanları",
-      description: "Liman operasyonları için özel Dragon Winch çekme vinci çözümleri",
+      description:
+        "Liman operasyonları için özel Dragon Winch çekme vinci çözümleri",
       features: ["Konteyner Vinçleri", "Kargo Yükleme", "Otomatik Kontrol"],
     },
-  ]
+  ];
 
   const companyStats = [
-    { number: "15+", label: "Yıllık Dragon Winch Deneyimi", icon: <Award className="w-6 h-6" /> },
-    { number: "1000+", label: "Kurulu Vinç Sistemi", icon: <CheckCircle className="w-6 h-6" /> },
-    { number: "200+", label: "Mutlu Müşteri", icon: <Users className="w-6 h-6" /> },
-    { number: "25+", label: "Ülkede Distribütörlük", icon: <Globe className="w-6 h-6" /> },
-  ]
+    {
+      number: "15+",
+      label: "Yıllık Dragon Winch Deneyimi",
+      icon: <Award className="w-6 h-6" />,
+    },
+    {
+      number: "1000+",
+      label: "Kurulu Vinç Sistemi",
+      icon: <CheckCircle className="w-6 h-6" />,
+    },
+    {
+      number: "200+",
+      label: "Mutlu Müşteri",
+      icon: <Users className="w-6 h-6" />,
+    },
+    {
+      number: "25+",
+      label: "Ülkede Distribütörlük",
+      icon: <Globe className="w-6 h-6" />,
+    },
+  ];
 
   const whyChooseUs = [
     {
@@ -79,20 +114,23 @@ export default async function HomePage() {
     },
     {
       title: "Teknik Uzmanlık",
-      description: "15 yıllık vinç teknolojisi deneyimimiz ile en uygun çekme vinci çözümünü sunuyoruz.",
+      description:
+        "15 yıllık vinç teknolojisi deneyimimiz ile en uygun çekme vinci çözümünü sunuyoruz.",
       icon: <Wrench className="w-6 h-6 text-[#d84948]" />,
     },
     {
       title: "Hızlı Teslimat",
-      description: "Geniş stok kapasitemiz ile Dragon Winch ürünlerini hızlı bir şekilde teslim ediyoruz.",
+      description:
+        "Geniş stok kapasitemiz ile Dragon Winch ürünlerini hızlı bir şekilde teslim ediyoruz.",
       icon: <Zap className="w-6 h-6 text-[#d84948]" />,
     },
     {
       title: "Servis Desteği",
-      description: "Satış sonrası teknik servis, yedek parça temini ve bakım hizmetleri sunuyoruz.",
+      description:
+        "Satış sonrası teknik servis, yedek parça temini ve bakım hizmetleri sunuyoruz.",
       icon: <Users className="w-6 h-6 text-[#d84948]" />,
     },
-  ]
+  ];
 
   const testimonials = [
     {
@@ -116,7 +154,7 @@ export default async function HomePage() {
         "Liman operasyonlarımızda Dragon Winch sistemleri mükemmel performans gösteriyor. Meda Endüstri'ye teşekkürler.",
       rating: 5,
     },
-  ]
+  ];
 
   const recentNews = [
     {
@@ -146,7 +184,7 @@ export default async function HomePage() {
       image: "/placeholder.svg?height=200&width=300",
       category: "Etkinlik",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen">
@@ -162,7 +200,8 @@ export default async function HomePage() {
             "@type": "WebSite",
             name: "Meda Savunma",
             alternateName: "Dragon Winch Türkiye",
-            url: process.env.NEXT_PUBLIC_SITE_URL || "https://medasavunma.com.tr",
+            url:
+              process.env.NEXT_PUBLIC_SITE_URL || "https://medasavunma.com.tr",
             description:
               "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü",
             publisher: {
@@ -173,7 +212,10 @@ export default async function HomePage() {
               "@type": "SearchAction",
               target: {
                 "@type": "EntryPoint",
-                urlTemplate: `${process.env.NEXT_PUBLIC_SITE_URL || "https://medasavunma.com.tr"}/urunler?search={search_term_string}`,
+                urlTemplate: `${
+                  process.env.NEXT_PUBLIC_SITE_URL ||
+                  "https://medasavunma.com.tr"
+                }/urunler?search={search_term_string}`,
               },
               "query-input": "required name=search_term_string",
             },
@@ -189,28 +231,37 @@ export default async function HomePage() {
               "@context": "https://schema.org",
               "@type": "ItemList",
               name: "Dragon Winch Öne Çıkan Ürünler",
-              description: "En popüler Dragon Winch çekme vinci tamburu modelleri",
+              description:
+                "En popüler Dragon Winch çekme vinci tamburu modelleri",
               numberOfItems: featuredProducts.length,
-              itemListElement: featuredProducts.slice(0, 6).map((product: any, index: number) => ({
-                "@type": "ListItem",
-                position: index + 1,
-                item: {
-                  "@type": "Product",
-                  name: product.name,
-                  description: product.short_description?.replace(/<[^>]*>/g, "") || product.name,
-                  image: product.images?.[0]?.src || "",
-                  url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://medasavunma.com.tr"}/urunler/${product.id}`,
-                  brand: {
-                    "@type": "Brand",
-                    name: "Dragon Winch",
+              itemListElement: featuredProducts
+                .slice(0, 6)
+                .map((product: any, index: number) => ({
+                  "@type": "ListItem",
+                  position: index + 1,
+                  item: {
+                    "@type": "Product",
+                    name: product.name,
+                    description:
+                      product.short_description?.replace(/<[^>]*>/g, "") ||
+                      product.name,
+                    image: product.images?.[0]?.src || "",
+                    url: `${
+                      process.env.NEXT_PUBLIC_SITE_URL ||
+                      "https://medasavunma.com.tr"
+                    }/urunler/${product.id}`,
+                    brand: {
+                      "@type": "Brand",
+                      name: "Dragon Winch",
+                    },
+                    manufacturer: {
+                      "@type": "Organization",
+                      name: "Dragon Winch",
+                    },
+                    category:
+                      product.categories?.[0]?.name || "Çekme Vinci Tamburu",
                   },
-                  manufacturer: {
-                    "@type": "Organization",
-                    name: "Dragon Winch",
-                  },
-                  category: product.categories?.[0]?.name || "Çekme Vinci Tamburu",
-                },
-              })),
+                })),
             }),
           }}
         />
@@ -223,9 +274,12 @@ export default async function HomePage() {
               <div className="inline-block px-4 py-2 bg-[#d84948]/10 rounded-full text-[#d84948] text-sm font-semibold mb-4">
                 ÖNE ÇIKAN ÜRÜNLER
               </div>
-              <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">Dragon Winch Ürünleri</h2>
+              <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                Dragon Winch Ürünleri
+              </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                En popüler Dragon Winch çekme vinci tamburu modelleri ve endüstriyel vinç çözümleri
+                En popüler Dragon Winch çekme vinci tamburu modelleri ve
+                endüstriyel vinç çözümleri
               </p>
             </div>
 
@@ -279,7 +333,9 @@ export default async function HomePage() {
                     {product.short_description && (
                       <CardDescription
                         className="text-gray-600 leading-relaxed line-clamp-3 text-sm mb-6"
-                        dangerouslySetInnerHTML={{ __html: product.short_description }}
+                        dangerouslySetInnerHTML={{
+                          __html: product.short_description,
+                        }}
                       />
                     )}
 
@@ -326,7 +382,9 @@ export default async function HomePage() {
                 <div className="text-4xl md:text-5xl font-bold mb-3 group-hover:scale-105 transition-transform duration-300">
                   {stat.number}
                 </div>
-                <div className="text-red-100 font-medium text-lg">{stat.label}</div>
+                <div className="text-red-100 font-medium text-lg">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -339,10 +397,12 @@ export default async function HomePage() {
             <div className="inline-block px-4 py-2 bg-[#d84948]/10 rounded-full text-[#d84948] text-sm font-semibold mb-4">
               DRAGON WINCH ÜRÜNLERİ
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">Çekme Vinci Çözümlerimiz</h2>
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              Çekme Vinci Çözümlerimiz
+            </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Dragon Winch markasının geniş ürün yelpazesi ile her sektörden ihtiyaçlarınıza uygun çekme vinci tamburu
-              çözümleri sunuyoruz.
+              Dragon Winch markasının geniş ürün yelpazesi ile her sektörden
+              ihtiyaçlarınıza uygun çekme vinci tamburu çözümleri sunuyoruz.
             </p>
           </div>
 
@@ -367,7 +427,10 @@ export default async function HomePage() {
                 <CardContent className="pt-0 pb-8">
                   <div className="space-y-3">
                     {category.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center text-sm text-gray-700 bg-gray-50 rounded-lg p-3">
+                      <div
+                        key={idx}
+                        className="flex items-center text-sm text-gray-700 bg-gray-50 rounded-lg p-3"
+                      >
                         <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
                         <span className="font-medium">{feature}</span>
                       </div>
@@ -399,9 +462,12 @@ export default async function HomePage() {
             <div className="inline-block px-4 py-2 bg-[#d84948]/10 rounded-full text-[#d84948] text-sm font-semibold mb-4">
               NEDEN BİZ?
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">Neden Meda Endüstri?</h2>
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              Neden Meda Endüstri?
+            </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Dragon Winch distribütörlüğündeki deneyimimiz ve müşteri odaklı yaklaşımımızla fark yaratıyoruz
+              Dragon Winch distribütörlüğündeki deneyimimiz ve müşteri odaklı
+              yaklaşımımızla fark yaratıyoruz
             </p>
           </div>
 
@@ -419,7 +485,9 @@ export default async function HomePage() {
                     <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-[#d84948] transition-colors">
                       {item.title}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed text-lg">{item.description}</p>
+                    <p className="text-gray-600 leading-relaxed text-lg">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -434,9 +502,12 @@ export default async function HomePage() {
             <div className="inline-block px-4 py-2 bg-[#d84948]/10 rounded-full text-[#d84948] text-sm font-semibold mb-4">
               REFERANSLAR
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">Müşterilerimiz Ne Diyor?</h2>
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              Müşterilerimiz Ne Diyor?
+            </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Dragon Winch ürünleri kullanan müşterilerimizden gelen değerlendirmeler
+              Dragon Winch ürünleri kullanan müşterilerimizden gelen
+              değerlendirmeler
             </p>
           </div>
 
@@ -450,14 +521,23 @@ export default async function HomePage() {
                 <CardContent className="p-10">
                   <div className="flex mb-6">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                      <Star
+                        key={i}
+                        className="w-5 h-5 text-yellow-400 fill-current"
+                      />
                     ))}
                   </div>
                   <Quote className="w-10 h-10 text-[#d84948] mb-6 opacity-60" />
-                  <p className="text-gray-700 leading-relaxed mb-8 italic text-lg">"{testimonial.content}"</p>
+                  <p className="text-gray-700 leading-relaxed mb-8 italic text-lg">
+                    "{testimonial.content}"
+                  </p>
                   <div className="border-t border-gray-100 pt-6">
-                    <div className="font-bold text-gray-900 text-lg">{testimonial.name}</div>
-                    <div className="text-sm text-[#d84948] font-medium">{testimonial.company}</div>
+                    <div className="font-bold text-gray-900 text-lg">
+                      {testimonial.name}
+                    </div>
+                    <div className="text-sm text-[#d84948] font-medium">
+                      {testimonial.company}
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -472,7 +552,9 @@ export default async function HomePage() {
             <div className="inline-block px-4 py-2 bg-[#d84948]/10 rounded-full text-[#d84948] text-sm font-semibold mb-4">
               HABERLER
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">Dragon Winch Haberleri</h2>
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              Dragon Winch Haberleri
+            </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               Dragon Winch ürünleri ve vinç sektöründen son gelişmeler
             </p>
@@ -550,8 +632,9 @@ export default async function HomePage() {
             Dragon Winch Çözümünüzü Bulalım
           </h2>
           <p className="text-xl text-red-100 mb-12 leading-relaxed max-w-4xl mx-auto">
-            Uzman ekibimizle birlikte ihtiyacınıza en uygun Dragon Winch çekme vinci tamburunu seçin. Ücretsiz teknik
-            danışmanlık için hemen iletişime geçin.
+            Uzman ekibimizle birlikte ihtiyacınıza en uygun Dragon Winch çekme
+            vinci tamburunu seçin. Ücretsiz teknik danışmanlık için hemen
+            iletişime geçin.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link href="/iletisim">
@@ -576,5 +659,5 @@ export default async function HomePage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
