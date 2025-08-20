@@ -4,6 +4,18 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Phone, Mail, Globe } from "lucide-react";
 
+interface DropdownItem {
+  href: string;
+  label: string;
+  external?: boolean;
+}
+
+interface NavigationLink {
+  href: string;
+  label: string;
+  dropdown?: DropdownItem[];
+}
+
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -56,6 +68,22 @@ export function Header() {
         { href: "/urunler?category=marine", label: "Denizcilik Vinçleri" },
         { href: "/urunler?category=industrial", label: "Endüstriyel Vinçler" },
         { href: "/urunler?category=port", label: "Liman Ekipmanları" },
+      ],
+    },
+    {
+      href: "#",
+      label: "Kataloglar",
+      dropdown: [
+        {
+          href: "/dragon-winch-katalog.pdf",
+          label: "Dragon Winch Genel Katalog",
+          external: true,
+        },
+        {
+          href: "/meda_savunma_2023_catalog.pdf",
+          label: "Meda Endüstri Katalog",
+          external: true,
+        },
       ],
     },
     // { href: "/markalar", label: "Markalar" },
@@ -154,6 +182,10 @@ export function Header() {
                           href={item.href}
                           className="block px-4 py-3 text-sm text-gray-700 hover:text-[#d84948] hover:bg-[#d84948]/5 transition-colors"
                           onClick={() => setActiveDropdown(null)}
+                          {...((item as DropdownItem).external && {
+                            target: "_blank",
+                            rel: "noopener noreferrer",
+                          })}
                         >
                           {item.label}
                         </Link>

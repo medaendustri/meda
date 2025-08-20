@@ -1,0 +1,30 @@
+# Plesk SMTP Host Alternatifleri
+# Eğer smtp.medaendustri.com çalışmazsa, sırayla bunları deneyin:
+
+# 1. Denenen: smtp.medaendustri.com
+SMTP_HOST=smtp.medaendustri.com
+
+# 2. Alternatif 1: mail prefix
+# SMTP_HOST=mail.medaendustri.com
+
+# 3. Alternatif 2: server hostname (hosting sağlayıcıdan alın)
+# SMTP_HOST=your-server.hostname.com
+
+# 4. Alternatif 3: server IP adresi
+# SMTP_HOST=your.server.ip.address
+
+# 5. Alternatif 4: SSL port ile
+# SMTP_HOST=smtp.medaendustri.com
+# SMTP_PORT=465
+# SMTP_SECURE=true
+
+# Port alternatifleri:
+# 587 (TLS) - En yaygın
+# 465 (SSL) - SMTP_SECURE=true gerekir  
+# 25 (Plain) - Çoğu ISP tarafından engellenir
+
+# Plesk Panel'den kontrol etmek için:
+# 1. Plesk → Tools & Settings → Mail Server Settings
+# 2. "Mail service" aktif olmalı
+# 3. "SMTP service" aktif olmalı  
+# 4. "SMTP authentication" aktif olmalı

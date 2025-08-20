@@ -1,21 +1,22 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { ScrollToTop } from "@/components/scroll-to-top"
+import type React from "react";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
-})
+});
 
 export const metadata: Metadata = {
   title: {
-    default: "Meda Savunma - Dragon Winch Türkiye Distribütörü | Çekme Vinci Tamburu",
-    template: "%s | Meda Savunma - Dragon Winch Türkiye",
+    default:
+      "Meda Endüstri - Dragon Winch Türkiye Distribütörü | Çekme Vinci Tamburu",
+    template: "%s | Meda Endüstri - Dragon Winch Türkiye",
   },
   description:
     "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü. 15+ yıllık deneyim, profesyonel hizmet ve teknik destek.",
@@ -27,21 +28,23 @@ export const metadata: Metadata = {
     "denizcilik vinçleri",
     "liman ekipmanları",
     "vinç sistemi",
-    "meda savunma",
+    "meda endüstri",
     "türkiye distribütör",
     "winch drum",
     "recovery winch",
     "marine winch",
   ],
-  authors: [{ name: "Meda Savunma Teknolojileri" }],
-  creator: "Meda Savunma Teknolojileri",
-  publisher: "Meda Savunma Teknolojileri",
+  authors: [{ name: "Meda Endüstri" }],
+  creator: "Meda Endüstri",
+  publisher: "Meda Endüstri",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://medasavunma.com.tr"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com"
+  ),
   alternates: {
     canonical: "/",
     languages: {
@@ -52,26 +55,26 @@ export const metadata: Metadata = {
     type: "website",
     locale: "tr_TR",
     url: "/",
-    title: "Meda Savunma - Dragon Winch Türkiye Distribütörü",
+    title: "Meda Endüstri - Dragon Winch Türkiye Distribütörü",
     description:
       "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü. 15+ yıllık deneyim, profesyonel hizmet ve teknik destek.",
-    siteName: "Meda Savunma",
+    siteName: "Meda Endüstri",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Meda Savunma - Dragon Winch Türkiye Distribütörü",
+        alt: "Meda Endüstri - Dragon Winch Türkiye Distribütörü",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Meda Savunma - Dragon Winch Türkiye Distribütörü",
+    title: "Meda Endüstri - Dragon Winch Türkiye Distribütörü",
     description:
       "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü.",
     images: ["/og-image.jpg"],
-    creator: "@medasavunma",
+    creator: "@medaendustri",
   },
   robots: {
     index: true,
@@ -88,13 +91,13 @@ export const metadata: Metadata = {
     google: "your-google-verification-code",
     yandex: "your-yandex-verification-code",
   },
-    generator: 'v0.dev'
-}
+  generator: "v0.dev",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="tr" className={`${inter.variable} antialiased`}>
@@ -105,10 +108,15 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Meda Savunma Teknolojileri",
-              alternateName: "Meda Savunma",
-              url: process.env.NEXT_PUBLIC_SITE_URL || "https://medasavunma.com.tr",
-              logo: `${process.env.NEXT_PUBLIC_SITE_URL || "https://medasavunma.com.tr"}/logo.png`,
+              name: "Meda Endüstri",
+              alternateName: "Meda Endüstri",
+              url:
+                process.env.NEXT_PUBLIC_SITE_URL ||
+                "https://www.medaendustri.com",
+              logo: `${
+                process.env.NEXT_PUBLIC_SITE_URL ||
+                "https://www.medaendustri.com"
+              }/logo.png`,
               description:
                 "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü",
               address: {
@@ -119,19 +127,46 @@ export default function RootLayout({
               },
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+90-212-XXX-XXXX",
+                telephone: "+90-212-555-0123",
                 contactType: "customer service",
                 availableLanguage: ["Turkish", "English"],
+                areaServed: ["TR", "AZ", "GE", "BG", "GR"],
+                serviceType: "Dragon Winch Sales and Service",
               },
               sameAs: [
-                "https://www.linkedin.com/company/medasavunma",
-                "https://www.facebook.com/medasavunma",
-                "https://www.instagram.com/medasavunma",
+                "https://www.linkedin.com/company/medaendustri",
+                "https://www.facebook.com/medaendustri",
+                "https://www.instagram.com/medaendustri",
               ],
               foundingDate: "2009",
               numberOfEmployees: "10-50",
               industry: "Industrial Equipment",
-              keywords: "dragon winch, çekme vinci tamburu, kurtarma vinci, endüstriyel vinç, denizcilik vinçleri",
+              keywords:
+                "dragon winch, çekme vinci tamburu, kurtarma vinci, endüstriyel vinç, denizcilik vinçleri",
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "Dragon Winch Ürün Kataloğu",
+                itemListElement: [
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Product",
+                      name: "Dragon Winch Çekme Vinci Tamburu",
+                      category: "Endüstriyel Vinç Sistemi",
+                    },
+                  },
+                ],
+              },
+              makesOffer: {
+                "@type": "Offer",
+                name: "Dragon Winch Distribütörlük Hizmetleri",
+                description:
+                  "Dragon Winch ürünleri satış, servis ve teknik destek hizmetleri",
+                seller: {
+                  "@type": "Organization",
+                  name: "Meda Endüstri",
+                },
+              },
             }),
           }}
         />
@@ -143,5 +178,5 @@ export default function RootLayout({
         <Footer />
       </body>
     </html>
-  )
+  );
 }

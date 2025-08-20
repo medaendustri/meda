@@ -1,14 +1,36 @@
-import type { MetadataRoute } from "next"
+import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://medasavunma.com.tr"
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com";
 
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: ["/api/", "/admin/", "/_next/"],
-    },
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: [
+          "/api/",
+          "/admin/",
+          "/_next/",
+          "/private/",
+          "*.pdf$",
+          "/temp/",
+          "/cache/",
+        ],
+      },
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: ["/api/", "/admin/", "/_next/"],
+      },
+      {
+        userAgent: "Bingbot",
+        allow: "/",
+        disallow: ["/api/", "/admin/", "/_next/"],
+      },
+    ],
     sitemap: `${baseUrl}/sitemap.xml`,
-  }
+    host: baseUrl,
+  };
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import type React from "react";
+import type { Metadata } from "next";
 
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -53,24 +54,40 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      phone: "",
-      subject: "",
-      message: "",
-      department: "genel",
-    });
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+      if (response.ok) {
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          phone: "",
+          subject: "",
+          message: "",
+          department: "genel",
+        });
+        setIsSubmitted(true);
 
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000);
+        // Reset success message after 5 seconds
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        const errorData = await response.json();
+        alert(`Hata: ${errorData.error || "E-posta gönderilemedi"}`);
+      }
+    } catch (error) {
+      console.error("Form gönderme hatası:", error);
+      alert("Bir hata oluştu. Lütfen tekrar deneyin.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -210,12 +227,12 @@ export default function ContactPage() {
           {/* Contact Form */}
           <div>
             <Card className="shadow-2xl border-0 overflow-hidden">
-              <CardHeader className="bg-gradient-to-r from-[#d84948] to-[#c73e3d] text-white">
-                <CardTitle className="text-2xl font-bold flex items-center">
+              <CardHeader className="bg-gradient-to-r from-[#d84948] to-[#c73e3d] text-white p-8">
+                <CardTitle className="text-2xl font-bold flex items-center mb-3">
                   <MessageCircle className="w-6 h-6 mr-3" />
                   Dragon Winch Teklif Formu
                 </CardTitle>
-                <p className="text-white/90">
+                <p className="text-white/90 text-base">
                   Vinç ihtiyaçlarınızı belirtin, size en uygun Dragon Winch
                   çözümünü önerelim.
                 </p>
@@ -397,12 +414,12 @@ export default function ContactPage() {
 
           {/* Contact Information */}
           <div className="space-y-8">
-            <Card className="shadow-2xl border-0">
-              <CardHeader className="bg-gradient-to-r from-gray-50 to-[#d84948]/5">
-                <CardTitle className="text-2xl font-bold text-gray-900">
+            <Card className="shadow-2xl border-0 overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-gray-50 to-[#d84948]/5 p-8">
+                <CardTitle className="text-2xl font-bold text-gray-900 mb-3">
                   Dragon Winch İletişim
                 </CardTitle>
-                <p className="text-gray-600">
+                <p className="text-gray-600 text-base">
                   Yetkili distribütör iletişim bilgileri
                 </p>
               </CardHeader>
@@ -442,12 +459,12 @@ export default function ContactPage() {
         {/* Map Section */}
         <div className="mt-16">
           <Card className="shadow-2xl border-0 overflow-hidden">
-            <CardHeader className="bg-gradient-to-r from-[#d84948] to-[#c73e3d] text-white">
-              <CardTitle className="text-2xl font-bold flex items-center">
+            <CardHeader className="bg-gradient-to-r from-[#d84948] to-[#c73e3d] text-white p-8">
+              <CardTitle className="text-2xl font-bold flex items-center mb-3">
                 <MapPin className="w-6 h-6 mr-3" />
                 Dragon Winch Distribütör Merkezi
               </CardTitle>
-              <p className="text-white/90">
+              <p className="text-white/90 text-base">
                 Dragon Winch ürünlerini görmek ve teknik destek almak için
                 merkezimizi ziyaret edebilirsiniz.
               </p>

@@ -27,6 +27,81 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { HeroSlider } from "@/components/hero-slider";
+import type { Metadata } from "next";
+
+interface Product {
+  id: number;
+  name: string;
+  slug: string;
+  images?: Array<{ src: string; alt?: string }>;
+  categories?: Array<{ id: number; name: string }>;
+  short_description?: string;
+  date_created: string;
+  date_modified?: string;
+}
+
+interface Category {
+  id: number;
+  name: string;
+}
+
+interface Testimonial {
+  name: string;
+  company: string;
+  content: string;
+  rating: number;
+}
+
+export const metadata: Metadata = {
+  title:
+    "Dragon Winch Türkiye Distribütörü - Çekme Vinci Tamburu | Meda Endüstri",
+  description:
+    "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü. 15+ yıllık deneyim, profesyonel hizmet ve 7/24 teknik destek. Denizcilik, endüstriyel ve liman vinç çözümleri.",
+  keywords: [
+    "dragon winch türkiye",
+    "çekme vinci tamburu",
+    "kurtarma vinci",
+    "endüstriyel vinç",
+    "denizcilik vinçleri",
+    "liman ekipmanları",
+    "vinç sistemi türkiye",
+    "dragon winch distribütör",
+    "winch drum turkey",
+    "recovery winch turkey",
+    "marine winch systems",
+    "industrial winch solutions",
+    "meda endüstri",
+    "vinç tamiri",
+    "yedek parça vinç",
+  ],
+  openGraph: {
+    title:
+      "Dragon Winch Türkiye Distribütörü - Çekme Vinci Tamburu | Meda Endüstri",
+    description:
+      "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü. 15+ yıllık deneyim, profesyonel hizmet ve 7/24 teknik destek.",
+    type: "website",
+    locale: "tr_TR",
+    url: "/",
+    images: [
+      {
+        url: "/og-dragon-winch-homepage.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Dragon Winch Türkiye - Çekme Vinci Tamburu Distribütörü",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dragon Winch Türkiye Distribütörü - Çekme Vinci Tamburu",
+    description:
+      "Dragon Winch çekme vinci tamburu ve endüstriyel vinç sistemleri Türkiye distribütörü. 15+ yıllık deneyim.",
+    images: ["/og-dragon-winch-homepage.jpg"],
+  },
+  alternates: {
+    canonical: "/",
+  },
+};
 
 async function getFeaturedProducts() {
   try {
@@ -198,15 +273,16 @@ export default async function HomePage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
-            name: "Meda Savunma",
+            name: "Meda Endüstri",
             alternateName: "Dragon Winch Türkiye",
             url:
-              process.env.NEXT_PUBLIC_SITE_URL || "https://medasavunma.com.tr",
+              process.env.NEXT_PUBLIC_SITE_URL ||
+              "https://www.medaendustri.com",
             description:
               "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü",
             publisher: {
               "@type": "Organization",
-              name: "Meda Savunma Teknolojileri",
+              name: "Meda Endüstri",
             },
             potentialAction: {
               "@type": "SearchAction",
@@ -214,7 +290,7 @@ export default async function HomePage() {
                 "@type": "EntryPoint",
                 urlTemplate: `${
                   process.env.NEXT_PUBLIC_SITE_URL ||
-                  "https://medasavunma.com.tr"
+                  "https://www.medaendustri.com"
                 }/urunler?search={search_term_string}`,
               },
               "query-input": "required name=search_term_string",
@@ -236,7 +312,7 @@ export default async function HomePage() {
               numberOfItems: featuredProducts.length,
               itemListElement: featuredProducts
                 .slice(0, 6)
-                .map((product: any, index: number) => ({
+                .map((product: Product, index: number) => ({
                   "@type": "ListItem",
                   position: index + 1,
                   item: {
@@ -248,7 +324,7 @@ export default async function HomePage() {
                     image: product.images?.[0]?.src || "",
                     url: `${
                       process.env.NEXT_PUBLIC_SITE_URL ||
-                      "https://medasavunma.com.tr"
+                      "https://www.medaendustri.com"
                     }/urunler/${product.id}`,
                     brand: {
                       "@type": "Brand",
@@ -284,7 +360,7 @@ export default async function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredProducts.slice(0, 6).map((product: any) => (
+              {featuredProducts.slice(0, 6).map((product: Product) => (
                 <Card
                   key={product.id}
                   className="group hover:shadow-2xl transition-all duration-500 cursor-pointer border-0 shadow-lg hover:-translate-y-3 bg-white relative overflow-hidden"
@@ -317,14 +393,16 @@ export default async function HomePage() {
                     </CardTitle>
                     {product.categories && product.categories.length > 0 && (
                       <div className="flex flex-wrap gap-2 mb-3">
-                        {product.categories.slice(0, 2).map((category: any) => (
-                          <span
-                            key={category.id}
-                            className="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-xs font-medium"
-                          >
-                            {category.name}
-                          </span>
-                        ))}
+                        {product.categories
+                          .slice(0, 2)
+                          .map((category: Category) => (
+                            <span
+                              key={category.id}
+                              className="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-xs font-medium"
+                            >
+                              {category.name}
+                            </span>
+                          ))}
                       </div>
                     )}
                   </CardHeader>
@@ -529,7 +607,7 @@ export default async function HomePage() {
                   </div>
                   <Quote className="w-10 h-10 text-[#d84948] mb-6 opacity-60" />
                   <p className="text-gray-700 leading-relaxed mb-8 italic text-lg">
-                    "{testimonial.content}"
+                    &ldquo;{testimonial.content}&rdquo;
                   </p>
                   <div className="border-t border-gray-100 pt-6">
                     <div className="font-bold text-gray-900 text-lg">

@@ -1,30 +1,82 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Target, Eye, Award, Users, Globe, Lightbulb, Anchor, TrendingUp, Shield, Clock } from "lucide-react"
-import Image from "next/image"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Target,
+  Eye,
+  Award,
+  Users,
+  Globe,
+  Lightbulb,
+  Anchor,
+  TrendingUp,
+  Shield,
+  Clock,
+} from "lucide-react";
+import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Kurumsal - Dragon Winch Türkiye Distribütörü | Meda Endüstri",
+  description:
+    "Meda Endüstri olarak 15+ yıldır Dragon Winch çekme vinci tamburu Türkiye distribütörlüğünü yürütüyoruz. Misyonumuz, vizyonumuz ve değerlerimiz hakkında bilgi alın.",
+  keywords: [
+    "meda endüstri kurumsal",
+    "dragon winch distribütör",
+    "çekme vinci tamburu distribütör",
+    "endüstriyel vinç distribütörü",
+    "dragon winch türkiye",
+    "vinç sistemi distribütörü",
+    "meda endüstri hakkında",
+    "dragon winch yetkili distribütör",
+    "winch distributor turkey",
+    "industrial winch distributor",
+  ],
+  openGraph: {
+    title: "Kurumsal - Dragon Winch Türkiye Distribütörü",
+    description:
+      "Meda Endüstri olarak 15+ yıldır Dragon Winch çekme vinci tamburu Türkiye distribütörlüğünü yürütüyoruz.",
+    type: "website",
+    url: "/kurumsal",
+    images: [
+      {
+        url: "/og-dragon-winch-corporate.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Meda Endüstri - Dragon Winch Türkiye Distribütörü Kurumsal",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "/kurumsal",
+  },
+};
 
 export default function AboutPage() {
   const values = [
     {
       icon: <Award className="w-8 h-8 text-[#d84948]" />,
       title: "Orijinallik",
-      description: "Dragon Winch'in yetkili distribütörü olarak sadece orijinal ürünler sunuyoruz.",
+      description:
+        "Dragon Winch'in yetkili distribütörü olarak sadece orijinal ürünler sunuyoruz.",
     },
     {
       icon: <Lightbulb className="w-8 h-8 text-[#d84948]" />,
       title: "Uzmanlık",
-      description: "15 yıllık vinç teknolojisi deneyimimiz ile en doğru çözümleri öneriyoruz.",
+      description:
+        "15 yıllık vinç teknolojisi deneyimimiz ile en doğru çözümleri öneriyoruz.",
     },
     {
       icon: <Users className="w-8 h-8 text-[#d84948]" />,
       title: "Güvenilirlik",
-      description: "Dragon Winch distribütörlüğündeki başarılı geçmişimizle güven veriyoruz.",
+      description:
+        "Dragon Winch distribütörlüğündeki başarılı geçmişimizle güven veriyoruz.",
     },
     {
       icon: <Globe className="w-8 h-8 text-[#d84948]" />,
       title: "Geniş Erişim",
-      description: "Türkiye ve bölge ülkelerinde Dragon Winch ürünlerine kolay erişim sağlıyoruz.",
+      description:
+        "Türkiye ve bölge ülkelerinde Dragon Winch ürünlerine kolay erişim sağlıyoruz.",
     },
-  ]
+  ];
 
   const stats = [
     {
@@ -51,7 +103,7 @@ export default function AboutPage() {
       label: "Ülkede Hizmet",
       description: "Geniş distribütörlük ağı",
     },
-  ]
+  ];
 
   const milestones = [
     {
@@ -84,7 +136,7 @@ export default function AboutPage() {
       title: "Dijital Dönüşüm",
       description: "Online katalog ve e-ticaret platformu",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -97,10 +149,13 @@ export default function AboutPage() {
               <Clock className="w-4 h-4 mr-2" />
               15 Yıllık Dragon Winch Deneyimi
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">Hakkımızda</h1>
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              Hakkımızda
+            </h1>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-              Dragon Winch çekme vinci tamburlarının Türkiye ve bölge ülkeleri distribütörü olarak, 15 yıllık
-              deneyimimizle vinç sektöründe güvenilir çözümler sunuyoruz.
+              Dragon Winch çekme vinci tamburlarının Türkiye ve bölge ülkeleri
+              distribütörü olarak, 15 yıllık deneyimimizle vinç sektöründe
+              güvenilir çözümler sunuyoruz.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <div className="px-6 py-3 bg-white rounded-lg shadow-md border border-gray-100">
@@ -147,41 +202,56 @@ export default function AboutPage() {
                 <Anchor className="w-4 h-4 mr-2" />
                 Dragon Winch Distribütörü
               </div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-8 leading-tight">Çekme Vinci Uzmanı</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-8 leading-tight">
+                Çekme Vinci Uzmanı
+              </h2>
               <div className="space-y-6 text-gray-600 leading-relaxed">
                 <p className="text-lg">
-                  Meda Endüstri, 2009 yılından bu yana Dragon Winch markasının Türkiye ve bölge ülkeleri distribütörü
-                  olarak faaliyet göstermektedir. 15 yıllık deneyimimizle çekme vinci tamburu teknolojilerinde
-                  uzmanlaşmış kadromuz, sektörün en zorlu projelerinde başarılı çözümler sunmaktadır.
+                  Meda Endüstri, 2009 yılından bu yana Dragon Winch markasının
+                  Türkiye ve bölge ülkeleri distribütörü olarak faaliyet
+                  göstermektedir. 15 yıllık deneyimimizle çekme vinci tamburu
+                  teknolojilerinde uzmanlaşmış kadromuz, sektörün en zorlu
+                  projelerinde başarılı çözümler sunmaktadır.
                 </p>
                 <p>
-                  Denizcilik, endüstriyel üretim, liman işletmeciliği ve inşaat sektörlerinde faaliyet gösteren 200'den
-                  fazla müşteriye Dragon Winch ürünleri tedarik etmekteyiz. Geniş stok kapasitemiz ve hızlı lojistik
-                  ağımız ile müşterilerimizin acil ihtiyaçlarını karşılayabilecek altyapıya sahibiz.
+                  Denizcilik, endüstriyel üretim, liman işletmeciliği ve inşaat
+                  sektörlerinde faaliyet gösteren 200'den fazla müşteriye Dragon
+                  Winch ürünleri tedarik etmekteyiz. Geniş stok kapasitemiz ve
+                  hızlı lojistik ağımız ile müşterilerimizin acil ihtiyaçlarını
+                  karşılayabilecek altyapıya sahibiz.
                 </p>
                 <p>
-                  Dragon Winch'in yetkili distribütörü olarak, sadece orijinal ürünler sunuyor, satış sonrası teknik
-                  destek ve yedek parça hizmetleri sağlıyoruz. Müşteri memnuniyeti odaklı yaklaşımımızla sektörde
-                  güvenilir bir partner konumundayız.
+                  Dragon Winch'in yetkili distribütörü olarak, sadece orijinal
+                  ürünler sunuyor, satış sonrası teknik destek ve yedek parça
+                  hizmetleri sağlıyoruz. Müşteri memnuniyeti odaklı
+                  yaklaşımımızla sektörde güvenilir bir partner konumundayız.
                 </p>
               </div>
 
               <div className="mt-8 grid grid-cols-2 gap-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-[#d84948] rounded-full"></div>
-                  <span className="text-gray-700 font-medium">Dragon Winch Yetkili Distribütör</span>
+                  <span className="text-gray-700 font-medium">
+                    Dragon Winch Yetkili Distribütör
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-[#d84948] rounded-full"></div>
-                  <span className="text-gray-700 font-medium">7/24 Teknik Destek</span>
+                  <span className="text-gray-700 font-medium">
+                    7/24 Teknik Destek
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-[#d84948] rounded-full"></div>
-                  <span className="text-gray-700 font-medium">Hızlı Teslimat</span>
+                  <span className="text-gray-700 font-medium">
+                    Hızlı Teslimat
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-[#d84948] rounded-full"></div>
-                  <span className="text-gray-700 font-medium">Yetkili Servis Ağı</span>
+                  <span className="text-gray-700 font-medium">
+                    Yetkili Servis Ağı
+                  </span>
                 </div>
               </div>
             </div>
@@ -203,9 +273,12 @@ export default function AboutPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Dragon Winch Yolculuğumuz</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Dragon Winch Yolculuğumuz
+            </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              15 yıllık Dragon Winch distribütörlüğümüzde attığımız önemli adımlar
+              15 yıllık Dragon Winch distribütörlüğümüzde attığımız önemli
+              adımlar
             </p>
           </div>
 
@@ -213,12 +286,25 @@ export default function AboutPage() {
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-[#d84948]/20"></div>
             <div className="space-y-12">
               {milestones.map((milestone, index) => (
-                <div key={index} className={`flex items-center ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}>
-                  <div className={`w-1/2 ${index % 2 === 0 ? "pr-8 text-right" : "pl-8 text-left"}`}>
+                <div
+                  key={index}
+                  className={`flex items-center ${
+                    index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                  }`}
+                >
+                  <div
+                    className={`w-1/2 ${
+                      index % 2 === 0 ? "pr-8 text-right" : "pl-8 text-left"
+                    }`}
+                  >
                     <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
                       <CardContent className="p-6">
-                        <div className="text-2xl font-bold text-[#d84948] mb-2">{milestone.year}</div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{milestone.title}</h3>
+                        <div className="text-2xl font-bold text-[#d84948] mb-2">
+                          {milestone.year}
+                        </div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                          {milestone.title}
+                        </h3>
                         <p className="text-gray-600">{milestone.description}</p>
                       </CardContent>
                     </Card>
@@ -244,13 +330,17 @@ export default function AboutPage() {
                 <div className="mx-auto mb-6 p-6 bg-gradient-to-br from-[#d84948] to-[#c73e3d] rounded-2xl w-fit group-hover:scale-110 transition-transform duration-300">
                   <Eye className="w-10 h-10 text-white" />
                 </div>
-                <CardTitle className="text-3xl font-bold text-gray-900">Vizyonumuz</CardTitle>
+                <CardTitle className="text-3xl font-bold text-gray-900">
+                  Vizyonumuz
+                </CardTitle>
               </CardHeader>
               <CardContent className="text-center p-8">
                 <p className="text-gray-600 leading-relaxed text-lg">
-                  Dragon Winch çekme vinci tamburlarının bölgedeki en güvenilir ve tercih edilen distribütörü olmak.
-                  Vinç teknolojilerinde uzmanlaşarak, müşterilerimize en kaliteli ürünler ve hizmetler sunmak. Sektörde
-                  öncü konumumuzu koruyarak Dragon Winch markasını daha geniş coğrafyalara yaymak.
+                  Dragon Winch çekme vinci tamburlarının bölgedeki en güvenilir
+                  ve tercih edilen distribütörü olmak. Vinç teknolojilerinde
+                  uzmanlaşarak, müşterilerimize en kaliteli ürünler ve hizmetler
+                  sunmak. Sektörde öncü konumumuzu koruyarak Dragon Winch
+                  markasını daha geniş coğrafyalara yaymak.
                 </p>
               </CardContent>
             </Card>
@@ -261,14 +351,18 @@ export default function AboutPage() {
                 <div className="mx-auto mb-6 p-6 bg-gradient-to-br from-[#d84948] to-[#c73e3d] rounded-2xl w-fit group-hover:scale-110 transition-transform duration-300">
                   <Target className="w-10 h-10 text-white" />
                 </div>
-                <CardTitle className="text-3xl font-bold text-gray-900">Misyonumuz</CardTitle>
+                <CardTitle className="text-3xl font-bold text-gray-900">
+                  Misyonumuz
+                </CardTitle>
               </CardHeader>
               <CardContent className="text-center p-8">
                 <p className="text-gray-600 leading-relaxed text-lg">
-                  Müşterilerimizin çekme vinci ihtiyaçlarını Dragon Winch'in kaliteli ürünleriyle karşılamak.
-                  Denizcilik, endüstri ve liman sektörlerinde güvenilir vinç çözümleri sunarak operasyonel verimliliği
-                  artırmak. Satış öncesi danışmanlık ve satış sonrası teknik destek ile müşteri memnuniyetini en üst
-                  düzeyde tutmak.
+                  Müşterilerimizin çekme vinci ihtiyaçlarını Dragon Winch'in
+                  kaliteli ürünleriyle karşılamak. Denizcilik, endüstri ve liman
+                  sektörlerinde güvenilir vinç çözümleri sunarak operasyonel
+                  verimliliği artırmak. Satış öncesi danışmanlık ve satış
+                  sonrası teknik destek ile müşteri memnuniyetini en üst düzeyde
+                  tutmak.
                 </p>
               </CardContent>
             </Card>
@@ -280,7 +374,9 @@ export default function AboutPage() {
       <section className="py-20 bg-gradient-to-br from-gray-50 to-[#d84948]/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Değerlerimiz</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Değerlerimiz
+            </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Dragon Winch distribütörlüğümüzde benimsediğimiz temel değerler
             </p>
@@ -294,12 +390,18 @@ export default function AboutPage() {
               >
                 <CardHeader className="pb-4">
                   <div className="mx-auto mb-6 p-6 bg-gradient-to-br from-[#d84948]/10 to-[#d84948]/5 rounded-2xl w-fit group-hover:bg-gradient-to-br group-hover:from-[#d84948] group-hover:to-[#c73e3d] transition-all duration-300">
-                    <div className="group-hover:text-white transition-colors duration-300">{value.icon}</div>
+                    <div className="group-hover:text-white transition-colors duration-300">
+                      {value.icon}
+                    </div>
                   </div>
-                  <CardTitle className="text-xl font-semibold text-gray-900">{value.title}</CardTitle>
+                  <CardTitle className="text-xl font-semibold text-gray-900">
+                    {value.title}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="px-6 pb-8">
-                  <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                  <p className="text-gray-600 leading-relaxed">
+                    {value.description}
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -307,5 +409,5 @@ export default function AboutPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
