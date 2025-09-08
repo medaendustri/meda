@@ -62,7 +62,7 @@ export function Header() {
     },
     {
       href: "/urunler",
-      label: "Dragon Winch",
+      label: "Ürünler",
       dropdown: [
         { href: "/urunler", label: "Tüm Dragon Winch Ürünleri" },
         { href: "/urunler?category=marine", label: "Denizcilik Vinçleri" },
@@ -80,7 +80,7 @@ export function Header() {
           external: true,
         },
         {
-          href: "/meda_savunma_2023_catalog.pdf",
+          href: "/dragon-winch-katalog-2025.pdf",
           label: "Meda Endüstri Katalog",
           external: true,
         },
@@ -102,10 +102,10 @@ export function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center text-sm">
             <div className="flex items-center space-x-6">
-              <div className="flex items-center space-x-2">
+              {/* <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4" />
                 <span>+90 507 248 2699</span>
-              </div>
+              </div> */}
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
                 <span>info@medaendustri.com</span>
@@ -137,10 +137,10 @@ export function Header() {
                   <img src="/meda-logo.webp" alt="" />
                 </div>
                 <div className="ml-4">
-                  <span className="text-2xl font-bold text-gray-900 group-hover:text-[#d84948] transition-colors">
+                  <span className="text-2xl font-bold text-gray-900 group-hover:text-[#d84948] transition-colors corporate-heading">
                     Meda Endüstri
                   </span>
-                  <div className="text-xs text-gray-500 font-medium">
+                  <div className="text-xs text-gray-500 font-medium corporate-text">
                     Dragon Winch Yetkili Distribütörü
                   </div>
                 </div>
@@ -155,7 +155,7 @@ export function Header() {
                     onClick={() =>
                       link.dropdown ? toggleDropdown(link.label) : null
                     }
-                    className="flex items-center px-4 py-2 text-gray-700 hover:text-[#d84948] font-medium transition-all duration-300 rounded-lg hover:bg-[#d84948]/5 group"
+                    className="flex items-center px-4 py-2 text-gray-700 hover:text-[#d84948] font-medium transition-all duration-300 rounded-lg hover:bg-[#d84948]/5 group corporate-text"
                   >
                     {!link.dropdown ? (
                       <Link href={link.href} className="flex items-center">
@@ -200,7 +200,7 @@ export function Header() {
             <div className="hidden lg:flex items-center space-x-4">
               <Link
                 href="/iletisim"
-                className="bg-gradient-to-r from-[#d84948] to-[#c73e3d] text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105"
+                className="bg-gradient-to-r from-[#d84948] to-[#c73e3d] text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 corporate-text"
               >
                 Vinç Teklifi Al
               </Link>

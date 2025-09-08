@@ -63,28 +63,10 @@ export function Footer() {
               </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
-              2009&apos;dan beri Dragon Winch çekme vinci tamburlarının Türkiye ve
-              bölge ülkeleri distribütörü olarak, denizcilik, endüstri ve liman
-              sektörlerinde güvenilir vinç çözümleri sunuyoruz.
+              2009&apos;dan beri Dragon Winch çekme vinci tamburlarının Türkiye
+              ve bölge ülkeleri distribütörü olarak, denizcilik, endüstri ve
+              liman sektörlerinde güvenilir vinç çözümleri sunuyoruz.
             </p>
-
-            {/* Certifications */}
-            <div>
-              <h4 className="text-sm font-semibold text-white mb-3">
-                Sertifikalarımız
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {certifications.map((cert, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center space-x-1 px-3 py-1 bg-white/10 rounded-full text-xs text-gray-300"
-                  >
-                    {cert.icon}
-                    <span>{cert.name}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
 
             {/* Social Links */}
             <div>
@@ -153,16 +135,14 @@ export function Footer() {
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-[#d84948] mt-0.5 flex-shrink-0" />
                 <div className="text-sm text-gray-300">
-                  <p>Dragon Winch Distribütör Merkezi</p>
-                  <p>Organize Sanayi Bölgesi</p>
-                  <p>1. Cadde No: 123</p>
-                  <p>34000 İstanbul, Türkiye</p>
+                  <p>100. Yıl Bulvarı </p>
+                  <p>No: 99/5 Yenimahalle/Ankara</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-[#d84948] flex-shrink-0" />
                 <div className="text-sm text-gray-300">
-                  <p>+90 212 555 0123</p>
+                  <p>+90 507 248 26 99</p>
                   <p className="text-xs text-gray-400">
                     7/24 Vinç Destek Hattı
                   </p>
@@ -171,47 +151,10 @@ export function Footer() {
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-[#d84948] flex-shrink-0" />
                 <div className="text-sm text-gray-300">
-                  <p>dragonwinch@medaendustri.com</p>
+                  <p>info@medaendustri.com</p>
                   <p className="text-xs text-gray-400">24 saat içinde yanıt</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <Clock className="w-5 h-5 text-[#d84948] flex-shrink-0" />
-                <div className="text-sm text-gray-300">
-                  <p>Pzt-Cum: 08:00-18:00</p>
-                  <p className="text-xs text-gray-400">
-                    Cumartesi: 09:00-13:00
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Stats Section */}
-      <div className="border-t border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-2xl font-bold text-[#d84948] mb-1">15+</div>
-              <div className="text-sm text-gray-400">
-                Yıllık Dragon Winch Deneyimi
-              </div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-[#d84948] mb-1">200+</div>
-              <div className="text-sm text-gray-400">Mutlu Müşteri</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-[#d84948] mb-1">
-                1000+
-              </div>
-              <div className="text-sm text-gray-400">Kurulu Vinç Sistemi</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-[#d84948] mb-1">25+</div>
-              <div className="text-sm text-gray-400">Ülkede Hizmet</div>
             </div>
           </div>
         </div>

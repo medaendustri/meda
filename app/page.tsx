@@ -157,29 +157,6 @@ export default async function HomePage() {
     },
   ];
 
-  const companyStats = [
-    {
-      number: "15+",
-      label: "Yıllık Dragon Winch Deneyimi",
-      icon: <Award className="w-6 h-6" />,
-    },
-    {
-      number: "1000+",
-      label: "Kurulu Vinç Sistemi",
-      icon: <CheckCircle className="w-6 h-6" />,
-    },
-    {
-      number: "200+",
-      label: "Mutlu Müşteri",
-      icon: <Users className="w-6 h-6" />,
-    },
-    {
-      number: "25+",
-      label: "Ülkede Distribütörlük",
-      icon: <Globe className="w-6 h-6" />,
-    },
-  ];
-
   const whyChooseUs = [
     {
       title: "Yetkili Distribütör",
@@ -350,10 +327,10 @@ export default async function HomePage() {
               <div className="inline-block px-4 py-2 bg-[#d84948]/10 rounded-full text-[#d84948] text-sm font-semibold mb-4">
                 ÖNE ÇIKAN ÜRÜNLER
               </div>
-              <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 corporate-heading">
                 Dragon Winch Ürünleri
               </h2>
-              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed corporate-text">
                 En popüler Dragon Winch çekme vinci tamburu modelleri ve
                 endüstriyel vinç çözümleri
               </p>
@@ -388,7 +365,7 @@ export default async function HomePage() {
                   </div>
 
                   <CardHeader className="pb-4 pt-6">
-                    <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-[#d84948] transition-colors line-clamp-2 leading-tight mb-3">
+                    <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-[#d84948] transition-colors line-clamp-2 leading-tight mb-3 corporate-subheading">
                       {product.name}
                     </CardTitle>
                     {product.categories && product.categories.length > 0 && (
@@ -410,7 +387,7 @@ export default async function HomePage() {
                   <CardContent className="pt-0 pb-6">
                     {product.short_description && (
                       <CardDescription
-                        className="text-gray-600 leading-relaxed line-clamp-3 text-sm mb-6"
+                        className="text-gray-600 leading-relaxed line-clamp-3 text-sm mb-6 corporate-text"
                         dangerouslySetInnerHTML={{
                           __html: product.short_description,
                         }}
@@ -445,40 +422,16 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* Company Stats Section */}
-      <section className="py-20 bg-gradient-to-r from-[#d84948] via-[#dc5a59] to-[#d84948] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/placeholder.svg?height=400&width=1400')] opacity-10"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {companyStats.map((stat, index) => (
-              <div key={index} className="text-center text-white group">
-                <div className="flex justify-center mb-6">
-                  <div className="p-4 bg-white/20 rounded-2xl backdrop-blur-sm group-hover:bg-white/30 transition-all duration-300 group-hover:scale-110">
-                    {stat.icon}
-                  </div>
-                </div>
-                <div className="text-4xl md:text-5xl font-bold mb-3 group-hover:scale-105 transition-transform duration-300">
-                  {stat.number}
-                </div>
-                <div className="text-red-100 font-medium text-lg">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <div className="inline-block px-4 py-2 bg-[#d84948]/10 rounded-full text-[#d84948] text-sm font-semibold mb-4">
               DRAGON WINCH ÜRÜNLERİ
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 corporate-heading">
               Çekme Vinci Çözümlerimiz
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed corporate-text">
               Dragon Winch markasının geniş ürün yelpazesi ile her sektörden
               ihtiyaçlarınıza uygun çekme vinci tamburu çözümleri sunuyoruz.
             </p>
@@ -495,10 +448,10 @@ export default async function HomePage() {
                   <div className="mx-auto mb-8 p-6 bg-gradient-to-br from-red-50 to-red-100 rounded-2xl w-fit group-hover:from-red-100 group-hover:to-red-200 transition-all duration-300 group-hover:scale-110">
                     {category.icon}
                   </div>
-                  <CardTitle className="text-2xl font-bold text-gray-900 group-hover:text-[#d84948] transition-colors mb-4">
+                  <CardTitle className="text-2xl font-bold text-gray-900 group-hover:text-[#d84948] transition-colors mb-4 corporate-subheading">
                     {category.title}
                   </CardTitle>
-                  <CardDescription className="text-gray-600 leading-relaxed text-base">
+                  <CardDescription className="text-gray-600 leading-relaxed text-base corporate-text">
                     {category.description}
                   </CardDescription>
                 </CardHeader>
@@ -540,10 +493,10 @@ export default async function HomePage() {
             <div className="inline-block px-4 py-2 bg-[#d84948]/10 rounded-full text-[#d84948] text-sm font-semibold mb-4">
               NEDEN BİZ?
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 corporate-heading">
               Neden Meda Endüstri?
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed corporate-text">
               Dragon Winch distribütörlüğündeki deneyimimiz ve müşteri odaklı
               yaklaşımımızla fark yaratıyoruz
             </p>
@@ -580,10 +533,10 @@ export default async function HomePage() {
             <div className="inline-block px-4 py-2 bg-[#d84948]/10 rounded-full text-[#d84948] text-sm font-semibold mb-4">
               REFERANSLAR
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 corporate-heading">
               Müşterilerimiz Ne Diyor?
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed corporate-text">
               Dragon Winch ürünleri kullanan müşterilerimizden gelen
               değerlendirmeler
             </p>
@@ -630,10 +583,10 @@ export default async function HomePage() {
             <div className="inline-block px-4 py-2 bg-[#d84948]/10 rounded-full text-[#d84948] text-sm font-semibold mb-4">
               HABERLER
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 corporate-heading">
               Dragon Winch Haberleri
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed corporate-text">
               Dragon Winch ürünleri ve vinç sektöründen son gelişmeler
             </p>
           </div>
@@ -706,10 +659,10 @@ export default async function HomePage() {
               ÜCRETSİZ TEKNİK DANIŞMANLIK
             </span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight corporate-heading">
             Dragon Winch Çözümünüzü Bulalım
           </h2>
-          <p className="text-xl text-red-100 mb-12 leading-relaxed max-w-4xl mx-auto">
+          <p className="text-xl text-red-100 mb-12 leading-relaxed max-w-4xl mx-auto corporate-text">
             Uzman ekibimizle birlikte ihtiyacınıza en uygun Dragon Winch çekme
             vinci tamburunu seçin. Ücretsiz teknik danışmanlık için hemen
             iletişime geçin.

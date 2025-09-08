@@ -1,11 +1,28 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
 
+// Corporate serif font for headings
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-playfair",
+  weight: ["400", "500", "600", "700"],
+});
+
+// Professional sans-serif font for body text
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-source-sans",
+  weight: ["300", "400", "600", "700"],
+});
+
+// Fallback font
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -100,7 +117,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr" className={`${inter.variable} antialiased`}>
+    <html
+      lang="tr"
+      className={`${inter.variable} ${playfairDisplay.variable} ${sourceSans.variable} antialiased`}
+    >
       <head>
         <script
           type="application/ld+json"
@@ -171,7 +191,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen bg-white text-gray-900 font-sans">
+      <body className="min-h-screen bg-white text-gray-900 font-source-sans">
         <ScrollToTop />
         <Header />
         <main>{children}</main>
