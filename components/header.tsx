@@ -102,10 +102,6 @@ export function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center text-sm">
             <div className="flex items-center space-x-6">
-              {/* <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4" />
-                <span>+90 507 248 2699</span>
-              </div> */}
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
                 <span>info@medaendustri.com</span>
