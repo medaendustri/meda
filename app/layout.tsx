@@ -193,24 +193,42 @@ export default function RootLayout({
       <head>
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link rel="preconnect" href="https://www.google-analytics.com" />
-        
+
         {/* DNS Prefetch */}
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-        
+
         {/* Favicon Links */}
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1f2937" />
-        
+
         {/* Microsoft Tiles */}
         <meta name="msapplication-TileColor" content="#1f2937" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
-        
+
         {/* Additional Meta Tags */}
         <meta name="theme-color" content="#1f2937" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -218,7 +236,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Meda Endüstri" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="application-name" content="Meda Endüstri" />
-        
+
         {/* Organization Schema */}
         <script
           type="application/ld+json"
@@ -226,18 +244,30 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com"}/#organization`,
+              "@id": `${
+                process.env.NEXT_PUBLIC_SITE_URL ||
+                "https://www.medaendustri.com"
+              }/#organization`,
               name: "Meda Endüstri",
               alternateName: ["Meda Endüstri Ltd. Şti.", "MEDA"],
-              url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com",
+              url:
+                process.env.NEXT_PUBLIC_SITE_URL ||
+                "https://www.medaendustri.com",
               logo: {
                 "@type": "ImageObject",
-                url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com"}/meda-logo.webp`,
+                url: `${
+                  process.env.NEXT_PUBLIC_SITE_URL ||
+                  "https://www.medaendustri.com"
+                }/meda-logo.webp`,
                 width: "400",
                 height: "200",
               },
-              image: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com"}/meda-logo.webp`,
-              description: "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü",
+              image: `${
+                process.env.NEXT_PUBLIC_SITE_URL ||
+                "https://www.medaendustri.com"
+              }/meda-logo.webp`,
+              description:
+                "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü",
               slogan: "15+ Yıllık Deneyim, Profesyonel Hizmet",
               address: {
                 "@type": "PostalAddress",
@@ -262,7 +292,13 @@ export default function RootLayout({
                   serviceType: "Dragon Winch Sales and Service",
                   hoursAvailable: {
                     "@type": "OpeningHoursSpecification",
-                    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    dayOfWeek: [
+                      "Monday",
+                      "Tuesday",
+                      "Wednesday",
+                      "Thursday",
+                      "Friday",
+                    ],
                     opens: "08:00",
                     closes: "18:00",
                   },
@@ -288,7 +324,8 @@ export default function RootLayout({
               },
               industry: "Industrial Equipment Manufacturing",
               naics: "333924",
-              keywords: "dragon winch, çekme vinci tamburu, kurtarma vinci, endüstriyel vinç, denizcilik vinçleri",
+              keywords:
+                "dragon winch, çekme vinci tamburu, kurtarma vinci, endüstriyel vinç, denizcilik vinçleri",
               serviceArea: {
                 "@type": "Country",
                 name: "Turkey",
@@ -299,12 +336,12 @@ export default function RootLayout({
                   name: "Turkey",
                 },
                 {
-                  "@type": "Country", 
+                  "@type": "Country",
                   name: "Azerbaijan",
                 },
                 {
                   "@type": "Country",
-                  name: "Georgia", 
+                  name: "Georgia",
                 },
               ],
               hasOfferCatalog: {
@@ -328,7 +365,8 @@ export default function RootLayout({
               makesOffer: {
                 "@type": "Offer",
                 name: "Dragon Winch Distribütörlük Hizmetleri",
-                description: "Dragon Winch ürünleri satış, servis ve teknik destek hizmetleri",
+                description:
+                  "Dragon Winch ürünleri satış, servis ve teknik destek hizmetleri",
                 seller: {
                   "@type": "Organization",
                   name: "Meda Endüstri",
@@ -342,7 +380,7 @@ export default function RootLayout({
             }),
           }}
         />
-        
+
         {/* Website Schema */}
         <script
           type="application/ld+json"
@@ -350,12 +388,21 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com"}/#website`,
-              url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com",
+              "@id": `${
+                process.env.NEXT_PUBLIC_SITE_URL ||
+                "https://www.medaendustri.com"
+              }/#website`,
+              url:
+                process.env.NEXT_PUBLIC_SITE_URL ||
+                "https://www.medaendustri.com",
               name: "Meda Endüstri",
-              description: "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü",
+              description:
+                "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü",
               publisher: {
-                "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com"}/#organization`,
+                "@id": `${
+                  process.env.NEXT_PUBLIC_SITE_URL ||
+                  "https://www.medaendustri.com"
+                }/#organization`,
               },
               inLanguage: "tr-TR",
               potentialAction: [
@@ -363,7 +410,10 @@ export default function RootLayout({
                   "@type": "SearchAction",
                   target: {
                     "@type": "EntryPoint",
-                    urlTemplate: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com"}/urunler?search={search_term_string}`,
+                    urlTemplate: `${
+                      process.env.NEXT_PUBLIC_SITE_URL ||
+                      "https://www.medaendustri.com"
+                    }/urunler?search={search_term_string}`,
                   },
                   "query-input": "required name=search_term_string",
                 },
@@ -371,7 +421,7 @@ export default function RootLayout({
             }),
           }}
         />
-        
+
         {/* Breadcrumb Schema for Home */}
         <script
           type="application/ld+json"
@@ -384,7 +434,9 @@ export default function RootLayout({
                   "@type": "ListItem",
                   position: 1,
                   name: "Ana Sayfa",
-                  item: process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com",
+                  item:
+                    process.env.NEXT_PUBLIC_SITE_URL ||
+                    "https://www.medaendustri.com",
                 },
               ],
             }),

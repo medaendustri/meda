@@ -3,7 +3,8 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Sayfa Bulunamadı - 404",
-  description: "Aradığınız sayfa bulunamadı. Ana sayfaya dönerek devam edebilirsiniz.",
+  description:
+    "Aradığınız sayfa bulunamadı. Ana sayfaya dönerek devam edebilirsiniz.",
   robots: {
     index: false,
     follow: false,
@@ -23,7 +24,7 @@ export default function NotFound() {
             Aradığınız sayfa mevcut değil veya taşınmış olabilir.
           </p>
         </div>
-        
+
         <div className="space-y-4">
           <Link
             href="/"
@@ -31,7 +32,7 @@ export default function NotFound() {
           >
             Ana Sayfaya Dön
           </Link>
-          
+
           <div className="text-sm">
             <p className="text-gray-500 mb-2">Popüler Sayfalar:</p>
             <div className="space-x-4">
@@ -47,7 +48,7 @@ export default function NotFound() {
             </div>
           </div>
         </div>
-        
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -56,15 +57,22 @@ export default function NotFound() {
               "@type": "WebPage",
               name: "404 - Sayfa Bulunamadı",
               description: "Aradığınız sayfa bulunamadı",
-              url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com"}/404`,
+              url: `${
+                process.env.NEXT_PUBLIC_SITE_URL ||
+                "https://www.medaendustri.com"
+              }/404`,
               isPartOf: {
                 "@type": "WebSite",
                 name: "Meda Endüstri",
-                url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com",
+                url:
+                  process.env.NEXT_PUBLIC_SITE_URL ||
+                  "https://www.medaendustri.com",
               },
               potentialAction: {
                 "@type": "ReadAction",
-                target: process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com",
+                target:
+                  process.env.NEXT_PUBLIC_SITE_URL ||
+                  "https://www.medaendustri.com",
               },
             }),
           }}

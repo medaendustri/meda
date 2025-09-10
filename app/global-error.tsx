@@ -19,7 +19,9 @@ export default function GlobalError({
       <body>
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
           <div className="max-w-md mx-auto text-center">
-            <h1 className="text-6xl font-bold text-red-500 mb-4">Kritik Hata!</h1>
+            <h1 className="text-6xl font-bold text-red-500 mb-4">
+              Kritik Hata!
+            </h1>
             <h2 className="text-xl font-semibold text-gray-800 mb-4">
               Uygulama yanıt vermiyor
             </h2>

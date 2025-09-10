@@ -8,12 +8,12 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
-    domains: ['www.medaendustri.com', 'medaendustri.com'],
-    formats: ['image/webp', 'image/avif'],
+    domains: ["www.medaendustri.com", "medaendustri.com"],
+    formats: ["image/webp", "image/avif"],
   },
   // Performance optimizations
   experimental: {
-    optimizePackageImports: ['@heroicons/react'],
+    optimizePackageImports: ["@heroicons/react"],
   },
   // Compression
   compress: true,
@@ -21,50 +21,50 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: "/(.*)",
         headers: [
           {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
+            key: "X-Content-Type-Options",
+            value: "nosniff",
           },
           {
-            key: 'X-Frame-Options',
-            value: 'DENY',
+            key: "X-Frame-Options",
+            value: "DENY",
           },
           {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
+            key: "X-XSS-Protection",
+            value: "1; mode=block",
           },
           {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
+            key: "Referrer-Policy",
+            value: "origin-when-cross-origin",
           },
         ],
       },
       {
-        source: '/sitemap.xml',
+        source: "/sitemap.xml",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=3600, s-maxage=3600',
+            key: "Cache-Control",
+            value: "public, max-age=3600, s-maxage=3600",
           },
         ],
       },
       {
-        source: '/robots.txt',
+        source: "/robots.txt",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=86400, s-maxage=86400',
+            key: "Cache-Control",
+            value: "public, max-age=86400, s-maxage=86400",
           },
         ],
       },
       {
-        source: '/manifest.json',
+        source: "/manifest.json",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, s-maxage=31536000',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, s-maxage=31536000",
           },
         ],
       },
@@ -74,32 +74,32 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/home',
-        destination: '/',
+        source: "/home",
+        destination: "/",
         permanent: true,
       },
       {
-        source: '/index',
-        destination: '/',
+        source: "/index",
+        destination: "/",
         permanent: true,
       },
       {
-        source: '/products',
-        destination: '/urunler',
+        source: "/products",
+        destination: "/urunler",
         permanent: true,
       },
       {
-        source: '/contact',
-        destination: '/iletisim',
+        source: "/contact",
+        destination: "/iletisim",
         permanent: true,
       },
       {
-        source: '/about',
-        destination: '/kurumsal',
+        source: "/about",
+        destination: "/kurumsal",
         permanent: true,
       },
     ];
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;

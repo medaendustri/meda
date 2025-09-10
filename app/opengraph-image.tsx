@@ -21,7 +21,8 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "center",
-          backgroundImage: "linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%)",
+          backgroundImage:
+            "linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%)",
           padding: "80px",
         }}
       >
@@ -47,7 +48,7 @@ export default async function Image() {
             MEDA ENDÜSTRİ
           </div>
         </div>
-        
+
         <div
           style={{
             fontSize: 36,
@@ -59,7 +60,7 @@ export default async function Image() {
         >
           Dragon Winch Türkiye Distribütörü
         </div>
-        
+
         <div
           style={{
             fontSize: 24,
@@ -70,7 +71,7 @@ export default async function Image() {
         >
           Çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri
         </div>
-        
+
         <div
           style={{
             display: "flex",

@@ -21,7 +21,8 @@ export default async function TwitterImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundImage: "linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%)",
+          backgroundImage:
+            "linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%)",
           padding: "60px",
           textAlign: "center",
         }}
@@ -40,7 +41,7 @@ export default async function TwitterImage() {
         >
           MEDA ENDÜSTRİ
         </div>
-        
+
         <div
           style={{
             fontSize: 32,
@@ -52,7 +53,7 @@ export default async function TwitterImage() {
         >
           Dragon Winch Türkiye Distribütörü
         </div>
-        
+
         <div
           style={{
             fontSize: 22,
@@ -63,7 +64,7 @@ export default async function TwitterImage() {
         >
           Çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri
         </div>
-        
+
         <div
           style={{
             fontSize: 18,

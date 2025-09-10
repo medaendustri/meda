@@ -27,7 +27,7 @@ export default function Error({
             Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.
           </p>
         </div>
-        
+
         <div className="space-y-4">
           <button
             onClick={reset}
@@ -35,7 +35,7 @@ export default function Error({
           >
             Tekrar Dene
           </button>
-          
+
           <Link
             href="/"
             className="inline-block bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors"
@@ -43,7 +43,7 @@ export default function Error({
             Ana Sayfaya Dön
           </Link>
         </div>
-        
+
         {process.env.NODE_ENV === "development" && (
           <details className="mt-8 text-left">
             <summary className="cursor-pointer text-sm text-gray-500">

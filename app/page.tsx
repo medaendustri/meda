@@ -13,9 +13,7 @@ import {
   Ship,
   Calendar,
   ChevronRight,
-  Award,
   Users,
-  Globe,
   CheckCircle,
   Star,
   Quote,
@@ -27,6 +25,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { HeroSlider } from "@/components/hero-slider";
+import { VideoPopupContainer } from "@/components/video-popup-container";
 import type { Metadata } from "next";
 
 interface Product {
@@ -43,13 +42,6 @@ interface Product {
 interface Category {
   id: number;
   name: string;
-}
-
-interface Testimonial {
-  name: string;
-  company: string;
-  content: string;
-  rating: number;
 }
 
 export const metadata: Metadata = {
@@ -240,6 +232,9 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen">
+      {/* Video Popup */}
+      <VideoPopupContainer />
+
       {/* Hero Section - Enhanced Corporate Style */}
       <HeroSlider />
 
@@ -677,7 +672,7 @@ export default async function HomePage() {
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
-            <Link href="/dragon-winch-katalog.pdf">
+            <Link href="/urunler">
               <Button
                 size="lg"
                 variant="outline"

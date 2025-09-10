@@ -30,6 +30,7 @@ pnpm start
 ## 📱 SEO ve Performance
 
 ### SEO Özellikleri
+
 - ✅ Dinamik sitemap.xml (/sitemap.xml)
 - ✅ Robots.txt yapılandırması (/robots.txt)
 - ✅ Open Graph meta tag'leri
@@ -42,6 +43,7 @@ pnpm start
 - ✅ Schema.org işaretlemesi
 
 ### Performance Optimizasyonları
+
 - ✅ Image optimization
 - ✅ Font optimization (Google Fonts)
 - ✅ Code splitting
@@ -79,6 +81,7 @@ NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 ## 🎯 SEO Kontrol Listesi
 
 ### Meta Tag'ler
+
 - [x] Title tags (her sayfa için unique)
 - [x] Meta descriptions (150-160 karakter)
 - [x] Meta keywords
@@ -87,6 +90,7 @@ NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 - [x] Twitter Card tags
 
 ### Technical SEO
+
 - [x] Sitemap.xml
 - [x] Robots.txt
 - [x] Mobile-first responsive design

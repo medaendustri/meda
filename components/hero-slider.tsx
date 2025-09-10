@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 const slides = [
   {
     id: 1,
-    image: "https://medasavunma.com.tr/wp-content/uploads/2025/04/Untitled-design.png",
+    image: "/hero/cekme-vinci.jpg",
     title: "Dragon Winch Türkiye Distribütörü",
     subtitle: "Güçlü Çekme, Güvenli Operasyon",
     description:
@@ -19,7 +19,7 @@ const slides = [
   },
   {
     id: 2,
-    image: "https://medasavunma.com.tr/wp-content/uploads/2023/12/dragon-slider-02.jpg",
+    image: "/hero/dragon-vinc-elektrikli.jpg",
     title: "Profesyonel Vinç Sistemleri",
     subtitle: "Endüstriyel Güç ve Dayanıklılık",
     description:
@@ -29,7 +29,7 @@ const slides = [
   },
   {
     id: 3,
-    image: "https://medasavunma.com.tr/wp-content/uploads/2023/12/dragon-slider-03.jpg",
+    image: "/hero/hidrolik-vinc.jpg",
     title: "Denizcilik Vinç Çözümleri",
     subtitle: "Denizde Güvenilir Performans",
     description:
@@ -37,33 +37,53 @@ const slides = [
     cta: "Ürün Kataloğu",
     ctaLink: "/urunler",
   },
-]
+  {
+    id: 4,
+    image: "/hero/kurtarma-vinci.jpg",
+    title: "Kurtarma Vinç Çözümleri",
+    subtitle: "Acil Durumlar için Güçlü Destek",
+    description:
+      "Dragon Winch kurtarma vinçleri, zorlu koşullarda güvenilir performans sunar. Acil durumlar için ideal çözümler.",
+    cta: "Ürün Kataloğu",
+    ctaLink: "/urunler",
+  },
+  {
+    id: 5,
+    image: "/hero/elektrikli-vinc.jpg",
+    title: "Elektrikli Vinç Çözümleri",
+    subtitle: "Yüksek Performans, Düşük Bakım",
+    description:
+      "Dragon Winch elektrikli vinçleri, endüstriyel uygulamalar için enerji verimli ve dayanıklı çözümler sunar.",
+    cta: "Ürün Kataloğu",
+    ctaLink: "/urunler",
+  },
+];
 
 export function HeroSlider() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
-    if (!isAutoPlaying) return
+    if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 5000)
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
 
-    return () => clearInterval(interval)
-  }, [isAutoPlaying])
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length)
-  }
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
-  }
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
 
   const goToSlide = (index: number) => {
-    setCurrentSlide(index)
-  }
+    setCurrentSlide(index);
+  };
 
   return (
     <section
@@ -150,11 +170,13 @@ export function HeroSlider() {
             key={index}
             onClick={() => goToSlide(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSlide ? "bg-[#d84948] scale-125" : "bg-white/50 hover:bg-white/70"
+              index === currentSlide
+                ? "bg-[#d84948] scale-125"
+                : "bg-white/50 hover:bg-white/70"
             }`}
           />
         ))}
       </div>
     </section>
-  )
+  );
 }

@@ -9,10 +9,12 @@ interface Product {
 async function getProducts(): Promise<Product[]> {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com"}/api/products?per_page=100&exclude_accessories=true`,
-      { 
+      `${
+        process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com"
+      }/api/products?per_page=100&exclude_accessories=true`,
+      {
         cache: "no-store",
-        next: { revalidate: 3600 } // 1 hour cache
+        next: { revalidate: 3600 }, // 1 hour cache
       }
     );
     if (!response.ok) return [];
