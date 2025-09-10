@@ -104,11 +104,7 @@ export default function ContactPage() {
     {
       icon: <Phone className="w-6 h-6 text-[#d84948]" />,
       title: "Telefon",
-      details: [
-        "+90 212 555 0123",
-        "+90 212 555 0124 (Fax)",
-        "7/24 Vinç Destek: +90 555 123 4567",
-      ],
+      details: ["+90 538 734 4389"],
       highlight: "Anında Ulaşım",
     },
     {
@@ -203,25 +199,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div key={index} className="text-center group">
-                <div className="mx-auto mb-4 p-4 bg-[#d84948]/10 rounded-2xl w-fit group-hover:bg-[#d84948]/20 transition-all duration-300">
-                  {feature.icon}
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
@@ -230,11 +207,11 @@ export default function ContactPage() {
               <CardHeader className="bg-gradient-to-r from-[#d84948] to-[#c73e3d] text-white p-8">
                 <CardTitle className="text-2xl font-bold flex items-center mb-3">
                   <MessageCircle className="w-6 h-6 mr-3" />
-                  Dragon Winch Teklif Formu
+                  Meda Endüstri Winch Teklif Formu
                 </CardTitle>
                 <p className="text-white/90 text-base">
-                  Vinç ihtiyaçlarınızı belirtin, size en uygun Dragon Winch
-                  çözümünü önerelim.
+                  Vinç ihtiyaçlarınızı belirtin, size en uygun Meda Endüstri
+                  Vinç çözümünü önerelim.
                 </p>
               </CardHeader>
               <CardContent className="p-8">
@@ -246,7 +223,7 @@ export default function ContactPage() {
                         Talebiniz başarıyla gönderildi!
                       </p>
                       <p className="text-green-600 text-sm">
-                        Dragon Winch uzmanımız en kısa sürede size dönüş
+                        Meda Endüstri uzmanımız en kısa sürede size dönüş
                         yapacak.
                       </p>
                     </div>
@@ -417,7 +394,7 @@ export default function ContactPage() {
             <Card className="shadow-2xl border-0 overflow-hidden">
               <CardHeader className="bg-gradient-to-r from-gray-50 to-[#d84948]/5 p-8">
                 <CardTitle className="text-2xl font-bold text-gray-900 mb-3">
-                  Dragon Winch İletişim
+                  Meda Endüstri İletişim
                 </CardTitle>
                 <p className="text-gray-600 text-base">
                   Yetkili distribütör iletişim bilgileri
@@ -462,10 +439,10 @@ export default function ContactPage() {
             <CardHeader className="bg-gradient-to-r from-[#d84948] to-[#c73e3d] text-white p-8">
               <CardTitle className="text-2xl font-bold flex items-center mb-3">
                 <MapPin className="w-6 h-6 mr-3" />
-                Dragon Winch Distribütör Merkezi
+                Meda Vinç Sanayi ve Kontrol Sistemleri A.Ş.
               </CardTitle>
               <p className="text-white/90 text-base">
-                Dragon Winch ürünlerini görmek ve teknik destek almak için
+                Meda Vinç ürünlerini görmek ve teknik destek almak için
                 merkezimizi ziyaret edebilirsiniz.
               </p>
             </CardHeader>
@@ -473,7 +450,7 @@ export default function ContactPage() {
               <div className="relative h-96 bg-gray-200 overflow-hidden">
                 {/* Google Maps Embed - Replace with actual coordinates */}
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.2441!2d28.9784!3d41.0082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDAwJzI5LjUiTiAyOMKwNTgnNDIuMiJF!5e0!3m2!1str!2str!4v1234567890"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d238.92195177206747!2d32.76380703558084!3d39.997087281039576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2str!4v1757484161013!5m2!1str!2str"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -482,45 +459,6 @@ export default function ContactPage() {
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Dragon Winch Distribütör Merkezi"
                 />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Quick Contact CTA */}
-        <div className="mt-16">
-          <Card className="bg-gradient-to-r from-[#d84948] to-[#c73e3d] text-white shadow-2xl border-0 overflow-hidden">
-            <CardContent className="py-16 px-8 text-center relative">
-              <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-              <div className="relative z-10">
-                <h2 className="text-4xl font-bold mb-4">
-                  Dragon Winch Acil Destek!
-                </h2>
-                <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-                  Vinç arızası veya acil yedek parça ihtiyacı için doğrudan
-                  arayın. 7/24 Dragon Winch destek hattımız hizmetinizde.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                  <Button
-                    size="lg"
-                    className="bg-white text-[#d84948] hover:bg-gray-100 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-4"
-                    onClick={() => window.open("tel:+905551234567")}
-                  >
-                    <Phone className="w-5 h-5 mr-2" />
-                    +90 555 123 4567
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-white text-white hover:bg-white hover:text-[#d84948] font-semibold bg-transparent shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-4"
-                    onClick={() =>
-                      window.open("mailto:dragonwinch@medaendustri.com")
-                    }
-                  >
-                    <Mail className="w-5 h-5 mr-2" />
-                    Dragon Winch E-posta
-                  </Button>
-                </div>
               </div>
             </CardContent>
           </Card>

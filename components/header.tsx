@@ -97,25 +97,6 @@ export function Header() {
 
   return (
     <>
-      {/* Top Bar */}
-      <div className="bg-gradient-to-r from-[#d84948] to-[#c73e3d] text-white py-2 hidden md:block">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center text-sm">
-            <div className="flex items-center space-x-6">
-              <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4" />
-                <span>info@medaendustri.com</span>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-white/80">
-                Dragon Winch Yetkili Distribütörü
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Header */}
       <header
         className={`sticky top-0 z-50 bg-white transition-all duration-300 ${
