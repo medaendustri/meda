@@ -93,11 +93,11 @@ export default function ContactPage() {
   const contactInfo = [
     {
       icon: <MapPin className="w-6 h-6 text-[#d84948]" />,
-      title: "Dragon Winch Distribütör Merkezi",
+      title: "Meda Vinç Sanayi ve Kontrol Sistemleri A.Ş.",
       details: [
-        "Organize Sanayi Bölgesi",
-        "1. Cadde No: 123",
-        "34000 İstanbul, Türkiye",
+        "İvedik OSB Matbaacılar Sitesi  ",
+        "1514. Sokak No:22",
+        "Yenimahalle Ankara",
       ],
       highlight: "Ana Distribütör",
     },
@@ -110,22 +110,8 @@ export default function ContactPage() {
     {
       icon: <Mail className="w-6 h-6 text-[#d84948]" />,
       title: "E-posta",
-      details: [
-        "info@medaendustri.com",
-        "dragonwinch@medaendustri.com",
-        "destek@medaendustri.com",
-      ],
+      details: ["info@medaendustri.com"],
       highlight: "Hızlı Yanıt",
-    },
-    {
-      icon: <Clock className="w-6 h-6 text-[#d84948]" />,
-      title: "Çalışma Saatleri",
-      details: [
-        "Pazartesi - Cuma: 08:00 - 18:00",
-        "Cumartesi: 09:00 - 13:00",
-        "Pazar: Acil Servis",
-      ],
-      highlight: "Esnek Saatler",
     },
   ];
 
