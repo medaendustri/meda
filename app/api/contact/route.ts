@@ -100,18 +100,18 @@ export async function POST(request: NextRequest) {
     const customerMailOptions = {
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
       to: email,
-      subject: "Dragon Winch Talebiniz Alındı - Meda Endüstri",
+      subject: "Talebiniz Alındı - Meda Endüstri",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px;">
           <div style="background: linear-gradient(135deg, #d84948, #c73e3d); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
             <h1 style="color: white; margin: 0; font-size: 24px;">Talebiniz Alındı!</h1>
-            <p style="color: white; margin: 10px 0 0 0; opacity: 0.9;">Dragon Winch uzmanımız en kısa sürede dönüş yapacak</p>
+            <p style="color: white; margin: 10px 0 0 0; opacity: 0.9;">Meda Endüstri uzmanımız en kısa sürede dönüş yapacak</p>
           </div>
           
           <div style="background: white; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
             <p style="margin-top: 0;">Merhaba <strong>${name}</strong>,</p>
             
-            <p>Dragon Winch teklif talebiniz başarıyla alındı. Uzman ekibimiz talebinizi inceleyerek size en uygun vinç çözümünü sunmak için en kısa sürede sizinle iletişime geçecek.</p>
+            <p>Meda Endüstri teklif talebiniz başarıyla alındı. Uzman ekibimiz talebinizi inceleyerek size en uygun vinç çözümünü sunmak için en kısa sürede sizinle iletişime geçecek.</p>
 
             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3 style="color: #d84948; margin-top: 0;">Talebinizin Özeti:</h3>
@@ -133,13 +133,13 @@ export async function POST(request: NextRequest) {
 
             <div style="background: #e8f5e8; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #28a745;">
               <p style="margin: 0; color: #155724;"><strong>📞 Acil İhtiyaç?</strong><br>
-              Dragon Winch acil destek hattı: <a href="tel:+905551234567" style="color: #d84948;">+90 555 123 4567</a></p>
+              Meda Endüstri destek hattı: <a href="tel:+905387344389" style="color: #d84948;">+90 538 734 4389</a></p>
             </div>
 
             <div style="margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #d84948, #c73e3d); border-radius: 8px; text-align: center;">
               <p style="color: white; margin: 0; font-size: 14px;">
                 <strong>Meda Endüstri Dragon Winch Distribütörü</strong><br>
-                🌐 www.medaendustri.com | 📧 dragonwinch@medaendustri.com
+                🌐 www.medaendustri.com | 📧 info@medaendustri.com
               </p>
             </div>
           </div>

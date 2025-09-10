@@ -1,25 +1,28 @@
 import type { MetadataRoute } from "next";
 
-// interface Product {
-//   id: number
-//   date_modified?: string
-//   date_created: string
-// }
+interface Product {
+  id: number;
+  date_modified?: string;
+  date_created: string;
+}
 
-// async function getProducts(): Promise<Product[]> {
-//   try {
-//     const response = await fetch(
-//       `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com"}/api/products?per_page=100&exclude_accessories=true`,
-//       { cache: "no-store" }
-//     )
-//     if (!response.ok) return []
-//     const data = await response.json()
-//     return data.products || []
-//   } catch (error) {
-//     console.error("Error fetching products for sitemap:", error)
-//     return []
-//   }
-// }
+async function getProducts(): Promise<Product[]> {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com"}/api/products?per_page=100&exclude_accessories=true`,
+      { 
+        cache: "no-store",
+        next: { revalidate: 3600 } // 1 hour cache
+      }
+    );
+    if (!response.ok) return [];
+    const data = await response.json();
+    return data.products || [];
+  } catch (error) {
+    console.error("Error fetching products for sitemap:", error);
+    return [];
+  }
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl =
@@ -96,14 +99,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Ürün sayfaları - Static build için commented out
-  // const products = await getProducts()
-  // const productPages = products.map((product: Product) => ({
-  //   url: `${baseUrl}/urunler/${product.id}`,
-  //   lastModified: new Date(product.date_modified || product.date_created),
-  //   changeFrequency: "weekly" as const,
-  //   priority: 0.6,
-  // }))
+  // Ürün sayfaları
+  let productPages: MetadataRoute.Sitemap = [];
+  try {
+    const products = await getProducts();
+    productPages = products.map((product: Product) => ({
+      url: `${baseUrl}/urunler/${product.id}`,
+      lastModified: new Date(product.date_modified || product.date_created),
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+    }));
+  } catch (error) {
+    console.error("Error generating product pages for sitemap:", error);
+  }
 
-  return [...staticPages];
+  return [...staticPages, ...productPages];
 }

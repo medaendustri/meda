@@ -1,8 +1,6 @@
 "use client";
 
 import type React from "react";
-import type { Metadata } from "next";
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -19,8 +17,8 @@ import {
   Anchor,
   Headphones,
   CheckCircle,
-  Globe,
   Shield,
+  Globe,
   Wrench,
 } from "lucide-react";
 

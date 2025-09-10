@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Meda Endüstri - Dragon Winch Türkiye Distribütörü
 
-## Getting Started
+Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü. 15+ yıllık deneyim, profesyonel hizmet ve teknik destek.
 
-First, run the development server:
+## 🌟 Özellikler
+
+- **Modern Next.js 14** - App Router ile geliştirilmiş
+- **Responsive Tasarım** - Tüm cihazlarda uyumlu
+- **SEO Optimizasyonu** - Kapsamlı SEO yapılandırması
+- **PWA Desteği** - Progressive Web App özellikleri
+- **TypeScript** - Tip güvenli geliştirme
+- **Tailwind CSS** - Modern stil framework'ü
+
+## 🚀 Hızlı Başlangıç
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Bağımlılıkları yükle
+pnpm install
+
+# Geliştirme sunucusunu başlat
 pnpm dev
-# or
-bun dev
+
+# Production build
+pnpm build
+
+# Production sunucusunu başlat
+pnpm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📱 SEO ve Performance
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### SEO Özellikleri
+- ✅ Dinamik sitemap.xml (/sitemap.xml)
+- ✅ Robots.txt yapılandırması (/robots.txt)
+- ✅ Open Graph meta tag'leri
+- ✅ Twitter Card desteği
+- ✅ JSON-LD Structured Data
+- ✅ Dinamik favicon ve apple-touch-icon
+- ✅ PWA Manifest (/manifest.json)
+- ✅ Canonical URL'ler
+- ✅ Meta description ve keywords
+- ✅ Schema.org işaretlemesi
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Performance Optimizasyonları
+- ✅ Image optimization
+- ✅ Font optimization (Google Fonts)
+- ✅ Code splitting
+- ✅ Static generation
+- ✅ Compression
+- ✅ Caching headers
 
-## Learn More
+## 🔧 Yapılandırma
 
-To learn more about Next.js, take a look at the following resources:
+### Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+NEXT_PUBLIC_SITE_URL=https://www.medaendustri.com
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📄 Sayfa Yapısı
 
-## Deploy on Vercel
+```
+/                   # Ana sayfa
+/kurumsal          # Hakkımızda
+/urunler           # Ürün listesi
+/urunler/[id]      # Ürün detay
+/sertifikalar      # Sertifikalar
+/markalar          # Markalar
+/haberler          # Blog/Haberler
+/iletisim          # İletişim
+/sektorler/        # Sektör sayfaları
+  ├── denizcilik
+  ├── endustriyel-sanayi
+  ├── savunma-sanayi
+  └── tarim
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎯 SEO Kontrol Listesi
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Meta Tag'ler
+- [x] Title tags (her sayfa için unique)
+- [x] Meta descriptions (150-160 karakter)
+- [x] Meta keywords
+- [x] Canonical URLs
+- [x] Open Graph tags
+- [x] Twitter Card tags
+
+### Technical SEO
+- [x] Sitemap.xml
+- [x] Robots.txt
+- [x] Mobile-first responsive design
+- [x] Page speed optimization
+- [x] Clean URL structure
+- [x] 404 error page
+- [x] Loading states
+- [x] Error boundaries
+
+## 🤖 Robots.txt
+
+```
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+
+Sitemap: https://www.medaendustri.com/sitemap.xml
+```
+
+---
+
+© 2024 Meda Endüstri. Tüm hakları saklıdır.
