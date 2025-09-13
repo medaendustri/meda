@@ -9,12 +9,12 @@ import Link from "next/link";
 const slides = [
   {
     id: 1,
-    image: "/hero/cekme-vinci.jpg",
-    title: "Dragon Winch Türkiye Distribütörü",
-    subtitle: "Güçlü Çekme, Güvenli Operasyon",
+    image: "/hero/off-road.jpg",
+    title: "El Vinçleri ile Hassas Kontrol",
+    subtitle: "Küçük İşler için Büyük Güç",
     description:
-      "Dragon Winch çekme vinci tamburlarının Türkiye distribütörüyüz. Denizcilik, endüstri ve liman sektörlerinde güvenilir vinç çözümleri sunuyoruz.",
-    cta: "Dragon Winch Ürünleri",
+      "Dragon Winch el vinçleri, hafif ve orta yük kaldırma işlemlerinde hassas kontrol ve güvenilir performans sağlar.",
+    cta: "Ürün Kataloğu",
     ctaLink: "/urunler",
   },
   {
@@ -59,12 +59,12 @@ const slides = [
   },
   {
     id: 6,
-    image: "/hero/off-road.jpg",
-    title: "El Vinçleri ile Hassas Kontrol",
-    subtitle: "Küçük İşler için Büyük Güç",
+    image: "/hero/cekme-vinci.jpg",
+    title: "Dragon Winch Türkiye Distribütörü",
+    subtitle: "Güçlü Çekme, Güvenli Operasyon",
     description:
-      "Dragon Winch el vinçleri, hafif ve orta yük kaldırma işlemlerinde hassas kontrol ve güvenilir performans sağlar.",
-    cta: "Ürün Kataloğu",
+      "Dragon Winch çekme vinci tamburlarının Türkiye distribütörüyüz. Denizcilik, endüstri ve liman sektörlerinde güvenilir vinç çözümleri sunuyoruz.",
+    cta: "Dragon Winch Ürünleri",
     ctaLink: "/urunler",
   },
 ];
