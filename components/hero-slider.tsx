@@ -24,8 +24,8 @@ const slides = [
     subtitle: "Endüstriyel Güç ve Dayanıklılık",
     description:
       "Ağır sanayi, inşaat ve liman operasyonları için özel tasarlanmış Dragon Winch çekme vinci tamburları ile güvenli ve verimli çalışın.",
-    cta: "Teknik Destek",
-    ctaLink: "/iletisim",
+    cta: "Ürün Kataloğu",
+    ctaLink: "/urunler",
   },
   {
     id: 3,
