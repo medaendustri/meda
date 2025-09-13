@@ -57,6 +57,16 @@ const slides = [
     cta: "Ürün Kataloğu",
     ctaLink: "/urunler",
   },
+  {
+    id: 6,
+    image: "/hero/off-road.jpg",
+    title: "El Vinçleri ile Hassas Kontrol",
+    subtitle: "Küçük İşler için Büyük Güç",
+    description:
+      "Dragon Winch el vinçleri, hafif ve orta yük kaldırma işlemlerinde hassas kontrol ve güvenilir performans sağlar.",
+    cta: "Ürün Kataloğu",
+    ctaLink: "/urunler",
+  },
 ];
 
 export function HeroSlider() {
