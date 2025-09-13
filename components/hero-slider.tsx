@@ -15,7 +15,7 @@ const slides = [
     description:
       "Dragon Winch el vinçleri, hafif ve orta yük kaldırma işlemlerinde hassas kontrol ve güvenilir performans sağlar.",
     cta: "Ürün Kataloğu",
-    ctaLink: "/urunler",
+    ctaLink: "/dragon-winch-katalog-2025.pdf",
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const slides = [
     subtitle: "Endüstriyel Güç ve Dayanıklılık",
     description:
       "Ağır sanayi, inşaat ve liman operasyonları için özel tasarlanmış Dragon Winch çekme vinci tamburları ile güvenli ve verimli çalışın.",
-    cta: "Ürün Kataloğu",
+    cta: "Ürünler",
     ctaLink: "/urunler",
   },
   {
@@ -35,7 +35,7 @@ const slides = [
     description:
       "Gemi, yat ve denizcilik sektörü için özel tasarlanmış Dragon Winch ürünleri ile denizde güvenli operasyonlar gerçekleştirin.",
     cta: "Ürün Kataloğu",
-    ctaLink: "/urunler",
+    ctaLink: "/dragon-winch-katalog-2025.pdf",
   },
   {
     id: 4,
@@ -44,7 +44,7 @@ const slides = [
     subtitle: "Acil Durumlar için Güçlü Destek",
     description:
       "Dragon Winch kurtarma vinçleri, zorlu koşullarda güvenilir performans sunar. Acil durumlar için ideal çözümler.",
-    cta: "Ürün Kataloğu",
+    cta: "Ürünler",
     ctaLink: "/urunler",
   },
   {
@@ -55,7 +55,7 @@ const slides = [
     description:
       "Dragon Winch elektrikli vinçleri, endüstriyel uygulamalar için enerji verimli ve dayanıklı çözümler sunar.",
     cta: "Ürün Kataloğu",
-    ctaLink: "/urunler",
+    ctaLink: "/dragon-winch-katalog-2025.pdf",
   },
   {
     id: 6,
