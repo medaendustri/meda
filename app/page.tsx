@@ -645,19 +645,28 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="py-24 bg-gradient-to-br from-[#d84948] via-[#dc5a59] to-[#c73e3d] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/placeholder.svg?height=400&width=1400')] opacity-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
+      <section className="py-24 relative overflow-hidden">
+        {/* Arka plan resmi */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/back-image.webp')",
+          }}
+        ></div>
+        {/* Overlay - karartma azaltıldı */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/20 to-black/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+
         <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="mb-8">
-            <span className="inline-block px-6 py-3 bg-white/20 border border-white/30 rounded-full text-white text-sm font-semibold backdrop-blur-sm">
+            <span className="inline-block px-6 py-3 bg-[#d84948]/20 border border-[#d84948]/30 rounded-full text-white text-sm font-semibold backdrop-blur-sm">
               ÜCRETSİZ TEKNİK DANIŞMANLIK
             </span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight corporate-heading">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight corporate-heading drop-shadow-lg">
             Dragon Winch Çözümünüzü Bulalım
           </h2>
-          <p className="text-xl text-red-100 mb-12 leading-relaxed max-w-4xl mx-auto corporate-text">
+          <p className="text-xl text-gray-100 mb-12 leading-relaxed max-w-4xl mx-auto corporate-text drop-shadow-md">
             Uzman ekibimizle birlikte ihtiyacınıza en uygun Dragon Winch çekme
             vinci tamburunu seçin. Ücretsiz teknik danışmanlık için hemen
             iletişime geçin.
@@ -666,7 +675,7 @@ export default async function HomePage() {
             <Link href="/iletisim">
               <Button
                 size="lg"
-                className="bg-white text-[#d84948] hover:bg-gray-100 px-12 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+                className="bg-[#d84948] text-white hover:bg-[#c73e3d] px-12 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
               >
                 Teknik Danışmanlık
                 <ArrowRight className="ml-2 w-5 h-5" />
@@ -676,7 +685,7 @@ export default async function HomePage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-white/30 text-white hover:bg-white hover:text-[#d84948] px-12 py-6 text-lg font-semibold bg-white/10 backdrop-blur-sm transition-all duration-300"
+                className="border-2 border-white/50 text-white hover:bg-white hover:text-[#d84948] px-12 py-6 text-lg font-semibold bg-white/10 backdrop-blur-sm transition-all duration-300 shadow-lg"
               >
                 Dragon Winch Kataloğu
               </Button>

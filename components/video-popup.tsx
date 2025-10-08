@@ -61,8 +61,12 @@ export function VideoPopup({ videoId, onClose }: VideoPopupProps) {
                 <Play className="w-5 h-5 text-white ml-0.5" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-gray-900">Dragon Winch Tanıtım Videosu</h3>
-                <p className="text-sm text-gray-600">Ürünlerimizi yakından tanıyın</p>
+                <h3 className="text-xl font-bold text-gray-900">
+                  Dragon Winch Tanıtım Videosu
+                </h3>
+                <p className="text-sm text-gray-600">
+                  Ürünlerimizi yakından tanıyın
+                </p>
               </div>
             </div>
             <button
@@ -88,7 +92,7 @@ export function VideoPopup({ videoId, onClose }: VideoPopupProps) {
               loading="lazy"
             />
           </div>
-          
+
           {/* Footer */}
           <div className="p-4 bg-gray-50 text-center">
             <p className="text-sm text-gray-600">
