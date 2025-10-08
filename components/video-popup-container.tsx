@@ -14,21 +14,12 @@ export function VideoPopupContainer() {
   useEffect(() => {
     if (!mounted) return;
 
-    // Sayfa yüklendiğinde popup'ın daha önce kapatılıp kapatılmadığını kontrol et
-    try {
-      const hasSeenVideo = localStorage.getItem("videoPopupClosed");
+    // Her sayfa girişinde videoyu göster (localStorage kontrolü kaldırıldı)
+    const timer = setTimeout(() => {
+      setShowVideo(true);
+    }, 1500);
 
-      if (!hasSeenVideo) {
-        // Sayfa tamamen yüklendikten sonra popup'ı göster
-        const timer = setTimeout(() => {
-          setShowVideo(true);
-        }, 1500);
-
-        return () => clearTimeout(timer);
-      }
-    } catch (error) {
-      console.error("LocalStorage error:", error);
-    }
+    return () => clearTimeout(timer);
   }, [mounted]);
 
   const handleCloseVideo = () => {

@@ -13,12 +13,7 @@ export function VideoPopup({ videoId, onClose }: VideoPopupProps) {
 
   const handleClose = useCallback(() => {
     setIsVisible(false);
-    // LocalStorage'a popup'ın kapatıldığını kaydet
-    try {
-      localStorage.setItem("videoPopupClosed", "true");
-    } catch (error) {
-      console.error("LocalStorage error:", error);
-    }
+    // LocalStorage kaydetme işlemi kaldırıldı - her sayfa girişinde video gösterilecek
     onClose();
   }, [onClose]);
 
