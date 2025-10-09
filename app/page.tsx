@@ -645,12 +645,13 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="py-24 relative overflow-hidden">
-        {/* Arka plan resmi */}
+      <section className="py-24 relative">
+        {/* Arka plan resmi - tam sığacak şekilde */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-contain bg-center bg-no-repeat"
           style={{
             backgroundImage: "url('/back-image.webp')",
+            backgroundSize: "100% 100%",
           }}
         ></div>
         {/* Overlay - karartma azaltıldı */}

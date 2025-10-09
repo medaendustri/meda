@@ -141,7 +141,7 @@ export const metadata: Metadata = {
   applicationName: "Meda Endüstri",
   referrer: "origin-when-cross-origin",
   generator: "Next.js",
-  manifest: "/manifest",
+  manifest: "/favicon/site.webmanifest",
   icons: {
     icon: [
       { url: "/icon?<generated>", type: "image/png", sizes: "32x32" },
@@ -174,8 +174,8 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#1f2937" },
+    { media: "(prefers-color-scheme: light)", color: "#d84948" },
+    { media: "(prefers-color-scheme: dark)", color: "#c73e3d" },
   ],
   colorScheme: "light",
 };
@@ -204,33 +204,29 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
 
-        {/* Favicon Links */}
-        <link rel="shortcut icon" href="/favicon.ico" />
+        {/* Favicon Links - Yeni favicon dosyaları */}
         <link
           rel="icon"
           type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
+          href="/favicon/favicon-96x96.png"
+          sizes="96x96"
         />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
+        <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon/favicon.ico" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/apple-touch-icon.png"
+          href="/favicon/apple-touch-icon.png"
         />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1f2937" />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#d84948" />
 
         {/* Microsoft Tiles */}
-        <meta name="msapplication-TileColor" content="#1f2937" />
+        <meta name="msapplication-TileColor" content="#d84948" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
 
         {/* Additional Meta Tags */}
-        <meta name="theme-color" content="#1f2937" />
+        <meta name="theme-color" content="#d84948" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Meda Endüstri" />
