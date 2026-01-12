@@ -45,10 +45,6 @@ export function Header() {
     {
       href: "/kurumsal",
       label: "Kurumsal",
-      dropdown: [
-        { href: "/kurumsal", label: "Hakkımızda" },
-        { href: "/sertifikalar", label: "Sertifikalarımız" },
-      ],
     },
     {
       href: "/sektorler",
@@ -63,12 +59,6 @@ export function Header() {
     {
       href: "/urunler",
       label: "Ürünler",
-      dropdown: [
-        { href: "/urunler", label: "Tüm Dragon Winch Ürünleri" },
-        { href: "/urunler?category=marine", label: "Denizcilik Vinçleri" },
-        { href: "/urunler?category=industrial", label: "Endüstriyel Vinçler" },
-        { href: "/urunler?category=port", label: "Liman Ekipmanları" },
-      ],
     },
     {
       href: "#",
@@ -76,7 +66,7 @@ export function Header() {
       dropdown: [
         {
           href: "/dragon-winch-katalog.pdf",
-          label: "Dragon Winch Genel Katalog",
+          label: "Genel Ürün Kataloğu",
           external: true,
         },
         {
@@ -118,7 +108,7 @@ export function Header() {
                     Meda Endüstri
                   </span>
                   <div className="text-xs text-gray-500 font-medium corporate-text">
-                    Dragon Winch Yetkili Distribütörü
+                    Endüstriyel Vinç Çözümleri
                   </div>
                 </div>
               </Link>

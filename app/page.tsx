@@ -11,12 +11,8 @@ import {
   Anchor,
   Truck,
   Ship,
-  Calendar,
-  ChevronRight,
   Users,
   CheckCircle,
-  Star,
-  Quote,
   Wrench,
   Shield,
   Zap,
@@ -27,87 +23,68 @@ import Image from "next/image";
 import { HeroSlider } from "@/components/hero-slider";
 import { VideoPopupContainer } from "@/components/video-popup-container";
 import type { Metadata } from "next";
+import { getFeaturedProducts as getDbFeaturedProducts } from "@/lib/db";
 
 interface Product {
   id: number;
   name: string;
-  slug: string;
-  images?: Array<{ src: string; alt?: string }>;
-  categories?: Array<{ id: number; name: string }>;
-  short_description?: string;
-  date_created: string;
-  date_modified?: string;
-}
-
-interface Category {
-  id: number;
-  name: string;
+  url: string;
+  category_url: string;
+  category_name: string;
+  main_image: string;
+  specs: Record<string, string>;
 }
 
 export const metadata: Metadata = {
-  title:
-    "Dragon Winch Türkiye Distribütörü - Çekme Vinci Tamburu | Meda Endüstri",
+  title: "Meda Endüstri - Endüstriyel Vinç Çözümleri | Çekme Vinci Tamburu",
   description:
-    "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü. 15+ yıllık deneyim, profesyonel hizmet ve 7/24 teknik destek. Denizcilik, endüstriyel ve liman vinç çözümleri.",
+    "Çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri. Denizcilik, savunma sanayi ve endüstriyel sektörlerde güvenilir vinç çözümleri.",
   keywords: [
-    "dragon winch türkiye",
+    "meda endüstri",
     "çekme vinci tamburu",
     "kurtarma vinci",
     "endüstriyel vinç",
     "denizcilik vinçleri",
-    "liman ekipmanları",
+    "savunma sanayi vinç",
     "vinç sistemi türkiye",
-    "dragon winch distribütör",
     "winch drum turkey",
     "recovery winch turkey",
     "marine winch systems",
     "industrial winch solutions",
-    "meda endüstri",
     "vinç tamiri",
     "yedek parça vinç",
   ],
   openGraph: {
-    title:
-      "Dragon Winch Türkiye Distribütörü - Çekme Vinci Tamburu | Meda Endüstri",
+    title: "Meda Endüstri - Endüstriyel Vinç Çözümleri | Çekme Vinci Tamburu",
     description:
-      "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü. 15+ yıllık deneyim, profesyonel hizmet ve 7/24 teknik destek.",
+      "Çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri. Denizcilik, savunma sanayi ve endüstriyel sektörlerde güvenilir çözümler.",
     type: "website",
     locale: "tr_TR",
     url: "/",
     images: [
       {
-        url: "/og-dragon-winch-homepage.jpg",
+        url: "/og-meda-homepage.jpg",
         width: 1200,
         height: 630,
-        alt: "Dragon Winch Türkiye - Çekme Vinci Tamburu Distribütörü",
+        alt: "Meda Endüstri - Endüstriyel Vinç Çözümleri",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dragon Winch Türkiye Distribütörü - Çekme Vinci Tamburu",
+    title: "Meda Endüstri - Endüstriyel Vinç Çözümleri",
     description:
-      "Dragon Winch çekme vinci tamburu ve endüstriyel vinç sistemleri Türkiye distribütörü. 15+ yıllık deneyim.",
-    images: ["/og-dragon-winch-homepage.jpg"],
+      "Çekme vinci tamburu ve endüstriyel vinç sistemleri. Güvenilir çözümler.",
+    images: ["/og-meda-homepage.jpg"],
   },
   alternates: {
     canonical: "/",
   },
 };
 
-async function getFeaturedProducts() {
+function getFeaturedProducts() {
   try {
-    const response = await fetch(
-      `${
-        process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
-      }/api/products?featured_by_category=true`,
-      {
-        cache: "no-store",
-      }
-    );
-    if (!response.ok) return [];
-    const data = await response.json();
-    return data.products || [];
+    return getDbFeaturedProducts();
   } catch (error) {
     console.error("Error fetching featured products:", error);
     return [];
@@ -122,7 +99,7 @@ export default async function HomePage() {
       icon: <Anchor className="w-8 h-8 text-[#d84948]" />,
       title: "Denizcilik Vinçleri",
       description:
-        "Gemi ve yat endüstrisi için özel tasarlanmış Dragon Winch çekme vinci tamburları",
+        "Gemi ve yat endüstrisi için özel tasarım çekme vinci tamburları",
       features: [
         "Paslanmaz Çelik Yapı",
         "Yüksek Çekme Kapasitesi",
@@ -141,11 +118,10 @@ export default async function HomePage() {
       ],
     },
     {
-      icon: <Ship className="w-8 h-8 text-[#d84948]" />,
-      title: "Liman Ekipmanları",
-      description:
-        "Liman operasyonları için özel Dragon Winch çekme vinci çözümleri",
-      features: ["Konteyner Vinçleri", "Kargo Yükleme", "Otomatik Kontrol"],
+      icon: <Shield className="w-8 h-8 text-[#d84948]" />,
+      title: "Savunma Sanayi",
+      description: "Savunma sanayi projeleri için özel vinç çözümleri",
+      features: ["Yüksek Güvenlik", "Askeri Standartlar", "Dayanıklı Yapı"],
     },
   ];
 
@@ -153,7 +129,7 @@ export default async function HomePage() {
     {
       title: "Yetkili Distribütör",
       description:
-        "Dragon Winch'in Türkiye ve bölge ülkeleri için resmi distribütörüyüz. Orijinal ürün garantisi sunuyoruz.",
+        "Avrupa'nın önde gelen vinç markalarının Türkiye distribütörüyüz. Orijinal ürün garantisi sunuyoruz.",
       icon: <Shield className="w-6 h-6 text-[#d84948]" />,
     },
     {
@@ -165,7 +141,7 @@ export default async function HomePage() {
     {
       title: "Hızlı Teslimat",
       description:
-        "Geniş stok kapasitemiz ile Dragon Winch ürünlerini hızlı bir şekilde teslim ediyoruz.",
+        "Geniş stok kapasitemiz ile ürünleri hızlı bir şekilde teslim ediyoruz.",
       icon: <Zap className="w-6 h-6 text-[#d84948]" />,
     },
     {
@@ -173,60 +149,6 @@ export default async function HomePage() {
       description:
         "Satış sonrası teknik servis, yedek parça temini ve bakım hizmetleri sunuyoruz.",
       icon: <Users className="w-6 h-6 text-[#d84948]" />,
-    },
-  ];
-
-  const testimonials = [
-    {
-      name: "Kaptan Mehmet Özkan",
-      company: "Teknik Direktör, Özkan Denizcilik",
-      content:
-        "Dragon Winch vinçlerini 5 yıldır kullanıyoruz. Meda Endüstri'nin profesyonel yaklaşımı ve kaliteli hizmeti sayesinde hiç sorun yaşamadık.",
-      rating: 5,
-    },
-    {
-      name: "Mühendis Ayşe Kaya",
-      company: "Proje Yöneticisi, Kaya İnşaat",
-      content:
-        "İnşaat projelerimizde Dragon Winch vinçlerinin güvenilirliği ve Meda Endüstri'nin teknik desteği çok önemli.",
-      rating: 5,
-    },
-    {
-      name: "Ahmet Demir",
-      company: "Liman İşletmecisi, Demir Lojistik",
-      content:
-        "Liman operasyonlarımızda Dragon Winch sistemleri mükemmel performans gösteriyor. Meda Endüstri'ye teşekkürler.",
-      rating: 5,
-    },
-  ];
-
-  const recentNews = [
-    {
-      id: 1,
-      title: "Yeni Dragon Winch Serisi Türkiye'de",
-      excerpt:
-        "Dragon Winch'in en yeni nesil çekme vinci tamburları artık Türkiye'de. Gelişmiş teknoloji ve arttırılmış kapasiteyle tanışın.",
-      date: "15 Aralık 2024",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "Ürün Lansmanı",
-    },
-    {
-      id: 2,
-      title: "Karadeniz Bölgesi Distribütörlük Anlaşması",
-      excerpt:
-        "Dragon Winch Karadeniz bölgesi distribütörlük anlaşması imzalandı. Bölgedeki müşterilerimize daha yakın hizmet.",
-      date: "10 Aralık 2024",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "Kurumsal",
-    },
-    {
-      id: 3,
-      title: "Denizcilik Fuarı'nda Dragon Winch Standı",
-      excerpt:
-        "İstanbul Denizcilik Fuarı'nda Dragon Winch ürünlerini sergiledik. Yoğun ilgi gören standımızı ziyaret edenler teşekkür ederiz.",
-      date: "5 Aralık 2024",
-      image: "/placeholder.svg?height=200&width=300",
-      category: "Etkinlik",
     },
   ];
 
@@ -246,12 +168,11 @@ export default async function HomePage() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: "Meda Endüstri",
-            alternateName: "Dragon Winch Türkiye",
             url:
               process.env.NEXT_PUBLIC_SITE_URL ||
               "https://www.medaendustri.com",
             description:
-              "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü",
+              "Çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri. Denizcilik, savunma sanayi ve endüstriyel sektörlerde güvenilir çözümler.",
             publisher: {
               "@type": "Organization",
               name: "Meda Endüstri",
@@ -278,9 +199,8 @@ export default async function HomePage() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ItemList",
-              name: "Dragon Winch Öne Çıkan Ürünler",
-              description:
-                "En popüler Dragon Winch çekme vinci tamburu modelleri",
+              name: "Öne Çıkan Ürünler",
+              description: "En popüler çekme vinci tamburu modelleri",
               numberOfItems: featuredProducts.length,
               itemListElement: featuredProducts
                 .slice(0, 6)
@@ -290,24 +210,21 @@ export default async function HomePage() {
                   item: {
                     "@type": "Product",
                     name: product.name,
-                    description:
-                      product.short_description?.replace(/<[^>]*>/g, "") ||
-                      product.name,
-                    image: product.images?.[0]?.src || "",
+                    description: product.name,
+                    image: product.main_image || "",
                     url: `${
                       process.env.NEXT_PUBLIC_SITE_URL ||
                       "https://www.medaendustri.com"
-                    }/urunler/${product.id}`,
+                    }/urunler/${product.slug}`,
                     brand: {
                       "@type": "Brand",
-                      name: "Dragon Winch",
+                      name: "Meda Endüstri",
                     },
                     manufacturer: {
                       "@type": "Organization",
-                      name: "Dragon Winch",
+                      name: "Meda Endüstri",
                     },
-                    category:
-                      product.categories?.[0]?.name || "Çekme Vinci Tamburu",
+                    category: product.category_name || "Çekme Vinci Tamburu",
                   },
                 })),
             }),
@@ -316,100 +233,72 @@ export default async function HomePage() {
       )}
 
       {featuredProducts.length > 0 && (
-        <section className="py-24 bg-white">
+        <section className="py-12 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-20">
+            <div className="text-center mb-10">
               <div className="inline-block px-4 py-2 bg-[#d84948]/10 rounded-full text-[#d84948] text-sm font-semibold mb-4">
                 ÖNE ÇIKAN ÜRÜNLER
               </div>
               <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 corporate-heading">
-                Dragon Winch Ürünleri
+                Ürünlerimiz
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed corporate-text">
-                En popüler Dragon Winch çekme vinci tamburu modelleri ve
-                endüstriyel vinç çözümleri
+                En popüler çekme vinci tamburu modelleri ve endüstriyel vinç
+                çözümleri
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredProducts.slice(0, 6).map((product: Product) => (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              {featuredProducts.slice(0, 5).map((product: Product) => (
                 <Card
                   key={product.id}
-                  className="group hover:shadow-2xl transition-all duration-500 cursor-pointer border-0 shadow-lg hover:-translate-y-3 bg-white relative overflow-hidden"
+                  className="group hover:shadow-2xl transition-all duration-500 cursor-pointer border-0 shadow-lg hover:-translate-y-2 bg-white relative overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#d84948] to-[#ff6b6a] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
 
-                  <div className="relative h-64 overflow-hidden bg-gray-50">
-                    {product.images && product.images.length > 0 ? (
+                  <div className="relative aspect-square overflow-hidden bg-gray-50">
+                    {product.main_image ? (
                       <Image
-                        src={product.images[0].src || "/placeholder.svg"}
+                        src={product.main_image}
                         alt={product.name}
                         fill
-                        className="object-contain p-4 group-hover:scale-110 transition-transform duration-500"
+                        className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
                         <Anchor className="w-16 h-16 text-gray-400" />
                       </div>
                     )}
-                    <div className="absolute top-4 right-4">
-                      <span className="bg-gradient-to-r from-[#d84948] to-[#c73e3d] text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
-                        Dragon Winch
-                      </span>
-                    </div>
                   </div>
 
-                  <CardHeader className="pb-4 pt-6">
-                    <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-[#d84948] transition-colors line-clamp-2 leading-tight mb-3 corporate-subheading">
+                  <CardHeader className="pb-2 pt-4">
+                    {product.category_name && (
+                      <span className="text-xs font-medium text-[#d84948] mb-1 block">
+                        {product.category_name}
+                      </span>
+                    )}
+                    <CardTitle className="text-base font-semibold text-gray-900 group-hover:text-[#d84948] transition-colors line-clamp-2 leading-snug">
                       {product.name}
                     </CardTitle>
-                    {product.categories && product.categories.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-3">
-                        {product.categories
-                          .slice(0, 2)
-                          .map((category: Category) => (
-                            <span
-                              key={category.id}
-                              className="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-xs font-medium"
-                            >
-                              {category.name}
-                            </span>
-                          ))}
-                      </div>
-                    )}
                   </CardHeader>
 
-                  <CardContent className="pt-0 pb-6">
-                    {product.short_description && (
-                      <CardDescription
-                        className="text-gray-600 leading-relaxed line-clamp-3 text-sm mb-6 corporate-text"
-                        dangerouslySetInnerHTML={{
-                          __html: product.short_description,
-                        }}
-                      />
-                    )}
-
-                    <div className="flex gap-3">
-                      <Link href={`/urunler/${product.id}`} className="flex-1">
-                        <Button className="w-full bg-gradient-to-r from-[#d84948] to-[#c73e3d] hover:from-[#c73e3d] hover:to-[#b83332] text-white font-semibold transition-all duration-300">
-                          <Eye className="w-4 h-4 mr-2" />
-                          İncele
-                        </Button>
-                      </Link>
-                    </div>
+                  <CardContent className="pt-0 pb-4">
+                    <Link href={`/urunler/${product.slug}`}>
+                      <Button className="w-full bg-gradient-to-r from-[#d84948] to-[#c73e3d] hover:from-[#c73e3d] hover:to-[#b83332] text-white text-sm font-medium transition-all duration-300">
+                        <Eye className="w-4 h-4 mr-2" />
+                        İncele
+                      </Button>
+                    </Link>
                   </CardContent>
                 </Card>
               ))}
             </div>
 
-            <div className="text-center mt-16">
+            <div className="text-center mt-8">
               <Link href="/urunler">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-[#d84948] to-[#c73e3d] hover:from-[#c73e3d] hover:to-[#b83332] text-white px-12 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
-                >
-                  Tüm Dragon Winch Ürünleri
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                <Button className="bg-[#d84948] hover:bg-[#c73e3d] text-white px-8 py-3 font-medium">
+                  Tüm Ürünleri Gör
+                  <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
             </div>
@@ -417,18 +306,15 @@ export default async function HomePage() {
         </section>
       )}
 
-      <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <div className="inline-block px-4 py-2 bg-[#d84948]/10 rounded-full text-[#d84948] text-sm font-semibold mb-4">
-              DRAGON WINCH ÜRÜNLERİ
-            </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 corporate-heading">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Çekme Vinci Çözümlerimiz
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed corporate-text">
-              Dragon Winch markasının geniş ürün yelpazesi ile her sektörden
-              ihtiyaçlarınıza uygun çekme vinci tamburu çözümleri sunuyoruz.
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Geniş ürün yelpazemiz ile ihtiyaçlarınıza uygun çözümler
+              sunuyoruz.
             </p>
           </div>
 
@@ -473,7 +359,7 @@ export default async function HomePage() {
                 size="lg"
                 className="bg-gradient-to-r from-[#d84948] to-[#c73e3d] hover:from-[#c73e3d] hover:to-[#b83332] text-white px-12 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
               >
-                Tüm Dragon Winch Ürünleri
+                Tüm Ürünleri Gör
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
@@ -481,19 +367,14 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="py-24 bg-white relative">
-        <div className="absolute inset-0 bg-[url('/placeholder.svg?height=600&width=1400')] opacity-5"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-block px-4 py-2 bg-[#d84948]/10 rounded-full text-[#d84948] text-sm font-semibold mb-4">
-              NEDEN BİZ?
-            </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 corporate-heading">
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Neden Meda Endüstri?
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed corporate-text">
-              Dragon Winch distribütörlüğündeki deneyimimiz ve müşteri odaklı
-              yaklaşımımızla fark yaratıyoruz
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Deneyimimiz ve müşteri odaklı yaklaşımımızla fark yaratıyoruz
             </p>
           </div>
 
@@ -522,130 +403,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="py-24 bg-gradient-to-b from-gray-50 to-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <div className="inline-block px-4 py-2 bg-[#d84948]/10 rounded-full text-[#d84948] text-sm font-semibold mb-4">
-              REFERANSLAR
-            </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 corporate-heading">
-              Müşterilerimiz Ne Diyor?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed corporate-text">
-              Dragon Winch ürünleri kullanan müşterilerimizden gelen
-              değerlendirmeler
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card
-                key={index}
-                className="border-0 shadow-xl bg-white relative overflow-hidden group hover:shadow-2xl transition-all duration-300"
-              >
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#d84948] to-[#ff6b6a]"></div>
-                <CardContent className="p-10">
-                  <div className="flex mb-6">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 text-yellow-400 fill-current"
-                      />
-                    ))}
-                  </div>
-                  <Quote className="w-10 h-10 text-[#d84948] mb-6 opacity-60" />
-                  <p className="text-gray-700 leading-relaxed mb-8 italic text-lg">
-                    &ldquo;{testimonial.content}&rdquo;
-                  </p>
-                  <div className="border-t border-gray-100 pt-6">
-                    <div className="font-bold text-gray-900 text-lg">
-                      {testimonial.name}
-                    </div>
-                    <div className="text-sm text-[#d84948] font-medium">
-                      {testimonial.company}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <div className="inline-block px-4 py-2 bg-[#d84948]/10 rounded-full text-[#d84948] text-sm font-semibold mb-4">
-              HABERLER
-            </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 corporate-heading">
-              Dragon Winch Haberleri
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed corporate-text">
-              Dragon Winch ürünleri ve vinç sektöründen son gelişmeler
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {recentNews.map((news) => (
-              <Card
-                key={news.id}
-                className="group hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden border-0 shadow-lg hover:-translate-y-2 bg-white"
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <Image
-                    src={news.image || "/placeholder.svg"}
-                    alt={news.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                  <div className="absolute top-6 left-6">
-                    <span className="bg-gradient-to-r from-[#d84948] to-[#c73e3d] text-white px-4 py-2 rounded-full text-xs font-semibold shadow-lg">
-                      {news.category}
-                    </span>
-                  </div>
-                </div>
-                <CardHeader className="pb-4 pt-6">
-                  <div className="flex items-center text-sm text-gray-500 mb-4">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    {news.date}
-                  </div>
-                  <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-[#d84948] transition-colors line-clamp-2 leading-tight mb-3">
-                    {news.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pt-0 pb-8">
-                  <CardDescription className="text-gray-600 leading-relaxed line-clamp-3 text-base mb-6">
-                    {news.excerpt}
-                  </CardDescription>
-                  <div className="border-t border-gray-100 pt-6">
-                    <span className="text-[#d84948] font-semibold text-sm group-hover:underline flex items-center">
-                      Devamını Oku
-                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                    </span>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center mt-20">
-            <Link href="/haberler">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-[#d84948] text-[#d84948] hover:bg-[#d84948] hover:text-white bg-transparent px-12 py-6 text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
-              >
-                Tüm Haberleri Görüntüle
-                <ChevronRight className="ml-2 w-5 h-5" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 relative">
+      <section className="py-16 relative">
         {/* Arka plan resmi - tam sığacak şekilde */}
         <div
           className="absolute inset-0 bg-contain bg-center bg-no-repeat"
@@ -665,12 +423,12 @@ export default async function HomePage() {
             </span>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight corporate-heading drop-shadow-lg">
-            Dragon Winch Çözümünüzü Bulalım
+            İhtiyacınıza Uygun Vinç Çözümü
           </h2>
           <p className="text-xl text-gray-100 mb-12 leading-relaxed max-w-4xl mx-auto corporate-text drop-shadow-md">
-            Uzman ekibimizle birlikte ihtiyacınıza en uygun Dragon Winch çekme
-            vinci tamburunu seçin. Ücretsiz teknik danışmanlık için hemen
-            iletişime geçin.
+            Uzman ekibimizle birlikte ihtiyacınıza en uygun çekme vinci
+            tamburunu seçin. Ücretsiz teknik danışmanlık için hemen iletişime
+            geçin.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link href="/iletisim">
@@ -682,13 +440,13 @@ export default async function HomePage() {
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
-            <Link href="/urunler">
+            <Link href="/katalog">
               <Button
                 size="lg"
                 variant="outline"
                 className="border-2 border-white/50 text-white hover:bg-white hover:text-[#d84948] px-12 py-6 text-lg font-semibold bg-white/10 backdrop-blur-sm transition-all duration-300 shadow-lg"
               >
-                Dragon Winch Kataloğu
+                Ürün Kataloğu
               </Button>
             </Link>
           </div>

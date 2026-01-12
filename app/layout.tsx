@@ -32,22 +32,19 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default:
-      "Meda Endüstri - Dragon Winch Türkiye Distribütörü | Çekme Vinci Tamburu",
-    template: "%s | Meda Endüstri - Dragon Winch Türkiye",
+    default: "Meda Endüstri - Endüstriyel Vinç Çözümleri | Çekme Vinci Tamburu",
+    template: "%s | Meda Endüstri",
   },
   description:
-    "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü. 15+ yıllık deneyim, profesyonel hizmet ve teknik destek.",
+    "Çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri. Denizcilik, savunma sanayi ve endüstriyel sektörlerde güvenilir çözümler.",
   keywords: [
-    "dragon winch",
+    "meda endüstri",
     "çekme vinci tamburu",
     "kurtarma vinci",
     "endüstriyel vinç",
     "denizcilik vinçleri",
-    "liman ekipmanları",
+    "savunma sanayi vinç",
     "vinç sistemi",
-    "meda endüstri",
-    "türkiye distribütör",
     "winch drum",
     "recovery winch",
     "marine winch",
@@ -84,34 +81,34 @@ export const metadata: Metadata = {
     type: "website",
     locale: "tr_TR",
     url: "/",
-    title: "Meda Endüstri - Dragon Winch Türkiye Distribütörü",
+    title: "Meda Endüstri - Endüstriyel Vinç Çözümleri",
     description:
-      "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü. 15+ yıllık deneyim, profesyonel hizmet ve teknik destek.",
+      "Çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri. Denizcilik, savunma sanayi ve endüstriyel sektörlerde güvenilir çözümler.",
     siteName: "Meda Endüstri",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Meda Endüstri - Dragon Winch Türkiye Distribütörü",
+        alt: "Meda Endüstri - Endüstriyel Vinç Çözümleri",
         type: "image/png",
       },
     ],
     countryName: "Turkey",
     emails: ["info@medaendustri.com"],
-    phoneNumbers: ["+90 212 555 0123"],
+    phoneNumbers: ["+90 538 734 4389"],
   },
   twitter: {
     card: "summary_large_image",
     site: "@medaendustri",
     creator: "@medaendustri",
-    title: "Meda Endüstri - Dragon Winch Türkiye Distribütörü",
+    title: "Meda Endüstri - Endüstriyel Vinç Çözümleri",
     description:
-      "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü.",
+      "Çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri.",
     images: [
       {
         url: "/twitter-image",
-        alt: "Meda Endüstri - Dragon Winch Türkiye Distribütörü",
+        alt: "Meda Endüstri - Endüstriyel Vinç Çözümleri",
         width: 1200,
         height: 600,
       },

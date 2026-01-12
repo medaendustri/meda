@@ -16,7 +16,7 @@ export function Footer() {
   const quickLinks = [
     { href: "/kurumsal", label: "Hakkımızda" },
     { href: "/sertifikalar", label: "Sertifikalarımız" },
-    { href: "/urunler", label: "Dragon Winch Ürünleri" },
+    { href: "/urunler", label: "Ürünlerimiz" },
     { href: "/markalar", label: "Stratejik Ortaklarımız" },
     { href: "/haberler", label: "Haberler" },
     { href: "/iletisim", label: "İletişim" },
@@ -31,7 +31,7 @@ export function Footer() {
   ];
 
   const certifications = [
-    { name: "Dragon Winch Yetkili", icon: <Award className="w-4 h-4" /> },
+    { name: "Yetkili Distribütör", icon: <Award className="w-4 h-4" /> },
     { name: "ISO 9001:2015", icon: <Shield className="w-4 h-4" /> },
     { name: "CE Uygunluk", icon: <Globe className="w-4 h-4" /> },
   ];
@@ -58,14 +58,14 @@ export function Footer() {
                   Meda Endüstri
                 </span>
                 <div className="text-xs text-gray-400">
-                  Dragon Winch Yetkili Distribütörü
+                  Endüstriyel Vinç Çözümleri
                 </div>
               </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
-              2009&apos;dan beri Dragon Winch çekme vinci tamburlarının Türkiye
-              ve bölge ülkeleri distribütörü olarak, denizcilik, endüstri ve
-              liman sektörlerinde güvenilir vinç çözümleri sunuyoruz.
+              Meda Endüstri olarak denizcilik, savunma sanayi, endüstriyel
+              üretim ve tarım sektörlerinde yüksek kaliteli vinç sistemleri ve
+              ekipman çözümleri sunuyoruz.
             </p>
 
             {/* Social Links */}
@@ -110,7 +110,7 @@ export function Footer() {
           {/* Product Categories */}
           <div className="space-y-6">
             <h3 className="text-lg font-semibold text-white">
-              Dragon Winch Ürünleri
+              Ürün Kategorileri
             </h3>
             <nav className="flex flex-col space-y-3">
               {productCategories.map((category, index) => (
@@ -140,6 +140,19 @@ export function Footer() {
                 </div>
               </div>
 
+              <a
+                href="tel:+905387344389"
+                className="flex items-center space-x-3 p-3 bg-[#d84948]/20 rounded-lg border border-[#d84948]/30 hover:bg-[#d84948]/30 transition-colors group"
+              >
+                <Phone className="w-6 h-6 text-[#d84948] flex-shrink-0" />
+                <div>
+                  <p className="text-lg font-bold text-white group-hover:text-[#d84948] transition-colors">
+                    +90 538 734 4389
+                  </p>
+                  <p className="text-xs text-gray-400">Hemen Arayın</p>
+                </div>
+              </a>
+
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-[#d84948] flex-shrink-0" />
                 <div className="text-sm text-gray-300">
@@ -157,10 +170,7 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
-              <p>
-                © 2024 Meda Endüstri - Dragon Winch Yetkili Distribütörü. Tüm
-                hakları saklıdır.
-              </p>
+              <p>© 2024 Meda Endüstri. Tüm hakları saklıdır.</p>
               <div className="flex space-x-4">
                 <Link
                   href="/gizlilik"

@@ -1,29 +1,39 @@
-import { NextResponse } from "next/server"
+import { NextResponse } from "next/server";
+import { getProductById, getProductBySlug } from "@/lib/db";
 
-const WOOCOMMERCE_API_URL = "https://medasavunma.com.tr/wp-json/wc/v3/products"
-const CONSUMER_KEY = "ck_b0eaf857de93ce145d2f9b69be9fcf51774a843d"
-const CONSUMER_SECRET = "cs_8b1469ff7b106bf90dbbb3539e0081d87f3af8db"
+export const dynamic = "force-dynamic";
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
-    const apiUrl = `${WOOCOMMERCE_API_URL}/${params.id}?consumer_key=${CONSUMER_KEY}&consumer_secret=${CONSUMER_SECRET}`
+    const { id: idOrSlug } = await params;
 
-    const response = await fetch(apiUrl, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      next: { revalidate: 300 }, // Cache for 5 minutes
-    })
+    // First try as number (ID)
+    const id = parseInt(idOrSlug, 10);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+    let product = null;
+
+    if (!isNaN(id)) {
+      product = getProductById(id);
     }
 
-    const product = await response.json()
+    // If not found by ID, try as slug
+    if (!product) {
+      product = getProductBySlug(idOrSlug);
+    }
 
-    return NextResponse.json(product)
+    if (!product) {
+      return NextResponse.json({ error: "Product not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(product);
   } catch (error) {
-    console.error("Error fetching product:", error)
-    return NextResponse.json({ error: "Failed to fetch product" }, { status: 500 })
+    console.error("Error fetching product:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch product" },
+      { status: 500 }
+    );
   }
 }

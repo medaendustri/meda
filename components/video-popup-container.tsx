@@ -14,9 +14,13 @@ export function VideoPopupContainer() {
   useEffect(() => {
     if (!mounted) return;
 
-    // Her sayfa girişinde videoyu göster (localStorage kontrolü kaldırıldı)
+    // Oturum süresince sadece bir kez göster (sessionStorage)
+    const hasSeenVideo = sessionStorage.getItem("hasSeenVideo");
+    if (hasSeenVideo) return;
+
     const timer = setTimeout(() => {
       setShowVideo(true);
+      sessionStorage.setItem("hasSeenVideo", "true");
     }, 1500);
 
     return () => clearTimeout(timer);

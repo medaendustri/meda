@@ -1,156 +1,226 @@
-import type { Metadata } from "next"
-import { Shield, Target, Truck, Anchor, ChevronRight, CheckCircle } from "lucide-react"
-import Link from "next/link"
+import type { Metadata } from "next";
+import { Shield, Target, Truck, Anchor, ChevronRight, Eye } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Savunma Sanayi Vinç Çözümleri | Dragon Winch | Meda Endüstri",
+  title: "Savunma Sanayi Vinç Çözümleri | Meda Endüstri",
   description:
-    "Savunma sanayi için özel tasarlanmış Dragon Winch vinç sistemleri. Askeri araçlar, tank taşıyıcıları ve savunma ekipmanları için güvenilir çözümler.",
-  keywords: "savunma sanayi vinç, askeri vinç, tank taşıyıcı vinç, dragon winch savunma, askeri ekipman vinç",
-}
+    "Savunma sanayi için özel tasarlanmış vinç sistemleri. Askeri araçlar, tank taşıyıcıları ve savunma ekipmanları için güvenilir çözümler.",
+  keywords:
+    "savunma sanayi vinç, askeri vinç, tank taşıyıcı vinç, askeri ekipman vinç",
+};
+
+// Sektöre uygun ürünler - sonra değiştirilecek
+const sectorProducts = [
+  {
+    id: 1,
+    name: "DWT 30000 HD",
+    category: "Ağır Hizmet Vinçleri",
+    image: "https://www.dragonwinch.com/en/gfx/1706791030.9927.jpg",
+  },
+  {
+    id: 2,
+    name: "DWT 22000 HD",
+    category: "Ağır Hizmet Vinçleri",
+    image: "https://www.dragonwinch.com/en/gfx/1741597545.1839.jpg",
+  },
+  {
+    id: 3,
+    name: "DWT 18000 HD",
+    category: "Ağır Hizmet Vinçleri",
+    image: "https://www.dragonwinch.com/en/gfx/1741597634.1908.jpg",
+  },
+  {
+    id: 4,
+    name: "DWT 16000 HD",
+    category: "Ağır Hizmet Vinçleri",
+    image: "https://www.dragonwinch.com/en/gfx/1741597775.8008.jpg",
+  },
+  {
+    id: 5,
+    name: "DWT 14000 HD",
+    category: "Ağır Hizmet Vinçleri",
+    image: "https://www.dragonwinch.com/en/gfx/1741598140.4638.jpg",
+  },
+];
 
 export default function SavunmaSanayiPage() {
   const applications = [
     {
       icon: <Truck className="w-8 h-8" />,
       title: "Askeri Araç Kurtarma",
-      description: "Tank ve zırhlı araç kurtarma operasyonları için yüksek kapasiteli vinç sistemleri",
+      description:
+        "Tank ve zırhlı araç kurtarma operasyonları için yüksek kapasiteli vinç sistemleri",
     },
     {
       icon: <Target className="w-8 h-8" />,
       title: "Taktik Operasyonlar",
-      description: "Saha koşullarında hızlı ve güvenilir çekme operasyonları için kompakt çözümler",
+      description:
+        "Saha koşullarında hızlı ve güvenilir çekme operasyonları için kompakt çözümler",
     },
     {
       icon: <Shield className="w-8 h-8" />,
       title: "Güvenlik Ekipmanları",
-      description: "Kritik güvenlik uygulamaları için sertifikalı ve dayanıklı vinç sistemleri",
+      description:
+        "Kritik güvenlik uygulamaları için sertifikalı ve dayanıklı vinç sistemleri",
     },
     {
       icon: <Anchor className="w-8 h-8" />,
       title: "Lojistik Destek",
-      description: "Ağır ekipman taşıma ve konuşlandırma operasyonları için özel vinçler",
+      description:
+        "Ağır ekipman taşıma ve konuşlandırma operasyonları için özel vinçler",
     },
-  ]
-
-  const features = [
-    "NATO standartlarına uygun üretim",
-    "Ekstrem hava koşullarına dayanıklılık",
-    "Yüksek çekme kapasitesi (15-50 ton)",
-    "Hızlı kurulum ve bakım",
-    "Gürültüsüz çalışma",
-    "Uzaktan kumanda desteği",
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-24">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="flex justify-center mb-6">
-              <div className="p-4 bg-[#d84948]/20 rounded-full">
-                <Shield className="w-16 h-16 text-[#d84948]" />
-              </div>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Savunma Sanayi
-              <span className="block text-[#d84948]">Vinç Çözümleri</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Askeri operasyonlar ve savunma sanayi için özel tasarlanmış Dragon Winch sistemleri
-            </p>
-            <Link
-              href="/iletisim"
-              className="inline-flex items-center bg-gradient-to-r from-[#d84948] to-[#c73e3d] text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105"
+      {/* Hero Section with Background Image */}
+      <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/sektorler/savunma-hero.jpg"
+            alt="Savunma Sanayi"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Savunma Sanayi
+            <span className="block text-[#d84948]">Vinç Çözümleri</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto">
+            Askeri operasyonlar ve savunma sanayi için özel tasarlanmış vinç
+            sistemleri
+          </p>
+          <Link href="/iletisim">
+            <Button
+              size="lg"
+              className="bg-[#d84948] hover:bg-[#c73e3d] text-white px-8 py-4"
             >
               Teknik Destek Al
               <ChevronRight className="ml-2 w-5 h-5" />
-            </Link>
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Savunma Sanayi Ürünleri
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Askeri standartlara uygun yüksek performanslı vinç sistemleri
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {sectorProducts.map((product) => (
+              <Card
+                key={product.id}
+                className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md hover:-translate-y-1"
+              >
+                <div className="relative aspect-square overflow-hidden bg-gray-50 rounded-t-lg">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-contain p-3 group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <CardHeader className="pb-2 pt-3">
+                  <span className="text-xs font-medium text-[#d84948]">
+                    {product.category}
+                  </span>
+                  <CardTitle className="text-sm font-semibold text-gray-900 line-clamp-2">
+                    {product.name}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0 pb-3">
+                  <Link href={`/urunler/${product.slug}`}>
+                    <Button
+                      size="sm"
+                      className="w-full bg-[#d84948] hover:bg-[#c73e3d] text-white text-xs"
+                    >
+                      <Eye className="w-3 h-3 mr-1" />
+                      İncele
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Applications Section */}
-      <section className="py-20">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Uygulama Alanları</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Savunma sanayi ihtiyaçlarına özel Dragon Winch çözümleri
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Uygulama Alanları
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Savunma sanayi ihtiyaçlarına özel çözümler
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {applications.map((app, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+                className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
               >
                 <div className="text-[#d84948] mb-4">{app.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{app.title}</h3>
-                <p className="text-gray-600">{app.description}</p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {app.title}
+                </h3>
+                <p className="text-gray-600 text-sm">{app.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Savunma Sanayi Standartları</h2>
-              <p className="text-xl text-gray-600 mb-8">
-                Dragon Winch savunma sanayi vinçleri, en zorlu koşullarda bile güvenilir performans sunar.
-              </p>
-              <div className="space-y-4">
-                {features.map((feature, index) => (
-                  <div key={index} className="flex items-center">
-                    <CheckCircle className="w-6 h-6 text-[#d84948] mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 font-medium">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="relative">
-              <div className="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden">
-                <img
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="Savunma Sanayi Vinç Sistemi"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#d84948] to-[#c73e3d]">
+      <section className="py-16 bg-gradient-to-r from-[#d84948] to-[#c73e3d]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Savunma Sanayi Projeleriniz İçin</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Savunma Sanayi Projeleriniz İçin
+          </h2>
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-            Özel gereksinimleriniz için Dragon Winch uzmanlarımızla görüşün
+            Özel gereksinimleriniz için uzmanlarımızla görüşün
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/urunler"
-              className="bg-white text-[#d84948] px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105"
-            >
-              Ürünleri İncele
+            <Link href="/urunler">
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-white text-[#d84948] hover:bg-gray-100 px-8"
+              >
+                Ürünleri İncele
+              </Button>
             </Link>
-            <Link
-              href="/iletisim"
-              className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-[#d84948] transition-all duration-300"
-            >
-              İletişime Geç
+            <Link href="/iletisim">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-[#d84948] px-8"
+              >
+                İletişime Geç
+              </Button>
             </Link>
           </div>
         </div>
       </section>
     </div>
-  )
+  );
 }

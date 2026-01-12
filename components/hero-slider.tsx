@@ -8,22 +8,12 @@ import Link from "next/link";
 
 const slides = [
   {
-    id: 1,
-    image: "/hero/off-road.jpg",
-    title: "El Vinçleri ile Hassas Kontrol",
-    subtitle: "Küçük İşler için Büyük Güç",
-    description:
-      "Dragon Winch el vinçleri, hafif ve orta yük kaldırma işlemlerinde hassas kontrol ve güvenilir performans sağlar.",
-    cta: "Ürün Kataloğu",
-    ctaLink: "/dragon-winch-katalog-2025.pdf",
-  },
-  {
     id: 2,
     image: "/hero/dragon-vinc-elektrikli.jpg",
     title: "Profesyonel Vinç Sistemleri",
     subtitle: "Endüstriyel Güç ve Dayanıklılık",
     description:
-      "Ağır sanayi, inşaat ve liman operasyonları için özel tasarlanmış Dragon Winch çekme vinci tamburları ile güvenli ve verimli çalışın.",
+      "Ağır sanayi, inşaat ve liman operasyonları için özel tasarım çekme vinci tamburları ile güvenli ve verimli çalışın.",
     cta: "Ürünler",
     ctaLink: "/urunler",
   },
@@ -33,7 +23,7 @@ const slides = [
     title: "Denizcilik Vinç Çözümleri",
     subtitle: "Denizde Güvenilir Performans",
     description:
-      "Gemi, yat ve denizcilik sektörü için özel tasarlanmış Dragon Winch ürünleri ile denizde güvenli operasyonlar gerçekleştirin.",
+      "Gemi, yat ve denizcilik sektörü için özel tasarım vinç ürünleri ile denizde güvenli operasyonlar gerçekleştirin.",
     cta: "Ürün Kataloğu",
     ctaLink: "/dragon-winch-katalog-2025.pdf",
   },
@@ -43,7 +33,7 @@ const slides = [
     title: "Kurtarma Vinç Çözümleri",
     subtitle: "Acil Durumlar için Güçlü Destek",
     description:
-      "Dragon Winch kurtarma vinçleri, zorlu koşullarda güvenilir performans sunar. Acil durumlar için ideal çözümler.",
+      "Kurtarma vinçlerimiz, zorlu koşullarda güvenilir performans sunar. Acil durumlar için ideal çözümler.",
     cta: "Ürünler",
     ctaLink: "/urunler",
   },
@@ -53,18 +43,18 @@ const slides = [
     title: "Elektrikli Vinç Çözümleri",
     subtitle: "Yüksek Performans, Düşük Bakım",
     description:
-      "Dragon Winch elektrikli vinçleri, endüstriyel uygulamalar için enerji verimli ve dayanıklı çözümler sunar.",
+      "Elektrikli vinçlerimiz, endüstriyel uygulamalar için enerji verimli ve dayanıklı çözümler sunar.",
     cta: "Ürün Kataloğu",
     ctaLink: "/dragon-winch-katalog-2025.pdf",
   },
   {
     id: 6,
     image: "/hero/cekme-vinci.jpg",
-    title: "Dragon Winch Türkiye Distribütörü",
+    title: "Meda Endüstri",
     subtitle: "Güçlü Çekme, Güvenli Operasyon",
     description:
-      "Dragon Winch çekme vinci tamburlarının Türkiye distribütörüyüz. Denizcilik, endüstri ve liman sektörlerinde güvenilir vinç çözümleri sunuyoruz.",
-    cta: "Dragon Winch Ürünleri",
+      "Denizcilik, savunma sanayi ve endüstriyel sektörlerde yüksek kaliteli vinç çözümleri sunuyoruz.",
+    cta: "Ürünlerimiz",
     ctaLink: "/urunler",
   },
 ];
@@ -124,7 +114,7 @@ export function HeroSlider() {
       <div className="relative z-10 text-center text-white max-w-6xl mx-auto px-4">
         <div className="mb-6">
           <span className="inline-block px-4 py-2 bg-[#d84948]/20 border border-[#d84948]/30 rounded-full text-[#ff6b6a] text-sm font-medium backdrop-blur-sm">
-            Dragon Winch Yetkili Distribütörü
+            Endüstriyel Vinç Çözümleri
           </span>
         </div>
         <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
