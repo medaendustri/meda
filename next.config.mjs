@@ -1,14 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
   images: {
     unoptimized: true,
-    domains: ["www.medaendustri.com", "medaendustri.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "www.medaendustri.com",
+      },
+      {
+        protocol: "https",
+        hostname: "medaendustri.com",
+      },
+    ],
     formats: ["image/webp", "image/avif"],
   },
   // Performance optimizations

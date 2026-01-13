@@ -5,7 +5,7 @@
 
 // Test için örnek form verisi
 const testFormData = {
-  name: "Test Kullanıcı",
+  name: "Test Kullanıcıs",
   email: "test@example.com",
   company: "Test Şirketi",
   phone: "+90 555 123 4567",

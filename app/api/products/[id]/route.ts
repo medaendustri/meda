@@ -16,12 +16,12 @@ export async function GET(
     let product = null;
 
     if (!isNaN(id)) {
-      product = getProductById(id);
+      product = await getProductById(id);
     }
 
     // If not found by ID, try as slug
     if (!product) {
-      product = getProductBySlug(idOrSlug);
+      product = await getProductBySlug(idOrSlug);
     }
 
     if (!product) {

@@ -1,18 +1,17 @@
-import Database from "better-sqlite3";
-import path from "path";
+import { createClient } from "@libsql/client";
 
-// Database path
-const dbPath = path.join(process.cwd(), "dragonwinch_full.db");
+// Turso Bağlantısı
+const url = process.env.TURSO_DATABASE_URL;
+const authToken = process.env.TURSO_AUTH_TOKEN;
 
-// Singleton database connection
-let db: Database.Database | null = null;
-
-export function getDb(): Database.Database {
-  if (!db) {
-    db = new Database(dbPath, { readonly: true, fileMustExist: true });
-  }
-  return db;
+if (!url) {
+  throw new Error("TURSO_DATABASE_URL environment variable is not defined");
 }
+
+export const db = createClient({
+  url,
+  authToken,
+});
 
 // Product interface matching our CSV/DB structure
 export interface Product {
@@ -20,7 +19,7 @@ export interface Product {
   name: string;
   url: string;
   category_url: string;
-  price_net: number;
+  price_net: number; // Turso'dan bazen string gelebilir, dikkat
   price_gross: number;
   currency: string;
   stock_status: string;
@@ -62,7 +61,7 @@ export interface Category {
   count: number;
 }
 
-// Aksesuar kategorileri - bunlar "Aksesuarlar" altında toplanacak
+// Aksesuar kategorileri
 const ACCESSORY_CATEGORIES = [
   "bags",
   "hooks-shackles-snatch-block",
@@ -75,7 +74,8 @@ const ACCESSORY_CATEGORIES = [
   "farm-jack",
 ];
 
-// Kategori slug'ının aksesuar olup olmadığını kontrol et
+// --- HELPER FUNCTIONS (Değişmedi) ---
+
 function isAccessoryCategory(slug: string): boolean {
   const normalizedSlug = slug.toLowerCase();
   return ACCESSORY_CATEGORIES.some(
@@ -85,44 +85,22 @@ function isAccessoryCategory(slug: string): boolean {
   );
 }
 
-// Parse category URL to extract name and slug
 function parseCategoryUrl(categoryUrl: string): { name: string; slug: string } {
-  // Format: "dragon-winch-maverick,51,0.html"
   const parts = categoryUrl.split(",");
   const slug = parts[0] || "dragon-winch";
-
-  // Convert slug to readable name
   const name = slug
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
-
   return { name, slug };
 }
 
-// Get display category name - Aksesuarları grupla
 function getDisplayCategoryName(categoryUrl: string): string {
   const { slug, name } = parseCategoryUrl(categoryUrl);
-
-  if (isAccessoryCategory(slug)) {
-    return "Aksesuarlar";
-  }
-
+  if (isAccessoryCategory(slug)) return "Aksesuarlar";
   return name;
 }
 
-// Get display category slug - Aksesuarları grupla
-function getDisplayCategorySlug(categoryUrl: string): string {
-  const { slug } = parseCategoryUrl(categoryUrl);
-
-  if (isAccessoryCategory(slug)) {
-    return "aksesuarlar";
-  }
-
-  return slug;
-}
-
-// Generate product slug from name
 function generateProductSlug(name: string): string {
   const turkishMap: Record<string, string> = {
     ç: "c",
@@ -138,7 +116,6 @@ function generateProductSlug(name: string): string {
     ü: "u",
     Ü: "U",
   };
-
   return name
     .toLowerCase()
     .split("")
@@ -150,7 +127,6 @@ function generateProductSlug(name: string): string {
     .replace(/^-|-$/g, "");
 }
 
-// Parse a raw product into parsed format
 export function parseProduct(product: Product): ParsedProduct {
   const categoryName = getDisplayCategoryName(product.category_url);
   const slug = generateProductSlug(product.name);
@@ -162,31 +138,20 @@ export function parseProduct(product: Product): ParsedProduct {
 
   try {
     specs = product.specs_json ? JSON.parse(product.specs_json) : {};
-  } catch (e) {
-    console.error("Error parsing specs_json:", e);
-  }
-
+  } catch (e) {}
   try {
     kitComponents = product.kit_components_json
       ? JSON.parse(product.kit_components_json)
       : [];
-  } catch (e) {
-    console.error("Error parsing kit_components_json:", e);
-  }
-
+  } catch (e) {}
   try {
     gallery = product.gallery_json ? JSON.parse(product.gallery_json) : [];
-  } catch (e) {
-    console.error("Error parsing gallery_json:", e);
-  }
-
+  } catch (e) {}
   try {
     downloads = product.downloads_json
       ? JSON.parse(product.downloads_json)
       : [];
-  } catch (e) {
-    console.error("Error parsing downloads_json:", e);
-  }
+  } catch (e) {}
 
   return {
     id: product.id,
@@ -195,8 +160,8 @@ export function parseProduct(product: Product): ParsedProduct {
     url: product.url,
     category_url: product.category_url,
     category_name: categoryName,
-    price_net: product.price_net,
-    price_gross: product.price_gross,
+    price_net: Number(product.price_net), // Turso bazen string döndürebilir, garanti olsun
+    price_gross: Number(product.price_gross),
     currency: product.currency,
     stock_status: product.stock_status,
     main_image: product.main_image,
@@ -209,14 +174,14 @@ export function parseProduct(product: Product): ParsedProduct {
   };
 }
 
-// Get all products
-export function getAllProducts(options?: {
+// --- DB FUNCTIONS (Hepsi ASYNC oldu) ---
+
+export async function getAllProducts(options?: {
   page?: number;
   perPage?: number;
   category?: string;
   search?: string;
-}): { products: ParsedProduct[]; total: number; totalPages: number } {
-  const db = getDb();
+}): Promise<{ products: ParsedProduct[]; total: number; totalPages: number }> {
   const page = options?.page || 1;
   const perPage = options?.perPage || 12;
   const offset = (page - 1) * perPage;
@@ -236,18 +201,21 @@ export function getAllProducts(options?: {
   }
 
   // Get total count
-  const countStmt = db.prepare(
-    `SELECT COUNT(*) as count FROM products${whereClause}`
-  );
-  const countResult = countStmt.get(...params) as { count: number };
-  const total = countResult.count;
+  const countResult = await db.execute({
+    sql: `SELECT COUNT(*) as count FROM products${whereClause}`,
+    args: params,
+  });
+
+  const total = Number(countResult.rows[0].count);
   const totalPages = Math.ceil(total / perPage);
 
-  // Get products with pagination
-  const stmt = db.prepare(
-    `SELECT * FROM products${whereClause} ORDER BY id ASC LIMIT ? OFFSET ?`
-  );
-  const products = stmt.all(...params, perPage, offset) as Product[];
+  // Get products
+  const productsResult = await db.execute({
+    sql: `SELECT * FROM products${whereClause} ORDER BY id ASC LIMIT ? OFFSET ?`,
+    args: [...params, perPage, offset],
+  });
+
+  const products = productsResult.rows as unknown as Product[];
 
   return {
     products: products.map(parseProduct),
@@ -256,23 +224,27 @@ export function getAllProducts(options?: {
   };
 }
 
-// Get a single product by ID
-export function getProductById(id: number): ParsedProduct | null {
-  const db = getDb();
-  const stmt = db.prepare("SELECT * FROM products WHERE id = ?");
-  const product = stmt.get(id) as Product | undefined;
+export async function getProductById(
+  id: number
+): Promise<ParsedProduct | null> {
+  const result = await db.execute({
+    sql: "SELECT * FROM products WHERE id = ?",
+    args: [id],
+  });
 
+  const product = result.rows[0] as unknown as Product | undefined;
   if (!product) return null;
 
   return parseProduct(product);
 }
 
-// Get a single product by slug
-export function getProductBySlug(slug: string): ParsedProduct | null {
-  const db = getDb();
-  // First get all products and find by generated slug
-  const stmt = db.prepare("SELECT * FROM products");
-  const products = stmt.all() as Product[];
+export async function getProductBySlug(
+  slug: string
+): Promise<ParsedProduct | null> {
+  // Slug veritabanında olmadığı ve JS ile oluşturulduğu için tüm ürünleri çekip bulmak zorundayız.
+  // Bu performanslı değil ama URL yapını bozmamak için böyle bırakıyorum.
+  const result = await db.execute("SELECT * FROM products");
+  const products = result.rows as unknown as Product[];
 
   for (const product of products) {
     const parsed = parseProduct(product);
@@ -280,39 +252,37 @@ export function getProductBySlug(slug: string): ParsedProduct | null {
       return parsed;
     }
   }
-
   return null;
 }
 
-// Get all unique categories from products
-export function getAllCategories(): Category[] {
-  const db = getDb();
-  const stmt = db.prepare(
+export async function getAllCategories(): Promise<Category[]> {
+  const result = await db.execute(
     "SELECT category_url, COUNT(*) as count FROM products GROUP BY category_url"
   );
-  const results = stmt.all() as Array<{ category_url: string; count: number }>;
 
-  // Group accessory categories
+  const rows = result.rows as unknown as Array<{
+    category_url: string;
+    count: number;
+  }>;
+
   let accessoryCount = 0;
   const nonAccessoryCategories: Category[] = [];
   let index = 0;
 
-  for (const row of results) {
+  for (const row of rows) {
     const { slug } = parseCategoryUrl(row.category_url);
-
     if (isAccessoryCategory(slug)) {
-      accessoryCount += row.count;
+      accessoryCount += Number(row.count);
     } else {
       nonAccessoryCategories.push({
         id: String(++index),
         name: parseCategoryUrl(row.category_url).name,
         slug,
-        count: row.count,
+        count: Number(row.count),
       });
     }
   }
 
-  // Add combined accessory category if there are any
   if (accessoryCount > 0) {
     nonAccessoryCategories.push({
       id: String(++index),
@@ -325,40 +295,34 @@ export function getAllCategories(): Category[] {
   return nonAccessoryCategories;
 }
 
-// Get products by category slug
-export function getProductsByCategory(
+export async function getProductsByCategory(
   categorySlug: string,
-  options?: {
-    page?: number;
-    perPage?: number;
-  }
-): { products: ParsedProduct[]; total: number; totalPages: number } {
-  const db = getDb();
+  options?: { page?: number; perPage?: number }
+): Promise<{ products: ParsedProduct[]; total: number; totalPages: number }> {
   const page = options?.page || 1;
   const perPage = options?.perPage || 12;
   const offset = (page - 1) * perPage;
 
-  // Handle combined accessories category
   if (categorySlug === "aksesuarlar") {
-    // Build OR query for all accessory categories
     const placeholders = ACCESSORY_CATEGORIES.map(
       () => "category_url LIKE ?"
     ).join(" OR ");
     const params = ACCESSORY_CATEGORIES.map((cat) => `%${cat}%`);
 
-    // Get total count
-    const countStmt = db.prepare(
-      `SELECT COUNT(*) as count FROM products WHERE ${placeholders}`
-    );
-    const countResult = countStmt.get(...params) as { count: number };
-    const total = countResult.count;
+    const countResult = await db.execute({
+      sql: `SELECT COUNT(*) as count FROM products WHERE ${placeholders}`,
+      args: params,
+    });
+
+    const total = Number(countResult.rows[0].count);
     const totalPages = Math.ceil(total / perPage);
 
-    // Get products
-    const stmt = db.prepare(
-      `SELECT * FROM products WHERE ${placeholders} ORDER BY id ASC LIMIT ? OFFSET ?`
-    );
-    const products = stmt.all(...params, perPage, offset) as Product[];
+    const productsResult = await db.execute({
+      sql: `SELECT * FROM products WHERE ${placeholders} ORDER BY id ASC LIMIT ? OFFSET ?`,
+      args: [...params, perPage, offset],
+    });
+
+    const products = productsResult.rows as unknown as Product[];
 
     return {
       products: products.map(parseProduct),
@@ -367,20 +331,20 @@ export function getProductsByCategory(
     };
   }
 
-  // Normal category query
-  // Get total count
-  const countStmt = db.prepare(
-    "SELECT COUNT(*) as count FROM products WHERE category_url LIKE ?"
-  );
-  const countResult = countStmt.get(`%${categorySlug}%`) as { count: number };
-  const total = countResult.count;
+  const countResult = await db.execute({
+    sql: "SELECT COUNT(*) as count FROM products WHERE category_url LIKE ?",
+    args: [`%${categorySlug}%`],
+  });
+
+  const total = Number(countResult.rows[0].count);
   const totalPages = Math.ceil(total / perPage);
 
-  // Get products
-  const stmt = db.prepare(
-    "SELECT * FROM products WHERE category_url LIKE ? ORDER BY id ASC LIMIT ? OFFSET ?"
-  );
-  const products = stmt.all(`%${categorySlug}%`, perPage, offset) as Product[];
+  const productsResult = await db.execute({
+    sql: "SELECT * FROM products WHERE category_url LIKE ? ORDER BY id ASC LIMIT ? OFFSET ?",
+    args: [`%${categorySlug}%`, perPage, offset],
+  });
+
+  const products = productsResult.rows as unknown as Product[];
 
   return {
     products: products.map(parseProduct),
@@ -389,44 +353,29 @@ export function getProductsByCategory(
   };
 }
 
-// Search products
-export function searchProducts(
+export async function searchProducts(
   query: string,
-  options?: {
-    page?: number;
-    perPage?: number;
-  }
-): { products: ParsedProduct[]; total: number; totalPages: number } {
-  const db = getDb();
+  options?: { page?: number; perPage?: number }
+): Promise<{ products: ParsedProduct[]; total: number; totalPages: number }> {
   const page = options?.page || 1;
   const perPage = options?.perPage || 12;
   const offset = (page - 1) * perPage;
   const searchTerm = `%${query}%`;
 
-  // Get total count
-  const countStmt = db.prepare(`
-    SELECT COUNT(*) as count FROM products 
-    WHERE name LIKE ? OR specs_json LIKE ? OR performance_data LIKE ?
-  `);
-  const countResult = countStmt.get(searchTerm, searchTerm, searchTerm) as {
-    count: number;
-  };
-  const total = countResult.count;
+  const countResult = await db.execute({
+    sql: `SELECT COUNT(*) as count FROM products WHERE name LIKE ? OR specs_json LIKE ? OR performance_data LIKE ?`,
+    args: [searchTerm, searchTerm, searchTerm],
+  });
+
+  const total = Number(countResult.rows[0].count);
   const totalPages = Math.ceil(total / perPage);
 
-  // Get products
-  const stmt = db.prepare(`
-    SELECT * FROM products 
-    WHERE name LIKE ? OR specs_json LIKE ? OR performance_data LIKE ?
-    ORDER BY id ASC LIMIT ? OFFSET ?
-  `);
-  const products = stmt.all(
-    searchTerm,
-    searchTerm,
-    searchTerm,
-    perPage,
-    offset
-  ) as Product[];
+  const productsResult = await db.execute({
+    sql: `SELECT * FROM products WHERE name LIKE ? OR specs_json LIKE ? OR performance_data LIKE ? ORDER BY id ASC LIMIT ? OFFSET ?`,
+    args: [searchTerm, searchTerm, searchTerm, perPage, offset],
+  });
+
+  const products = productsResult.rows as unknown as Product[];
 
   return {
     products: products.map(parseProduct),
@@ -435,17 +384,18 @@ export function searchProducts(
   };
 }
 
-// Get featured products (one from each category)
-export function getFeaturedProducts(): ParsedProduct[] {
-  const db = getDb();
-  const categories = getAllCategories();
+export async function getFeaturedProducts(): Promise<ParsedProduct[]> {
+  const categories = await getAllCategories();
   const featuredProducts: ParsedProduct[] = [];
 
+  // İlk 5 kategoriden birer ürün çek
   for (const category of categories.slice(0, 5)) {
-    const stmt = db.prepare(
-      "SELECT * FROM products WHERE category_url LIKE ? LIMIT 1"
-    );
-    const product = stmt.get(`${category.slug}%`) as Product | undefined;
+    const result = await db.execute({
+      sql: "SELECT * FROM products WHERE category_url LIKE ? LIMIT 1",
+      args: [`${category.slug}%`],
+    });
+
+    const product = result.rows[0] as unknown as Product | undefined;
     if (product) {
       featuredProducts.push(parseProduct(product));
     }

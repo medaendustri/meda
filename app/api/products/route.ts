@@ -20,17 +20,19 @@ export async function GET(request: Request) {
 
     // Anasayfa için kategoriye göre öne çıkan ürünler
     if (featuredByCategory) {
-      const featuredProducts = getFeaturedProducts();
+      // 👇 DEĞİŞİKLİK 1: await eklendi
+      const featuredProducts = await getFeaturedProducts();
       return NextResponse.json({
         products: featuredProducts,
-        total: featuredProducts.length,
+        total: featuredProducts.length, // Buradaki await kalktı çünkü yukarıda bekledik zaten
         totalPages: 1,
       });
     }
 
     // Arama
     if (search) {
-      const result = searchProducts(search, { page, perPage });
+      // 👇 DEĞİŞİKLİK 2: await eklendi
+      const result = await searchProducts(search, { page, perPage });
       return NextResponse.json({
         products: result.products,
         total: result.total,
@@ -40,7 +42,8 @@ export async function GET(request: Request) {
 
     // Kategoriye göre filtreleme
     if (category) {
-      const result = getProductsByCategory(category, { page, perPage });
+      // 👇 DEĞİŞİKLİK 3: await eklendi
+      const result = await getProductsByCategory(category, { page, perPage });
       return NextResponse.json({
         products: result.products,
         total: result.total,
@@ -49,12 +52,14 @@ export async function GET(request: Request) {
     }
 
     // Tüm ürünler
-    const result = getAllProducts({ page, perPage });
+    // 👇 DEĞİŞİKLİK 4: await eklendi
+    const result = await getAllProducts({ page, perPage });
     return NextResponse.json({
       products: result.products,
       total: result.total,
       totalPages: result.totalPages,
     });
+    
   } catch (error) {
     console.error("Error fetching products:", error);
     return NextResponse.json(
