@@ -35,7 +35,7 @@ export default function ContactPage() {
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -123,7 +123,7 @@ export default function ContactPage() {
             </a>
 
             {/* Email Card */}
-            <a href="mailto:info@medaendustri.com" className="group">
+            <a href="mailto:info@medaendustri.com.tr" className="group">
               <Card className="border-0 shadow-xl bg-white hover:shadow-2xl transition-all duration-300 h-full">
                 <CardContent className="p-6 text-center">
                   <div className="w-14 h-14 bg-[#d84948]/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#d84948]/20 transition-colors">
@@ -133,7 +133,7 @@ export default function ContactPage() {
                     E-posta Gönderin
                   </h3>
                   <p className="text-[#d84948] font-semibold">
-                    info@medaendustri.com
+                    info@medaendustri.com.tr
                   </p>
                   <p className="text-gray-500 text-sm mt-2">
                     24 Saat İçinde Yanıt

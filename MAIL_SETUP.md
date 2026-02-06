@@ -35,7 +35,7 @@ COMPANY_EMAIL=your-gmail@gmail.com
 1. Plesk Panel'e giriş yapın
 2. "Mail" bölümüne gidin
 3. "Create Email Address" tıklayın
-4. `info@medaendustri.com` hesabını oluşturun
+4. `info@medaendustri.com.tr` hesabını oluşturun
 5. Güçlü bir şifre belirleyin
 
 ### .env.local Ayarları
@@ -44,10 +44,10 @@ COMPANY_EMAIL=your-gmail@gmail.com
 SMTP_HOST=mail.medaendustri.com
 SMTP_PORT=587
 SMTP_SECURE=false
-SMTP_USER=info@medaendustri.com
+SMTP_USER=info@medaendustri.com.tr
 SMTP_PASS=your-plesk-email-password
-SMTP_FROM="Meda Endüstri <info@medaendustri.com>"
-COMPANY_EMAIL=info@medaendustri.com
+SMTP_FROM="Meda Endüstri <info@medaendustri.com.tr>"
+COMPANY_EMAIL=info@medaendustri.com.tr
 ```
 
 ### Plesk SMTP Ayarları Kontrolü
@@ -64,7 +64,7 @@ COMPANY_EMAIL=info@medaendustri.com
 1. Cloudflare Dashboard → "Email" → "Email Routing"
 2. "Enable Email Routing" tıklayın
 3. "Destination addresses" → Gmail adresinizi ekleyin
-4. "Routing rules" → `info@medaendustri.com` → Gmail adresinize yönlendirin
+4. "Routing rules" → `info@medaendustri.com.tr` → Gmail adresinize yönlendirin
 
 ### Adım 2: Gmail App Password ile Gönderim
 
@@ -74,8 +74,8 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=your-gmail@gmail.com
 SMTP_PASS=your-gmail-app-password
-SMTP_FROM="Meda Endüstri <info@medaendustri.com>"
-COMPANY_EMAIL=info@medaendustri.com
+SMTP_FROM="Meda Endüstri <info@medaendustri.com.tr>"
+COMPANY_EMAIL=info@medaendustri.com.tr
 ```
 
 ## 🔧 4. Alternatif SMTP Servisleri

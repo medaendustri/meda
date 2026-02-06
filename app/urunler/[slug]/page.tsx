@@ -124,19 +124,19 @@ export default function ProductDetailPage({
       case "facebook":
         window.open(
           `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-          "_blank"
+          "_blank",
         );
         break;
       case "twitter":
         window.open(
           `https://twitter.com/intent/tweet?url=${url}&text=${text}`,
-          "_blank"
+          "_blank",
         );
         break;
       case "linkedin":
         window.open(
           `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-          "_blank"
+          "_blank",
         );
         break;
       case "whatsapp":
@@ -391,7 +391,7 @@ export default function ProductDetailPage({
 
                 <div className="flex gap-3">
                   <a
-                    href="mailto:info@medaendustri.com"
+                    href="mailto:info@medaendustri.com.tr"
                     className="flex-1 flex items-center justify-center gap-2 p-3 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
                   >
                     <Mail className="w-5 h-5" />
@@ -575,7 +575,7 @@ export default function ProductDetailPage({
                                 {value}
                               </td>
                             </tr>
-                          )
+                          ),
                         )}
                       </tbody>
                     </table>

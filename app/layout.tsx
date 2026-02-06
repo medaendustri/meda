@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com",
   ),
   alternates: {
     canonical: "/",
@@ -95,7 +95,7 @@ export const metadata: Metadata = {
       },
     ],
     countryName: "Turkey",
-    emails: ["info@medaendustri.com"],
+    emails: ["info@medaendustri.com.tr"],
     phoneNumbers: ["+90 538 734 4389"],
   },
   twitter: {
@@ -298,7 +298,7 @@ export default function RootLayout({
                 },
                 {
                   "@type": "ContactPoint",
-                  email: "info@medaendustri.com",
+                  email: "info@medaendustri.com.tr",
                   contactType: "customer service",
                   availableLanguage: ["Turkish", "English"],
                 },

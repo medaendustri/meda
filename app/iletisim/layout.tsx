@@ -66,7 +66,7 @@ export default function ContactLayout({
                 postalCode: "34000",
               },
               telephone: "+90 212 555 0123",
-              email: "info@medaendustri.com",
+              email: "info@medaendustri.com.tr",
               openingHours: ["Mo-Fr 08:00-18:00", "Sa 09:00-13:00"],
               contactPoint: [
                 {

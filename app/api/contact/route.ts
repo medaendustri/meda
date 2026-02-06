@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { error: "Gerekli alanlar eksik" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     // Email content for company
     const companyMailOptions = {
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
-      to: process.env.COMPANY_EMAIL || "info@medaendustri.com",
+      to: process.env.COMPANY_EMAIL || "info@medaendustri.com.tr",
       subject: `Dragon Winch Teklif Talebi - ${subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px;">
@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
               <tr>
                 <td style="padding: 12px; border-bottom: 1px solid #eee; font-weight: bold;">Departman:</td>
                 <td style="padding: 12px; border-bottom: 1px solid #eee;">${getDepartmentName(
-                  department
+                  department,
                 )}</td>
               </tr>
             </table>
@@ -117,7 +117,7 @@ export async function POST(request: NextRequest) {
               <h3 style="color: #d84948; margin-top: 0;">Talebinizin Özeti:</h3>
               <p><strong>Konu:</strong> ${subject}</p>
               <p><strong>Departman:</strong> ${getDepartmentName(
-                department
+                department,
               )}</p>
               ${company ? `<p><strong>Şirket:</strong> ${company}</p>` : ""}
             </div>
@@ -139,7 +139,7 @@ export async function POST(request: NextRequest) {
             <div style="margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #d84948, #c73e3d); border-radius: 8px; text-align: center;">
               <p style="color: white; margin: 0; font-size: 14px;">
                 <strong>Meda Endüstri Dragon Winch Distribütörü</strong><br>
-                🌐 www.medaendustri.com | 📧 info@medaendustri.com
+                🌐 www.medaendustri.com | 📧 info@medaendustri.com.tr
               </p>
             </div>
           </div>
@@ -153,13 +153,13 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       { message: "E-posta başarıyla gönderildi" },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Mail gönderme hatası:", error);
     return NextResponse.json(
       { error: "E-posta gönderilirken bir hata oluştu" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

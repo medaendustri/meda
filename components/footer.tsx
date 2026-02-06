@@ -156,7 +156,7 @@ export function Footer() {
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-[#d84948] flex-shrink-0" />
                 <div className="text-sm text-gray-300">
-                  <p>info@medaendustri.com</p>
+                  <p>info@medaendustri.com.tr</p>
                   <p className="text-xs text-gray-400">24 saat içinde yanıt</p>
                 </div>
               </div>

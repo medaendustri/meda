@@ -3,30 +3,37 @@
 ## 📧 Plesk'te Doğru SMTP Host Adresini Bulma
 
 ### 1. **Plesk Panel'e Giriş Yapın**
+
 - Plesk Panel'e admin olarak giriş yapın
 - Ana dashboard'a gidin
 
 ### 2. **Mail Server Ayarlarını Kontrol Edin**
+
 ```
 Plesk Panel → Tools & Settings → Mail Server Settings
 ```
 
 **Kontrol Edilecekler:**
+
 - ✅ Mail service: **Enabled** olmalı
-- ✅ SMTP service: **Enabled** olmalı  
+- ✅ SMTP service: **Enabled** olmalı
 - ✅ SMTP authentication: **Enabled** olmalı
 
 ### 3. **Server Hostname'ini Bulun**
+
 ```
 Plesk Panel → Tools & Settings → Server Settings
 ```
+
 - **Full hostname** alanındaki değeri not edin
 - Bu genellikle SMTP host olarak kullanılır
 
 ### 4. **Mail Ayarlarını Test Edin**
+
 ```
-Plesk Panel → Mail → Email Addresses → info@medaendustri.com
+Plesk Panel → Mail → Email Addresses → info@medaendustri.com.tr
 ```
+
 - **"Mail settings"** linkine tıklayın
 - Burada SMTP ayarları görüntülenir
 
@@ -52,6 +59,7 @@ mail.hostingcompany.com
 ### 6. **Hosting Sağlayıcıdan Bilgi Alın**
 
 Hosting firmanızdan şu bilgileri isteyin:
+
 - ✅ SMTP Server Hostname
 - ✅ SMTP Port (587, 465, 25)
 - ✅ SSL/TLS ayarları
@@ -62,6 +70,7 @@ Hosting firmanızdan şu bilgileri isteyin:
 ```
 cPanel → Email Accounts → Configure Mail Client
 ```
+
 - Burada SMTP ayarları listelenir
 
 ### 8. **Terminal ile Plesk Server Kontrolü**
@@ -82,15 +91,17 @@ netstat -tulpn | grep :587
 ## 🧪 Test Komutları
 
 ### Windows PowerShell ile test:
+
 ```powershell
 # Hostname ile test
 Test-NetConnection your-server-hostname.com -Port 587
 
-# IP ile test  
+# IP ile test
 Test-NetConnection your.server.ip -Port 587
 ```
 
 ### Telnet ile test:
+
 ```bash
 # SMTP server erişim testi
 telnet your-smtp-host.com 587
@@ -101,9 +112,10 @@ telnet your-smtp-host.com 587
 **Eğer Plesk SMTP bulunamazsa:**
 
 1. **Geçici Gmail Kullanın:**
+
    ```env
    SMTP_HOST=smtp.gmail.com
-   SMTP_USER=your-gmail@gmail.com  
+   SMTP_USER=your-gmail@gmail.com
    SMTP_PASS=gmail-app-password
    ```
 
@@ -113,11 +125,12 @@ telnet your-smtp-host.com 587
    - "Port 587 açık mı?"
 
 3. **Alternative Ports Deneyin:**
+
    ```env
    # Port 465 (SSL)
    SMTP_PORT=465
    SMTP_SECURE=true
-   
+
    # Port 25 (Plain)
    SMTP_PORT=25
    SMTP_SECURE=false
@@ -130,10 +143,10 @@ telnet your-smtp-host.com 587
 SMTP_HOST=server.hostingcompany.com
 SMTP_PORT=587
 SMTP_SECURE=false
-SMTP_USER=info@medaendustri.com
+SMTP_USER=info@medaendustri.com.tr
 SMTP_PASS=your-plesk-password
-SMTP_FROM="Meda Endüstri <info@medaendustri.com>"
-COMPANY_EMAIL=info@medaendustri.com
+SMTP_FROM="Meda Endüstri <info@medaendustri.com.tr>"
+COMPANY_EMAIL=info@medaendustri.com.tr
 ```
 
 ---
