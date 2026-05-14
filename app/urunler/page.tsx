@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 
 // Database product interface
 interface DbProduct {
@@ -44,7 +45,9 @@ interface Category {
 }
 
 export default function ProductsPage() {
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState(
+    searchParams.get("category") || "all",
+  );
   const [searchTerm, setSearchTerm] = useState("");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [products, setProducts] = useState<DbProduct[]>([]);
@@ -54,6 +57,9 @@ export default function ProductsPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [allProductsCount, setAllProductsCount] = useState(0);
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -76,7 +82,7 @@ export default function ProductsPage() {
         // Toplam ürün sayısını kategorilerden hesapla
         const total = data.reduce(
           (sum: number, cat: Category) => sum + cat.count,
-          0
+          0,
         );
         setAllProductsCount(total);
       }
@@ -156,6 +162,11 @@ export default function ProductsPage() {
   const handleCategoryChange = (categoryId: string) => {
     setSelectedCategory(categoryId);
     setCurrentPage(1);
+    if (categoryId === "all") {
+      router.push("/urunler");
+    } else {
+      router.push(`/urunler?category=${categoryId}`);
+    }
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
