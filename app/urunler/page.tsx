@@ -45,6 +45,8 @@ interface Category {
 }
 
 export default function ProductsPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState(
     searchParams.get("category") || "all",
   );
@@ -57,9 +59,6 @@ export default function ProductsPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [allProductsCount, setAllProductsCount] = useState(0);
-
-  const router = useRouter();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });

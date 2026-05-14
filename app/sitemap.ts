@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+export const dynamic = "force-dynamic";
 
 interface Product {
   id: number;
@@ -15,7 +16,7 @@ async function getProducts(): Promise<Product[]> {
       {
         cache: "no-store",
         next: { revalidate: 3600 }, // 1 hour cache
-      }
+      },
     );
     if (!response.ok) return [];
     const data = await response.json();
