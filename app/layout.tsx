@@ -5,7 +5,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
-import { Analytics } from "@/components/analytics";
+import { Analytics } from "@vercel/analytics/next"
 import { LeadStickyCta } from "@/components/lead-sticky-cta";
 
 // Corporate serif font for headings
