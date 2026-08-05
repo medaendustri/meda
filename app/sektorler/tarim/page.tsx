@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import {
   Tractor,
   Wheat,
@@ -11,14 +10,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
-export const metadata: Metadata = {
-  title: "Tarım Sektörü Vinç Çözümleri | Meda Endüstri",
-  description:
-    "Tarım sektörü için özel tasarlanmış vinç sistemleri. Traktör, hasat makinesi ve tarım ekipmanları için dayanıklı çözümler.",
-  keywords:
-    "tarım vinç, traktör vinç, hasat makinesi vinç, tarım ekipmanı vinç",
-};
 
 // Sektöre uygun ürünler - sonra değiştirilecek
 const sectorProducts = [

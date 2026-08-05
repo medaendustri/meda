@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildFaqSchema } from "@/lib/faq";
 
 export const metadata: Metadata = {
   title: "Denizcilik Vinçleri - Dragon Winch Marine Series | Meda Endüstri",
@@ -12,9 +13,6 @@ export const metadata: Metadata = {
     "tekne vinçleri",
     "deniz vinç ekipmanları",
     "dragon winch marine",
-    "ship winch systems",
-    "yacht winch systems",
-    "marine recovery winch",
   ],
   openGraph: {
     title: "Denizcilik Vinçleri - Dragon Winch Marine Series",
@@ -22,11 +20,15 @@ export const metadata: Metadata = {
       "Dragon Winch denizcilik vinçleri ve marine vinç sistemleri. Gemi, yat ve tekne endüstrisi için çözümler.",
     type: "website",
     url: "/sektorler/denizcilik",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
   },
   alternates: {
     canonical: "/sektorler/denizcilik",
   },
 };
+
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com";
 
 export default function MarineLayout({
   children,
@@ -44,18 +46,14 @@ export default function MarineLayout({
             name: "Dragon Winch Denizcilik Vinçleri",
             description:
               "Denizcilik sektörü için Dragon Winch çekme vinci tamburu ve marine vinç sistemleri",
-            url: `${
-              process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com"
-            }/sektorler/denizcilik`,
-            about: {
-              "@type": "Thing",
-              name: "Denizcilik Vinç Sistemleri",
-            },
-            audience: {
-              "@type": "Audience",
-              name: "Denizcilik Sektörü",
-            },
+            url: `${siteUrl}/sektorler/denizcilik`,
           }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildFaqSchema()),
         }}
       />
       {children}

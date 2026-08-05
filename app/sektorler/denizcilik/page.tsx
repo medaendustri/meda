@@ -1,17 +1,8 @@
-import type { Metadata } from "next";
 import { Anchor, Ship, Waves, Compass, ChevronRight, Eye } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
-export const metadata: Metadata = {
-  title: "Denizcilik Vinç Çözümleri | Meda Endüstri",
-  description:
-    "Denizcilik sektörü için özel tasarlanmış vinç sistemleri. Gemi, yat ve deniz platformları için korozyona dayanıklı çözümler.",
-  keywords:
-    "denizcilik vinç, gemi vinç, yat vinç, marine vinç, deniz platformu vinç",
-};
 
 // Sektöre uygun ürünler - sonra değiştirilecek
 const sectorProducts = [

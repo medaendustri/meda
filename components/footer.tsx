@@ -3,13 +3,12 @@ import {
   Mail,
   Phone,
   MapPin,
-  Clock,
   Award,
   Shield,
   Globe,
   Linkedin,
-  Twitter,
-  Youtube,
+  Facebook,
+  Instagram,
 } from "lucide-react";
 
 export function Footer() {
@@ -19,6 +18,8 @@ export function Footer() {
     { href: "/urunler", label: "Ürünlerimiz" },
     { href: "/markalar", label: "Stratejik Ortaklarımız" },
     { href: "/haberler", label: "Haberler" },
+    { href: "/referanslar", label: "Referanslar" },
+    { href: "/katalog", label: "Katalog" },
     { href: "/iletisim", label: "İletişim" },
   ];
 
@@ -37,9 +38,21 @@ export function Footer() {
   ];
 
   const socialLinks = [
-    { href: "#", icon: <Linkedin className="w-5 h-5" />, label: "LinkedIn" },
-    { href: "#", icon: <Twitter className="w-5 h-5" />, label: "Twitter" },
-    { href: "#", icon: <Youtube className="w-5 h-5" />, label: "YouTube" },
+    {
+      href: "https://www.linkedin.com/company/medaendustri",
+      icon: <Linkedin className="w-5 h-5" />,
+      label: "LinkedIn",
+    },
+    {
+      href: "https://www.facebook.com/medaendustri",
+      icon: <Facebook className="w-5 h-5" />,
+      label: "Facebook",
+    },
+    {
+      href: "https://www.instagram.com/medaendustri",
+      icon: <Instagram className="w-5 h-5" />,
+      label: "Instagram",
+    },
   ];
 
   return (
@@ -51,7 +64,7 @@ export function Footer() {
           <div className="lg:col-span-1 space-y-6">
             <div className="flex items-center">
               <div className="w-20 flex items-center justify-center transition-all duration-300 group-hover:scale-105">
-                <img src="/meda-logo.webp" alt="" />
+                <img src="/meda-logo.webp" alt="Meda Endüstri" />
               </div>
               <div className="ml-3">
                 <span className="text-xl font-bold text-white">
@@ -78,6 +91,8 @@ export function Footer() {
                   <a
                     key={index}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-2 bg-white/10 rounded-lg hover:bg-[#d84948] transition-colors group"
                     aria-label={social.label}
                   >
@@ -170,7 +185,7 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
-              <p>© 2024 Meda Endüstri. Tüm hakları saklıdır.</p>
+              <p>© {new Date().getFullYear()} Meda Endüstri. Tüm hakları saklıdır.</p>
               <div className="flex space-x-4">
                 <Link
                   href="/gizlilik"

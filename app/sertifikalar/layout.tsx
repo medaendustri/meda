@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Sertifikalar - Dragon Winch Kalite Belgeleri | Meda Endüstri",
   description:
-    "Dragon Winch çekme vinci tamburu kalite sertifikaları, CE belgeleri ve uluslararası standart belgeleri. Meda Savunma distribütörlük sertifikaları ve kalite yönetim belgeleri.",
+    "Dragon Winch çekme vinci tamburu kalite sertifikaları, CE belgeleri ve uluslararası standart belgeleri. Meda Endüstri distribütörlük sertifikaları ve kalite yönetim belgeleri.",
   keywords: [
     "dragon winch sertifikalar",
     "çekme vinci tamburu sertifikalar",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     url: "/sertifikalar",
     images: [
       {
-        url: "/og-dragon-winch-certificates.jpg",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Dragon Winch Sertifikalar - Meda Endüstri",

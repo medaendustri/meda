@@ -1,33 +1,30 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Haberler - Dragon Winch Türkiye | Meda Savunma",
+  title: "Haberler - Dragon Winch Türkiye | Meda Endüstri",
   description:
-    "Dragon Winch ürünleri, çekme vinci tamburu sektörü haberleri ve Meda Savunma şirket gelişmeleri. Vinç teknolojisi, ürün lansmanları ve sektörel güncellemeler.",
+    "Dragon Winch ürünleri, çekme vinci tamburu sektörü haberleri ve Meda Endüstri şirket gelişmeleri. Vinç teknolojisi, ürün lansmanları ve sektörel güncellemeler.",
   keywords: [
     "dragon winch haberler",
     "çekme vinci tamburu haberleri",
     "vinç sektörü haberler",
     "dragon winch yenilikler",
-    "meda savunma haberler",
+    "meda endüstri haberler",
     "endüstriyel vinç haberleri",
     "dragon winch türkiye haberler",
-    "winch industry news",
-    "industrial winch news",
-    "dragon winch updates",
   ],
   openGraph: {
-    title: "Haberler - Dragon Winch Türkiye",
+    title: "Haberler - Dragon Winch Türkiye | Meda Endüstri",
     description:
       "Dragon Winch ürünleri ve çekme vinci tamburu sektöründen son haberler.",
     type: "website",
     url: "/haberler",
     images: [
       {
-        url: "/og-dragon-winch-news.jpg",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Dragon Winch Haberler - Meda Savunma",
+        alt: "Dragon Winch Haberler - Meda Endüstri",
       },
     ],
   },
@@ -35,6 +32,9 @@ export const metadata: Metadata = {
     canonical: "/haberler",
   },
 };
+
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com";
 
 export default function NewsLayout({
   children,
@@ -49,28 +49,21 @@ export default function NewsLayout({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Blog",
-            name: "Dragon Winch Türkiye Haberler",
+            name: "Meda Endüstri Haberler",
             description:
               "Dragon Winch ürünleri ve çekme vinci tamburu sektöründen haberler",
-            url: `${
-              process.env.NEXT_PUBLIC_SITE_URL || "https://medasavunma.com.tr"
-            }/haberler`,
+            url: `${siteUrl}/haberler`,
             publisher: {
               "@type": "Organization",
-              name: "Meda Savunma Teknolojileri",
+              name: "Meda Endüstri",
               logo: {
                 "@type": "ImageObject",
-                url: `${
-                  process.env.NEXT_PUBLIC_SITE_URL ||
-                  "https://medasavunma.com.tr"
-                }/logo.png`,
+                url: `${siteUrl}/meda-logo.webp`,
               },
             },
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": `${
-                process.env.NEXT_PUBLIC_SITE_URL || "https://medasavunma.com.tr"
-              }/haberler`,
+              "@id": `${siteUrl}/haberler`,
             },
             inLanguage: "tr-TR",
           }),

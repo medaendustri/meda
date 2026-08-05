@@ -12,7 +12,6 @@ import {
   Phone,
   Mail,
   Clock,
-  Send,
   MessageCircle,
   CheckCircle,
   Building2,
@@ -29,8 +28,7 @@ export default function ContactPage() {
     message: "",
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const WHATSAPP_NUMBER = "905387344389";
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -44,40 +42,36 @@ export default function ContactPage() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+    const lines = [
+      "Merhaba, web sitesinden teklif talebi:",
+      "",
+      `Ad Soyad: ${formData.name}`,
+      formData.company ? `Şirket: ${formData.company}` : null,
+      `E-posta: ${formData.email}`,
+      formData.phone ? `Telefon: ${formData.phone}` : null,
+      `Konu: ${formData.subject}`,
+      "",
+      "Mesaj:",
+      formData.message,
+    ].filter(Boolean);
+
+    const text = encodeURIComponent(lines.join("\n"));
+
+    if (typeof window !== "undefined" && "gtag" in window) {
+      (
+        window as Window & {
+          gtag: (...args: unknown[]) => void;
+        }
+      ).gtag("event", "generate_lead", {
+        event_category: "contact",
+        event_label: "whatsapp_teklif",
       });
-
-      if (response.ok) {
-        setFormData({
-          name: "",
-          email: "",
-          company: "",
-          phone: "",
-          subject: "",
-          message: "",
-        });
-        setIsSubmitted(true);
-        setTimeout(() => setIsSubmitted(false), 5000);
-      } else {
-        const errorData = await response.json();
-        alert(`Hata: ${errorData.error || "E-posta gönderilemedi"}`);
-      }
-    } catch (error) {
-      console.error("Form gönderme hatası:", error);
-      alert("Bir hata oluştu. Lütfen tekrar deneyin.");
-    } finally {
-      setIsSubmitting(false);
     }
+
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
   };
 
   return (
@@ -170,28 +164,15 @@ export default function ContactPage() {
               <Card className="shadow-2xl border-0 overflow-hidden">
                 <CardHeader className="bg-gradient-to-r from-gray-900 to-gray-800 text-white p-8">
                   <CardTitle className="text-2xl font-bold flex items-center mb-2">
-                    <Send className="w-6 h-6 mr-3" />
-                    Teklif Formu
+                    <MessageCircle className="w-6 h-6 mr-3" />
+                    WhatsApp Teklif
                   </CardTitle>
                   <p className="text-white/80">
-                    İhtiyacınızı belirtin, size en kısa sürede dönüş yapalım
+                    Bilgilerinizi doldurun; WhatsApp üzerinden doğrudan bize
+                    yazın
                   </p>
                 </CardHeader>
                 <CardContent className="p-8">
-                  {isSubmitted && (
-                    <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center">
-                      <CheckCircle className="w-5 h-5 text-green-600 mr-3" />
-                      <div>
-                        <p className="text-green-800 font-medium">
-                          Mesajınız başarıyla gönderildi!
-                        </p>
-                        <p className="text-green-600 text-sm">
-                          En kısa sürede size dönüş yapacağız.
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
@@ -311,18 +292,14 @@ export default function ContactPage() {
 
                     <Button
                       type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-[#d84948] hover:bg-[#c73e3d] text-white py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                      className="w-full bg-[#25D366] hover:bg-[#1ebe57] text-white py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                     >
-                      {isSubmitting ? (
-                        "Gönderiliyor..."
-                      ) : (
-                        <>
-                          <Send className="w-5 h-5 mr-2" />
-                          Mesaj Gönder
-                        </>
-                      )}
+                      <MessageCircle className="w-5 h-5 mr-2" />
+                      WhatsApp ile Gönder
                     </Button>
+                    <p className="text-center text-sm text-gray-500">
+                      Gönder’e basınca WhatsApp açılır; mesajı siz onaylarsınız.
+                    </p>
                   </form>
                 </CardContent>
               </Card>

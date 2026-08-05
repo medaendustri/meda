@@ -6,6 +6,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { Analytics } from "@/components/analytics";
+import { LeadStickyCta } from "@/components/lead-sticky-cta";
 
 // Corporate serif font for headings
 const playfairDisplay = Playfair_Display({
@@ -74,7 +75,6 @@ export const metadata: Metadata = {
     canonical: "/",
     languages: {
       "tr-TR": "/",
-      "en-US": "/en",
     },
   },
   openGraph: {
@@ -127,37 +127,33 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-    yandex: "your-yandex-verification-code",
-    yahoo: "your-yahoo-verification-code",
-    other: {
-      "msvalidate.01": "your-bing-verification-code",
-    },
-  },
   applicationName: "Meda Endüstri",
   referrer: "origin-when-cross-origin",
   generator: "Next.js",
-  manifest: "/favicon/site.webmanifest",
+  manifest: "/manifest.webmanifest",
   icons: {
     icon: [
-      { url: "/icon?<generated>", type: "image/png", sizes: "32x32" },
-      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
-      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon", type: "image/png", sizes: "32x32" },
+      { url: "/favicon/favicon-96x96.png", type: "image/png", sizes: "96x96" },
+      { url: "/favicon/favicon.ico", sizes: "any" },
     ],
     apple: [
-      { url: "/apple-icon?<generated>", type: "image/png", sizes: "180x180" },
+      {
+        url: "/favicon/apple-touch-icon.png",
+        type: "image/png",
+        sizes: "180x180",
+      },
     ],
     other: [
       {
         rel: "android-chrome-192x192",
-        url: "/android-chrome-192x192.png",
+        url: "/favicon/web-app-manifest-192x192.png",
         sizes: "192x192",
         type: "image/png",
       },
       {
         rel: "android-chrome-512x512",
-        url: "/android-chrome-512x512.png",
+        url: "/favicon/web-app-manifest-512x512.png",
         sizes: "512x512",
         type: "image/png",
       },
@@ -215,7 +211,7 @@ export default function RootLayout({
           sizes="180x180"
           href="/favicon/apple-touch-icon.png"
         />
-        <link rel="manifest" href="/favicon/site.webmanifest" />
+        <link rel="manifest" href="/manifest.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#d84948" />
 
         {/* Microsoft Tiles */}
@@ -264,23 +260,24 @@ export default function RootLayout({
               slogan: "15+ Yıllık Deneyim, Profesyonel Hizmet",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Organize Sanayi Bölgesi",
-                addressLocality: "İstanbul",
-                addressRegion: "İstanbul",
-                postalCode: "34000",
+                streetAddress:
+                  "İvedik OSB Matbaacılar Sitesi 1514. Sokak No:22",
+                addressLocality: "Yenimahalle",
+                addressRegion: "Ankara",
+                postalCode: "06378",
                 addressCountry: "TR",
               },
               geo: {
                 "@type": "GeoCoordinates",
-                latitude: "41.0082",
-                longitude: "28.9784",
+                latitude: "39.9905",
+                longitude: "32.7435",
               },
               contactPoint: [
                 {
                   "@type": "ContactPoint",
-                  telephone: "+90-212-555-0123",
+                  telephone: "+90-538-734-4389",
                   contactType: "customer service",
-                  availableLanguage: ["Turkish", "English"],
+                  availableLanguage: ["Turkish"],
                   areaServed: ["TR", "AZ", "GE", "BG", "GR", "CY"],
                   serviceType: "Dragon Winch Sales and Service",
                   hoursAvailable: {
@@ -300,16 +297,15 @@ export default function RootLayout({
                   "@type": "ContactPoint",
                   email: "info@medaendustri.com.tr",
                   contactType: "customer service",
-                  availableLanguage: ["Turkish", "English"],
+                  availableLanguage: ["Turkish"],
                 },
               ],
               sameAs: [
                 "https://www.linkedin.com/company/medaendustri",
                 "https://www.facebook.com/medaendustri",
                 "https://www.instagram.com/medaendustri",
-                "https://www.youtube.com/channel/UCxxxxxxx",
               ],
-              foundingDate: "2009",
+              foundingDate: "2023",
               numberOfEmployees: {
                 "@type": "QuantitativeValue",
                 minValue: 10,
@@ -442,6 +438,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <LeadStickyCta />
       </body>
     </html>
   );

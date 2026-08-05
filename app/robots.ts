@@ -12,55 +12,15 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           "/api/",
           "/admin/",
-          "/_next/",
           "/private/",
           "/temp/",
           "/cache/",
           "/drafts/",
           "/test/",
-          "/*?*utm_*", // UTM parameters
-          "/*?*ref=*", // Referral parameters
-          "/*?*fbclid=*", // Facebook click IDs
-          "/*?*gclid=*", // Google click IDs
+          "/tesekkur",
         ],
-      },
-      {
-        userAgent: "Googlebot",
-        allow: "/",
-        disallow: ["/api/", "/admin/", "/_next/", "/private/"],
-        crawlDelay: 1,
-      },
-      {
-        userAgent: "Bingbot",
-        allow: "/",
-        disallow: ["/api/", "/admin/", "/_next/", "/private/"],
-        crawlDelay: 1,
-      },
-      {
-        userAgent: "Slurp", // Yahoo bot
-        allow: "/",
-        disallow: ["/api/", "/admin/", "/_next/", "/private/"],
-        crawlDelay: 2,
-      },
-      {
-        userAgent: "DuckDuckBot",
-        allow: "/",
-        disallow: ["/api/", "/admin/", "/_next/", "/private/"],
-      },
-      {
-        userAgent: "facebookexternalhit",
-        allow: "/",
-      },
-      {
-        userAgent: "Twitterbot",
-        allow: "/",
-      },
-      {
-        userAgent: "LinkedInBot",
-        allow: "/",
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
   };
 }

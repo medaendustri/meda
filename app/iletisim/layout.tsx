@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "İletişim - Dragon Winch Türkiye Distribütörü | Meda Endüstri",
   description:
-    "Dragon Winch çekme vinci tamburu ihtiyaçlarınız için bizimle iletişime geçin. 7/24 teknik destek, ücretsiz danışmanlık ve hızlı teklif hizmeti. İstanbul merkez ofis bilgileri.",
+    "Dragon Winch çekme vinci tamburu ihtiyaçlarınız için bizimle iletişime geçin. Teknik destek, ücretsiz danışmanlık ve hızlı teklif hizmeti. Ankara merkez ofis bilgileri.",
   keywords: [
     "dragon winch iletişim",
     "çekme vinci tamburu teklif",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     url: "/iletisim",
     images: [
       {
-        url: "/og-dragon-winch-contact.jpg",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Dragon Winch İletişim - Meda Endüstri",

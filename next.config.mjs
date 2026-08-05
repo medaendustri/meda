@@ -4,7 +4,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    unoptimized: false,
     remotePatterns: [
       {
         protocol: "https",
@@ -14,16 +14,21 @@ const nextConfig = {
         protocol: "https",
         hostname: "medaendustri.com",
       },
+      {
+        protocol: "https",
+        hostname: "www.dragonwinch.com",
+      },
+      {
+        protocol: "https",
+        hostname: "dragonwinch.com",
+      },
     ],
     formats: ["image/webp", "image/avif"],
   },
-  // Performance optimizations
   experimental: {
-    optimizePackageImports: ["@heroicons/react"],
+    optimizePackageImports: ["lucide-react"],
   },
-  // Compression
   compress: true,
-  // Headers for better SEO
   async headers() {
     return [
       {
@@ -66,17 +71,16 @@ const nextConfig = {
         ],
       },
       {
-        source: "/manifest.json",
+        source: "/manifest.webmanifest",
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, s-maxage=31536000",
+            value: "public, max-age=86400, s-maxage=86400",
           },
         ],
       },
     ];
   },
-  // Redirects for SEO
   async redirects() {
     return [
       {

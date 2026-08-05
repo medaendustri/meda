@@ -1,16 +1,29 @@
-import { createClient } from "@libsql/client";
+import { createClient, type Client } from "@libsql/client";
 
-// Turso Bağlantısı
-const url = process.env.TURSO_DATABASE_URL;
-const authToken = process.env.TURSO_AUTH_TOKEN;
+let _db: Client | null = null;
 
-if (!url) {
-  throw new Error("TURSO_DATABASE_URL environment variable is not defined");
+export function isDatabaseConfigured(): boolean {
+  return Boolean(process.env.TURSO_DATABASE_URL);
 }
 
-export const db = createClient({
-  url,
-  authToken,
+function getDb(): Client {
+  if (_db) return _db;
+  const url = process.env.TURSO_DATABASE_URL;
+  const authToken = process.env.TURSO_AUTH_TOKEN;
+  if (!url) {
+    throw new Error("TURSO_DATABASE_URL environment variable is not defined");
+  }
+  _db = createClient({ url, authToken });
+  return _db;
+}
+
+/** Lazy Turso client — only connects when a query runs */
+export const db = new Proxy({} as Client, {
+  get(_target, prop, receiver) {
+    const client = getDb();
+    const value = Reflect.get(client, prop, receiver);
+    return typeof value === "function" ? value.bind(client) : value;
+  },
 });
 
 // Product interface matching our CSV/DB structure
@@ -182,6 +195,9 @@ export async function getAllProducts(options?: {
   category?: string;
   search?: string;
 }): Promise<{ products: ParsedProduct[]; total: number; totalPages: number }> {
+  if (!isDatabaseConfigured()) {
+    return { products: [], total: 0, totalPages: 0 };
+  }
   const page = options?.page || 1;
   const perPage = options?.perPage || 12;
   const offset = (page - 1) * perPage;
@@ -227,6 +243,7 @@ export async function getAllProducts(options?: {
 export async function getProductById(
   id: number
 ): Promise<ParsedProduct | null> {
+  if (!isDatabaseConfigured()) return null;
   const result = await db.execute({
     sql: "SELECT * FROM products WHERE id = ?",
     args: [id],
@@ -241,6 +258,7 @@ export async function getProductById(
 export async function getProductBySlug(
   slug: string
 ): Promise<ParsedProduct | null> {
+  if (!isDatabaseConfigured()) return null;
   // Slug veritabanında olmadığı ve JS ile oluşturulduğu için tüm ürünleri çekip bulmak zorundayız.
   // Bu performanslı değil ama URL yapını bozmamak için böyle bırakıyorum.
   const result = await db.execute("SELECT * FROM products");
@@ -256,6 +274,7 @@ export async function getProductBySlug(
 }
 
 export async function getAllCategories(): Promise<Category[]> {
+  if (!isDatabaseConfigured()) return [];
   const result = await db.execute(
     "SELECT category_url, COUNT(*) as count FROM products GROUP BY category_url"
   );
@@ -299,6 +318,9 @@ export async function getProductsByCategory(
   categorySlug: string,
   options?: { page?: number; perPage?: number }
 ): Promise<{ products: ParsedProduct[]; total: number; totalPages: number }> {
+  if (!isDatabaseConfigured()) {
+    return { products: [], total: 0, totalPages: 0 };
+  }
   const page = options?.page || 1;
   const perPage = options?.perPage || 12;
   const offset = (page - 1) * perPage;
@@ -357,6 +379,9 @@ export async function searchProducts(
   query: string,
   options?: { page?: number; perPage?: number }
 ): Promise<{ products: ParsedProduct[]; total: number; totalPages: number }> {
+  if (!isDatabaseConfigured()) {
+    return { products: [], total: 0, totalPages: 0 };
+  }
   const page = options?.page || 1;
   const perPage = options?.perPage || 12;
   const offset = (page - 1) * perPage;
@@ -385,6 +410,7 @@ export async function searchProducts(
 }
 
 export async function getFeaturedProducts(): Promise<ParsedProduct[]> {
+  if (!isDatabaseConfigured()) return [];
   const categories = await getAllCategories();
   const featuredProducts: ParsedProduct[] = [];
 
@@ -402,4 +428,23 @@ export async function getFeaturedProducts(): Promise<ParsedProduct[]> {
   }
 
   return featuredProducts;
+}
+
+/** Sitemap ve generateStaticParams için tüm ürün slug'ları */
+export async function getAllProductSlugs(): Promise<
+  Array<{ slug: string; created_at: string }>
+> {
+  if (!isDatabaseConfigured()) return [];
+  const result = await db.execute(
+    "SELECT name, created_at FROM products ORDER BY id ASC",
+  );
+  const products = result.rows as unknown as Array<{
+    name: string;
+    created_at: string;
+  }>;
+
+  return products.map((product) => ({
+    slug: generateProductSlug(product.name),
+    created_at: product.created_at,
+  }));
 }

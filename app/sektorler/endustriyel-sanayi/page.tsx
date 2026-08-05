@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import {
   Factory,
   Cog,
@@ -11,13 +10,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
-export const metadata: Metadata = {
-  title: "Endüstriyel Sanayi Vinç Çözümleri | Meda Endüstri",
-  description:
-    "Endüstriyel sanayi için özel tasarlanmış vinç sistemleri. Fabrika, imalat ve sanayi tesisleri için güçlü çözümler.",
-  keywords: "endüstriyel vinç, sanayi vinç, fabrika vinç, imalat vinç",
-};
 
 // Sektöre uygun ürünler - sonra değiştirilecek
 const sectorProducts = [

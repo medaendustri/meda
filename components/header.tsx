@@ -101,7 +101,7 @@ export function Header() {
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center group">
                 <div className="w-20 flex items-center justify-center transition-all duration-300 group-hover:scale-105">
-                  <img src="/meda-logo.webp" alt="" />
+                  <img src="/meda-logo.webp" alt="Meda Endüstri" />
                 </div>
                 <div className="ml-4">
                   <span className="text-2xl font-bold text-gray-900 group-hover:text-[#d84948] transition-colors corporate-heading">

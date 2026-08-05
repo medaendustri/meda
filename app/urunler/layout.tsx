@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildFaqSchema } from "@/lib/faq";
 
 export const metadata: Metadata = {
   title: "Dragon Winch Ürünleri - Çekme Vinci Tamburu Kataloğu | Meda Endüstri",
@@ -12,22 +13,16 @@ export const metadata: Metadata = {
     "denizcilik vinçleri",
     "liman vinç ekipmanları",
     "dragon winch katalog",
-    "winch drum models",
-    "recovery winch catalog",
-    "marine winch products",
-    "industrial winch catalogue",
-    "truck winch series",
-    "atv winch systems",
   ],
   openGraph: {
     title: "Dragon Winch Ürünleri - Çekme Vinci Tamburu Kataloğu",
     description:
-      "Dragon Winch çekme vinci tamburu modelleri ve endüstriyel vinç sistemleri kataloğu. Türkiye'nin en kapsamlı Dragon Winch ürün yelpazesi.",
+      "Dragon Winch çekme vinci tamburu modelleri ve endüstriyel vinç sistemleri kataloğu.",
     type: "website",
     url: "/urunler",
     images: [
       {
-        url: "/og-dragon-winch-products.jpg",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Dragon Winch Ürün Kataloğu - Çekme Vinci Tamburu",
@@ -39,7 +34,7 @@ export const metadata: Metadata = {
     title: "Dragon Winch Ürünleri - Çekme Vinci Tamburu Kataloğu",
     description:
       "Dragon Winch çekme vinci tamburu modelleri ve endüstriyel vinç sistemleri kataloğu.",
-    images: ["/og-dragon-winch-products.jpg"],
+    images: ["/twitter-image"],
   },
   alternates: {
     canonical: "/urunler",
@@ -66,32 +61,16 @@ export default function ProductsLayout({
               "@type": "Brand",
               name: "Dragon Winch",
             },
-            manufacturer: {
-              "@type": "Organization",
-              name: "Dragon Winch",
-            },
-            category: "Çekme Vinci Tamburu",
             url: `${
               process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com"
             }/urunler`,
-            hasVariant: [
-              {
-                "@type": "Product",
-                name: "Dragon Winch Denizcilik Vinçleri",
-                category: "Marine Winch",
-              },
-              {
-                "@type": "Product",
-                name: "Dragon Winch Endüstriyel Vinçler",
-                category: "Industrial Winch",
-              },
-              {
-                "@type": "Product",
-                name: "Dragon Winch Truck Series",
-                category: "Truck Winch",
-              },
-            ],
           }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildFaqSchema()),
         }}
       />
       {children}

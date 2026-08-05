@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     url: "/",
     images: [
       {
-        url: "/og-meda-homepage.jpg",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Meda Endüstri - Endüstriyel Vinç Çözümleri",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     title: "Meda Endüstri - Endüstriyel Vinç Çözümleri",
     description:
       "Çekme vinci tamburu ve endüstriyel vinç sistemleri. Güvenilir çözümler.",
-    images: ["/og-meda-homepage.jpg"],
+    images: ["/twitter-image"],
   },
   alternates: {
     canonical: "/",

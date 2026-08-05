@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     url: "/markalar",
     images: [
       {
-        url: "/og-dragon-winch-brands.jpg",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Dragon Winch Markalar - Meda Endüstri",

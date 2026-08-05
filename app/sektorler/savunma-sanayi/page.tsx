@@ -1,17 +1,8 @@
-import type { Metadata } from "next";
 import { Shield, Target, Truck, Anchor, ChevronRight, Eye } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
-export const metadata: Metadata = {
-  title: "Savunma Sanayi Vinç Çözümleri | Meda Endüstri",
-  description:
-    "Savunma sanayi için özel tasarlanmış vinç sistemleri. Askeri araçlar, tank taşıyıcıları ve savunma ekipmanları için güvenilir çözümler.",
-  keywords:
-    "savunma sanayi vinç, askeri vinç, tank taşıyıcı vinç, askeri ekipman vinç",
-};
 
 // Sektöre uygun ürünler - sonra değiştirilecek
 const sectorProducts = [
