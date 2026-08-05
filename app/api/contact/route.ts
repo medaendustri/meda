@@ -126,7 +126,7 @@ export async function POST(request: NextRequest) {
             <ul style="line-height: 1.8;">
               <li>Yüksek kaliteli çekme vinçleri</li>
               <li>Denizcilik ve endüstriyel uygulamalar</li>
-              <li>7/24 teknik destek</li>
+              <li>Çalışma saatlerinde teknik destek</li>
               <li>Orijinal yedek parça garantisi</li>
               <li>Profesyonel kurulum ve bakım</li>
             </ul>

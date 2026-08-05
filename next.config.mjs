@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
     unoptimized: false,
     remotePatterns: [
@@ -105,6 +102,16 @@ const nextConfig = {
       },
       {
         source: "/about",
+        destination: "/kurumsal",
+        permanent: true,
+      },
+      {
+        source: "/markalar",
+        destination: "/kurumsal",
+        permanent: true,
+      },
+      {
+        source: "/sertifikalar",
         destination: "/kurumsal",
         permanent: true,
       },

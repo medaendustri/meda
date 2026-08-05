@@ -28,6 +28,7 @@ import { getFeaturedProducts as getDbFeaturedProducts } from "@/lib/db";
 interface Product {
   id: number;
   name: string;
+  slug: string;
   url: string;
   category_url: string;
   category_name: string;
@@ -135,7 +136,7 @@ export default async function HomePage() {
     {
       title: "Teknik Uzmanlık",
       description:
-        "15 yıllık vinç teknolojisi deneyimimiz ile en uygun çekme vinci çözümünü sunuyoruz.",
+        "Uygulamaya özel ürün seçimiyle en uygun çekme vinci çözümünü sunuyoruz.",
       icon: <Wrench className="w-6 h-6 text-[#d84948]" />,
     },
     {

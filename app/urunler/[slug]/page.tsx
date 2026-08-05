@@ -75,19 +75,6 @@ export async function generateMetadata({
   };
 }
 
-function getAvailability(stockStatus: string) {
-  switch (stockStatus) {
-    case "high":
-    case "medium":
-    case "low":
-      return "https://schema.org/InStock";
-    case "out":
-      return "https://schema.org/OutOfStock";
-    default:
-      return "https://schema.org/InStock";
-  }
-}
-
 export default async function ProductDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
@@ -115,26 +102,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
     },
     category: product.category_name,
     url: shareUrl,
-    offers: {
-      "@type": "Offer",
-      url: shareUrl,
-      priceCurrency: product.currency || "TRY",
-      availability: getAvailability(product.stock_status),
-      seller: {
-        "@type": "Organization",
-        name: "Meda Endüstri",
-        url: siteUrl,
-      },
-      ...(product.price_gross > 0
-        ? { price: product.price_gross }
-        : {
-            priceSpecification: {
-              "@type": "PriceSpecification",
-              priceCurrency: product.currency || "TRY",
-              description: "Fiyat için teklif alın",
-            },
-          }),
-    },
   };
 
   const breadcrumbSchema = {

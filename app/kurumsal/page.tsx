@@ -66,7 +66,7 @@ export default function AboutPage() {
           <div className="text-gray-600 space-y-5 text-lg leading-relaxed">
             <p>
               <strong className="text-gray-900">Meda Endüstri</strong>, 2023
-              yılında İstanbul'da kurulmuş, endüstriyel ekipman ve vinç
+              yılında Ankara&apos;da kurulmuş, endüstriyel ekipman ve vinç
               sistemleri alanında faaliyet gösteren bir tedarikçidir.
             </p>
             <p>

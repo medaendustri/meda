@@ -6,6 +6,7 @@ import {
   isDatabaseConfigured,
 } from "@/lib/db";
 import { ProductsCatalog } from "@/components/products-catalog";
+import { FaqSection } from "@/components/faq-section";
 import { Suspense } from "react";
 import { Loader2 } from "lucide-react";
 
@@ -85,15 +86,18 @@ TURSO_AUTH_TOKEN=...`}
 
 export default function ProductsPage(props: PageProps) {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
-          <Loader2 className="w-10 h-10 animate-spin text-[#d84948]" />
-          <span className="ml-3 text-gray-600">Ürünler yükleniyor...</span>
-        </div>
-      }
-    >
-      <ProductsContent {...props} />
-    </Suspense>
+    <>
+      <Suspense
+        fallback={
+          <div className="min-h-screen flex items-center justify-center bg-gray-50">
+            <Loader2 className="w-10 h-10 animate-spin text-[#d84948]" />
+            <span className="ml-3 text-gray-600">Ürünler yükleniyor...</span>
+          </div>
+        }
+      >
+        <ProductsContent {...props} />
+      </Suspense>
+      <FaqSection />
+    </>
   );
 }

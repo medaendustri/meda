@@ -81,7 +81,7 @@ export default async function Image() {
             color: "#9ca3af",
           }}
         >
-          15+ Yıllık Deneyim • Profesyonel Hizmet • Teknik Destek
+          2023&apos;ten Beri • Profesyonel Hizmet • Teknik Destek
         </div>
       </div>
     ),

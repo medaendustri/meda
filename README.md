@@ -1,6 +1,6 @@
 # Meda Endüstri - Dragon Winch Türkiye Distribütörü
 
-Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü. 15+ yıllık deneyim, profesyonel hizmet ve teknik destek.
+Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü. Profesyonel hizmet ve teknik destek.
 
 ## 🌟 Özellikler
 
@@ -66,9 +66,7 @@ NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 /                   # Ana sayfa
 /kurumsal          # Hakkımızda
 /urunler           # Ürün listesi
-/urunler/[id]      # Ürün detay
-/sertifikalar      # Sertifikalar
-/markalar          # Markalar
+/urunler/[slug]    # Ürün detay
 /haberler          # Blog/Haberler
 /iletisim          # İletişim
 /sektorler/        # Sektör sayfaları

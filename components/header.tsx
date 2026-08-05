@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Phone, Mail, Globe } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 interface DropdownItem {
   href: string;
@@ -61,7 +61,7 @@ export function Header() {
       label: "Ürünler",
     },
     {
-      href: "#",
+      href: "/katalog",
       label: "Kataloglar",
       dropdown: [
         {
@@ -76,8 +76,6 @@ export function Header() {
         },
       ],
     },
-    // { href: "/markalar", label: "Markalar" },
-    // { href: "/haberler", label: "Medya" },
     { href: "/iletisim", label: "İletişim" },
   ];
 

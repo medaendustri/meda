@@ -1,44 +1,29 @@
-import { Shield, Target, Truck, Anchor, ChevronRight, Eye } from "lucide-react";
+import { Shield, Target, Truck, Anchor, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { SectorProducts } from "@/components/sector-products";
+import { FaqSection } from "@/components/faq-section";
+import { getAllProducts } from "@/lib/db";
 
-// Sektöre uygun ürünler - sonra değiştirilecek
-const sectorProducts = [
-  {
-    id: 1,
-    name: "DWT 30000 HD",
-    category: "Ağır Hizmet Vinçleri",
-    image: "https://www.dragonwinch.com/en/gfx/1706791030.9927.jpg",
-  },
-  {
-    id: 2,
-    name: "DWT 22000 HD",
-    category: "Ağır Hizmet Vinçleri",
-    image: "https://www.dragonwinch.com/en/gfx/1741597545.1839.jpg",
-  },
-  {
-    id: 3,
-    name: "DWT 18000 HD",
-    category: "Ağır Hizmet Vinçleri",
-    image: "https://www.dragonwinch.com/en/gfx/1741597634.1908.jpg",
-  },
-  {
-    id: 4,
-    name: "DWT 16000 HD",
-    category: "Ağır Hizmet Vinçleri",
-    image: "https://www.dragonwinch.com/en/gfx/1741597775.8008.jpg",
-  },
-  {
-    id: 5,
-    name: "DWT 14000 HD",
-    category: "Ağır Hizmet Vinçleri",
-    image: "https://www.dragonwinch.com/en/gfx/1741598140.4638.jpg",
-  },
+const sectorProductNames = [
+  "DWT 30000 HD",
+  "DWT 22000 HD",
+  "DWT 18000 HD",
+  "DWT 16000 HD",
+  "DWT 14000 HD",
 ];
 
-export default function SavunmaSanayiPage() {
+export default async function SavunmaSanayiPage() {
+  const { products: allProducts } = await getAllProducts({ perPage: 500 });
+  const matchedProducts = allProducts.filter((product) =>
+    sectorProductNames.includes(product.name),
+  );
+  const sectorProducts = (matchedProducts.length
+    ? matchedProducts
+    : allProducts
+  ).slice(0, 5);
+
   const applications = [
     {
       icon: <Truck className="w-8 h-8" />,
@@ -72,7 +57,7 @@ export default function SavunmaSanayiPage() {
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/sektorler/savunma-hero.jpg"
+            src="/hero/kurtarma-vinci.jpg"
             alt="Savunma Sanayi"
             fill
             className="object-cover"
@@ -101,56 +86,11 @@ export default function SavunmaSanayiPage() {
         </div>
       </section>
 
-      {/* Products Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Savunma Sanayi Ürünleri
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Askeri standartlara uygun yüksek performanslı vinç sistemleri
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            {sectorProducts.map((product) => (
-              <Card
-                key={product.id}
-                className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md hover:-translate-y-1"
-              >
-                <div className="relative aspect-square overflow-hidden bg-gray-50 rounded-t-lg">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-contain p-3 group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <CardHeader className="pb-2 pt-3">
-                  <span className="text-xs font-medium text-[#d84948]">
-                    {product.category}
-                  </span>
-                  <CardTitle className="text-sm font-semibold text-gray-900 line-clamp-2">
-                    {product.name}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pt-0 pb-3">
-                  <Link href={`/urunler/${product.slug}`}>
-                    <Button
-                      size="sm"
-                      className="w-full bg-[#d84948] hover:bg-[#c73e3d] text-white text-xs"
-                    >
-                      <Eye className="w-3 h-3 mr-1" />
-                      İncele
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      <SectorProducts
+        products={sectorProducts}
+        title="Savunma Sanayi Ürünleri"
+        description="Kritik saha koşulları için yüksek performanslı vinç sistemleri"
+      />
 
       {/* Applications Section */}
       <section className="py-16 bg-gray-50">
@@ -180,6 +120,8 @@ export default function SavunmaSanayiPage() {
           </div>
         </div>
       </section>
+
+      <FaqSection />
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-[#d84948] to-[#c73e3d]">

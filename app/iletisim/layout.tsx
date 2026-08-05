@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "İletişim - Dragon Winch Türkiye Distribütörü",
     description:
-      "Dragon Winch çekme vinci tamburu ihtiyaçlarınız için bizimle iletişime geçin. 7/24 teknik destek ve ücretsiz danışmanlık.",
+      "Dragon Winch çekme vinci tamburu ihtiyaçlarınız için bizimle iletişime geçin. Teknik destek ve ücretsiz danışmanlık.",
     type: "website",
     url: "/iletisim",
     images: [
@@ -60,30 +60,23 @@ export default function ContactLayout({
               name: "Meda Endüstri",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Organize Sanayi Bölgesi, 1. Cadde No: 123",
-                addressLocality: "İstanbul",
+                streetAddress:
+                  "İvedik OSB Matbaacılar Sitesi 1514. Sokak No:22",
+                addressLocality: "Yenimahalle",
+                addressRegion: "Ankara",
                 addressCountry: "TR",
-                postalCode: "34000",
+                postalCode: "06378",
               },
-              telephone: "+90 212 555 0123",
+              telephone: "+90 538 734 4389",
               email: "info@medaendustri.com.tr",
-              openingHours: ["Mo-Fr 08:00-18:00", "Sa 09:00-13:00"],
-              contactPoint: [
-                {
-                  "@type": "ContactPoint",
-                  telephone: "+90 212 555 0125",
-                  contactType: "sales",
-                  availableLanguage: "Turkish",
-                  areaServed: "TR",
-                },
-                {
-                  "@type": "ContactPoint",
-                  telephone: "+90 212 555 0126",
-                  contactType: "technical support",
-                  availableLanguage: ["Turkish", "English"],
-                  hoursAvailable: "24/7",
-                },
-              ],
+              openingHours: ["Mo-Fr 09:00-18:00", "Sa 09:00-14:00"],
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+90 538 734 4389",
+                contactType: "customer service",
+                availableLanguage: "Turkish",
+                areaServed: "TR",
+              },
             },
           }),
         }}

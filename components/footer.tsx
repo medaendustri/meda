@@ -3,39 +3,36 @@ import {
   Mail,
   Phone,
   MapPin,
-  Award,
-  Shield,
-  Globe,
   Linkedin,
   Facebook,
   Instagram,
 } from "lucide-react";
+import { getAllCategories, type Category } from "@/lib/db";
 
-export function Footer() {
+export async function Footer() {
   const quickLinks = [
     { href: "/kurumsal", label: "Hakkımızda" },
-    { href: "/sertifikalar", label: "Sertifikalarımız" },
+    { href: "/sektorler", label: "Sektörler" },
     { href: "/urunler", label: "Ürünlerimiz" },
-    { href: "/markalar", label: "Stratejik Ortaklarımız" },
     { href: "/haberler", label: "Haberler" },
     { href: "/referanslar", label: "Referanslar" },
     { href: "/katalog", label: "Katalog" },
     { href: "/iletisim", label: "İletişim" },
   ];
 
-  const productCategories = [
-    { href: "/urunler?category=marine", label: "Denizcilik Vinçleri" },
-    { href: "/urunler?category=industrial", label: "Endüstriyel Vinçler" },
-    { href: "/urunler?category=port", label: "Liman Ekipmanları" },
-    { href: "/urunler?category=parts", label: "Yedek Parçalar" },
-    { href: "/urunler?category=service", label: "Servis Hizmetleri" },
-  ];
-
-  const certifications = [
-    { name: "Yetkili Distribütör", icon: <Award className="w-4 h-4" /> },
-    { name: "ISO 9001:2015", icon: <Shield className="w-4 h-4" /> },
-    { name: "CE Uygunluk", icon: <Globe className="w-4 h-4" /> },
-  ];
+  let categories: Category[] = [];
+  try {
+    categories = await getAllCategories();
+  } catch {
+    // Footer remains usable if the product database is temporarily unavailable.
+  }
+  const productCategories =
+    categories.length > 0
+      ? categories.slice(0, 5).map((category) => ({
+          href: `/urunler?category=${encodeURIComponent(category.slug)}`,
+          label: category.name,
+        }))
+      : [{ href: "/urunler", label: "Tüm Ürünler" }];
 
   const socialLinks = [
     {

@@ -4,48 +4,32 @@ import {
   TreePine,
   Truck,
   ChevronRight,
-  Eye,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { SectorProducts } from "@/components/sector-products";
+import { FaqSection } from "@/components/faq-section";
+import { getAllProducts } from "@/lib/db";
 
-// Sektöre uygun ürünler - sonra değiştirilecek
-const sectorProducts = [
-  {
-    id: 1,
-    name: "DWM 3500",
-    category: "ATV/UTV Vinçler",
-    image: "https://www.dragonwinch.com/en/gfx/1706790734.5068.jpg",
-  },
-  {
-    id: 2,
-    name: "DWM 4500",
-    category: "ATV/UTV Vinçler",
-    image: "https://www.dragonwinch.com/en/gfx/1706790836.8079.jpg",
-  },
-  {
-    id: 3,
-    name: "DWK-O 8 HD",
-    category: "Manuel Vinçler",
-    image: "https://www.dragonwinch.com/en/gfx/1744036066.5817.jpg",
-  },
-  {
-    id: 4,
-    name: "DWK 16 V",
-    category: "Manuel Vinçler",
-    image: "https://www.dragonwinch.com/en/gfx/1744096229.4355.jpg",
-  },
-  {
-    id: 5,
-    name: "DWP 3500",
-    category: "Portatif Vinçler",
-    image: "https://www.dragonwinch.com/en/gfx/1706790734.5068.jpg",
-  },
+const sectorProductNames = [
+  "DWM 3500",
+  "DWM 4500",
+  "DWK-O 8 HD",
+  "DWK 16 V",
+  "DWP 3500",
 ];
 
-export default function TarimPage() {
+export default async function TarimPage() {
+  const { products: allProducts } = await getAllProducts({ perPage: 500 });
+  const matchedProducts = allProducts.filter((product) =>
+    sectorProductNames.includes(product.name),
+  );
+  const sectorProducts = (matchedProducts.length
+    ? matchedProducts
+    : allProducts
+  ).slice(0, 5);
+
   const applications = [
     {
       icon: <Tractor className="w-8 h-8" />,
@@ -78,7 +62,7 @@ export default function TarimPage() {
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/sektorler/tarim-hero.jpg"
+            src="/hero/off-road.jpg"
             alt="Tarım Sektörü"
             fill
             className="object-cover"
@@ -106,56 +90,11 @@ export default function TarimPage() {
         </div>
       </section>
 
-      {/* Products Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Tarım Ürünleri
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Zorlu arazi koşulları için tasarlanmış dayanıklı vinç sistemleri
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            {sectorProducts.map((product) => (
-              <Card
-                key={product.id}
-                className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md hover:-translate-y-1"
-              >
-                <div className="relative aspect-square overflow-hidden bg-gray-50 rounded-t-lg">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-contain p-3 group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <CardHeader className="pb-2 pt-3">
-                  <span className="text-xs font-medium text-[#d84948]">
-                    {product.category}
-                  </span>
-                  <CardTitle className="text-sm font-semibold text-gray-900 line-clamp-2">
-                    {product.name}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pt-0 pb-3">
-                  <Link href={`/urunler/${product.slug}`}>
-                    <Button
-                      size="sm"
-                      className="w-full bg-[#d84948] hover:bg-[#c73e3d] text-white text-xs"
-                    >
-                      <Eye className="w-3 h-3 mr-1" />
-                      İncele
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      <SectorProducts
+        products={sectorProducts}
+        title="Tarım Ürünleri"
+        description="Zorlu arazi koşulları için tasarlanmış dayanıklı vinç sistemleri"
+      />
 
       {/* Applications Section */}
       <section className="py-16 bg-gray-50">
@@ -185,6 +124,8 @@ export default function TarimPage() {
           </div>
         </div>
       </section>
+
+      <FaqSection />
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-[#d84948] to-[#c73e3d]">

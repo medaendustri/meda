@@ -8,104 +8,91 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com";
 
+  // Sabit tarihler yalnızca ilgili içerik gerçekten güncellendiğinde değiştirilir.
+  const contentUpdatedAt = new Date("2026-08-05T00:00:00.000Z");
+  const legalUpdatedAt = new Date("2026-07-01T00:00:00.000Z");
+  const latestNewsDate = getAllNews()[0]?.date;
+
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "daily",
+      lastModified: contentUpdatedAt,
+      changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${baseUrl}/kurumsal`,
-      lastModified: new Date(),
+      lastModified: contentUpdatedAt,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/urunler`,
-      lastModified: new Date(),
+      lastModified: contentUpdatedAt,
       changeFrequency: "daily",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/sertifikalar`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/markalar`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/haberler`,
-      lastModified: new Date(),
+      lastModified: latestNewsDate
+        ? new Date(latestNewsDate)
+        : contentUpdatedAt,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/referanslar`,
-      lastModified: new Date(),
+      lastModified: contentUpdatedAt,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/iletisim`,
-      lastModified: new Date(),
+      lastModified: contentUpdatedAt,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/katalog`,
-      lastModified: new Date(),
+      lastModified: contentUpdatedAt,
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    // Legal sayfalar düşük öncelik — indexlenebilir ama crawl bütçesi için öncelik düşük
     {
       url: `${baseUrl}/gizlilik`,
-      lastModified: new Date(),
+      lastModified: legalUpdatedAt,
       changeFrequency: "yearly",
       priority: 0.2,
     },
     {
       url: `${baseUrl}/kullanim`,
-      lastModified: new Date(),
+      lastModified: legalUpdatedAt,
       changeFrequency: "yearly",
       priority: 0.2,
     },
     {
       url: `${baseUrl}/cerez`,
-      lastModified: new Date(),
+      lastModified: legalUpdatedAt,
       changeFrequency: "yearly",
       priority: 0.2,
     },
     {
-      url: `${baseUrl}/sektorler/denizcilik`,
-      lastModified: new Date(),
+      url: `${baseUrl}/sektorler`,
+      lastModified: contentUpdatedAt,
       changeFrequency: "monthly",
-      priority: 0.7,
+      priority: 0.8,
     },
-    {
-      url: `${baseUrl}/sektorler/endustriyel-sanayi`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
+    ...[
+      "denizcilik",
+      "endustriyel-sanayi",
+      "savunma-sanayi",
+      "tarim",
+    ].map((slug) => ({
+      url: `${baseUrl}/sektorler/${slug}`,
+      lastModified: contentUpdatedAt,
+      changeFrequency: "monthly" as const,
       priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/sektorler/savunma-sanayi`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/sektorler/tarim`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
+    })),
   ];
 
   const newsPages: MetadataRoute.Sitemap = getAllNews().map((article) => ({
@@ -120,7 +107,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const products = await getAllProductSlugs();
     productPages = products.map((product) => ({
       url: `${baseUrl}/urunler/${product.slug}`,
-      lastModified: new Date(product.created_at || Date.now()),
+      lastModified: product.created_at
+        ? new Date(product.created_at)
+        : contentUpdatedAt,
       changeFrequency: "weekly" as const,
       priority: 0.6,
     }));

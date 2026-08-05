@@ -33,7 +33,7 @@ export const newsArticles: NewsArticle[] = [
     readTime: "6 dk",
     author: "Meda Endüstri Teknik Ekip",
     category: "Rehber",
-    image: "/opengraph-image",
+    image: "/hero/cekme-vinci.jpg",
     featured: true,
   },
   {
@@ -50,13 +50,13 @@ export const newsArticles: NewsArticle[] = [
 <li>Hızlı stok ve teslimat</li>
 <li>Satış sonrası destek</li>
 </ul>
-<p>Marka ortaklığımız hakkında detay için <a href="/markalar">Markalar</a> sayfamızı ziyaret edin.</p>
+<p>Distribütörlük ve hizmet yaklaşımımız hakkında detay için <a href="/kurumsal">Kurumsal</a> sayfamızı ziyaret edin.</p>
 `,
     date: "2025-10-03",
     readTime: "4 dk",
     author: "Meda Endüstri",
     category: "Kurumsal",
-    image: "/opengraph-image",
+    image: "/hero/dragon-vinc-elektrikli.jpg",
   },
   {
     slug: "denizcilik-vinc-sistemleri",
@@ -77,7 +77,7 @@ export const newsArticles: NewsArticle[] = [
     readTime: "5 dk",
     author: "Meda Endüstri",
     category: "Sektör",
-    image: "/opengraph-image",
+    image: "/hero/hidrolik-vinc.jpg",
   },
   {
     slug: "kurtarma-vinci-vs-cekme-vinci",
@@ -96,7 +96,7 @@ export const newsArticles: NewsArticle[] = [
     readTime: "5 dk",
     author: "Teknik Ekip",
     category: "Rehber",
-    image: "/opengraph-image",
+    image: "/hero/kurtarma-vinci.jpg",
   },
   {
     slug: "iso-ce-kalite-standartlari",
@@ -105,13 +105,13 @@ export const newsArticles: NewsArticle[] = [
       "CE uygunluk ve kalite yönetim standartlarının endüstriyel vinç tedarikinde neden kritik olduğunu açıklıyoruz.",
     content: `
 <p>Endüstriyel ekipman tedarikinde CE işaretlemesi ve kalite yönetim süreçleri, hem yasal uyum hem de operasyonel güvenlik için önemlidir.</p>
-<p>Meda Endüstri olarak temsil ettiğimiz Dragon Winch ürünlerinde kalite belgelerini ve uygulama uygunluğunu müşterilerimizle şeffaf şekilde paylaşıyoruz. Sertifikalarımız için <a href="/sertifikalar">Sertifikalar</a> sayfamızı inceleyin.</p>
+<p>Meda Endüstri olarak temsil ettiğimiz Dragon Winch ürünlerinde kalite belgelerini ve uygulama uygunluğunu müşterilerimizle şeffaf şekilde paylaşıyoruz. Uygulamanıza ait belge talepleri için <a href="/iletisim">bizimle iletişime geçin</a>.</p>
 `,
     date: "2025-07-10",
     readTime: "3 dk",
     author: "Kalite",
-    category: "Sertifika",
-    image: "/opengraph-image",
+    category: "Teknik",
+    image: "/hero/elektrikli-vinc.jpg",
   },
 ];
 

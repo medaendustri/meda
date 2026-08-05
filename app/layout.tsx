@@ -212,11 +212,9 @@ export default function RootLayout({
           href="/favicon/apple-touch-icon.png"
         />
         <link rel="manifest" href="/manifest.webmanifest" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#d84948" />
 
         {/* Microsoft Tiles */}
         <meta name="msapplication-TileColor" content="#d84948" />
-        <meta name="msapplication-config" content="/browserconfig.xml" />
 
         {/* Additional Meta Tags */}
         <meta name="theme-color" content="#d84948" />
@@ -238,7 +236,7 @@ export default function RootLayout({
                 "https://www.medaendustri.com"
               }/#organization`,
               name: "Meda Endüstri",
-              alternateName: ["Meda Endüstri Ltd. Şti.", "MEDA"],
+              alternateName: "MEDA",
               url:
                 process.env.NEXT_PUBLIC_SITE_URL ||
                 "https://www.medaendustri.com",
@@ -257,7 +255,7 @@ export default function RootLayout({
               }/meda-logo.webp`,
               description:
                 "Dragon Winch çekme vinci tamburu, kurtarma vinçleri ve endüstriyel vinç sistemleri Türkiye distribütörü",
-              slogan: "15+ Yıllık Deneyim, Profesyonel Hizmet",
+              slogan: "Profesyonel Vinç Çözümleri ve Teknik Destek",
               address: {
                 "@type": "PostalAddress",
                 streetAddress:
@@ -280,18 +278,26 @@ export default function RootLayout({
                   availableLanguage: ["Turkish"],
                   areaServed: ["TR", "AZ", "GE", "BG", "GR", "CY"],
                   serviceType: "Dragon Winch Sales and Service",
-                  hoursAvailable: {
-                    "@type": "OpeningHoursSpecification",
-                    dayOfWeek: [
-                      "Monday",
-                      "Tuesday",
-                      "Wednesday",
-                      "Thursday",
-                      "Friday",
-                    ],
-                    opens: "08:00",
-                    closes: "18:00",
-                  },
+                  hoursAvailable: [
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      dayOfWeek: [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                      ],
+                      opens: "09:00",
+                      closes: "18:00",
+                    },
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      dayOfWeek: "Saturday",
+                      opens: "09:00",
+                      closes: "14:00",
+                    },
+                  ],
                 },
                 {
                   "@type": "ContactPoint",
@@ -333,39 +339,6 @@ export default function RootLayout({
                   name: "Georgia",
                 },
               ],
-              hasOfferCatalog: {
-                "@type": "OfferCatalog",
-                name: "Dragon Winch Ürün Kataloğu",
-                itemListElement: [
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Product",
-                      name: "Dragon Winch Çekme Vinci Tamburu",
-                      category: "Endüstriyel Vinç Sistemi",
-                      brand: {
-                        "@type": "Brand",
-                        name: "Dragon Winch",
-                      },
-                    },
-                  },
-                ],
-              },
-              makesOffer: {
-                "@type": "Offer",
-                name: "Dragon Winch Distribütörlük Hizmetleri",
-                description:
-                  "Dragon Winch ürünleri satış, servis ve teknik destek hizmetleri",
-                seller: {
-                  "@type": "Organization",
-                  name: "Meda Endüstri",
-                },
-                category: "Industrial Equipment Distribution",
-                areaServed: {
-                  "@type": "Country",
-                  name: "Turkey",
-                },
-              },
             }),
           }}
         />
