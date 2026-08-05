@@ -1,14 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
-import { getAllNews, getFeaturedNews } from "@/lib/news";
+import { getPublishedArticles } from "@/lib/blog/repository";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-export default function NewsPage() {
-  const articles = getAllNews();
-  const featured = getFeaturedNews();
-  const rest = articles.filter((a) => a.slug !== featured?.slug);
+function readTime(text: string) {
+  return `${Math.max(1, Math.ceil(text.split(/\s+/).length / 200))} dk`;
+}
+
+export const revalidate = 3600;
+
+export default async function NewsPage() {
+  const articles = await getPublishedArticles();
+  const featured = articles.find((article) => article.featured) || articles[0];
+  const rest = articles.filter((article) => article.id !== featured?.id);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -25,7 +31,7 @@ export default function NewsPage() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 py-12 space-y-12">
-        {featured && (
+        {featured ? (
           <Link
             href={`/haberler/${featured.slug}`}
             className="block group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-lg transition-shadow"
@@ -33,7 +39,7 @@ export default function NewsPage() {
             <div className="grid md:grid-cols-2 gap-0">
               <div className="relative aspect-[16/10] md:aspect-auto min-h-[240px] bg-gray-100">
                 <Image
-                  src={featured.image}
+                  src={featured.imageUrl}
                   alt={featured.title}
                   fill
                   className="object-cover"
@@ -50,11 +56,11 @@ export default function NewsPage() {
                 <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
                   <span className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
-                    {new Date(featured.date).toLocaleDateString("tr-TR")}
+                    {new Date(featured.publishedAt || featured.updatedAt).toLocaleDateString("tr-TR")}
                   </span>
                   <span className="flex items-center gap-1">
                     <Clock className="w-4 h-4" />
-                    {featured.readTime}
+                    {readTime(featured.contentText)}
                   </span>
                 </div>
                 <span className="inline-flex items-center text-[#d84948] font-medium">
@@ -64,6 +70,10 @@ export default function NewsPage() {
               </div>
             </div>
           </Link>
+        ) : (
+          <div className="rounded-2xl border border-dashed border-gray-300 bg-white p-10 text-center text-gray-600">
+            Henüz yayınlanmış haber bulunmuyor.
+          </div>
         )}
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -75,7 +85,7 @@ export default function NewsPage() {
             >
               <div className="relative aspect-[16/10] bg-gray-100">
                 <Image
-                  src={article.image}
+                  src={article.imageUrl}
                   alt={article.title}
                   fill
                   className="object-cover"
@@ -93,9 +103,9 @@ export default function NewsPage() {
                   {article.excerpt}
                 </p>
                 <div className="flex items-center gap-3 text-xs text-gray-500">
-                  <span>{new Date(article.date).toLocaleDateString("tr-TR")}</span>
+                  <span>{new Date(article.publishedAt || article.updatedAt).toLocaleDateString("tr-TR")}</span>
                   <span>·</span>
-                  <span>{article.readTime}</span>
+                  <span>{readTime(article.contentText)}</span>
                 </div>
               </div>
             </Link>

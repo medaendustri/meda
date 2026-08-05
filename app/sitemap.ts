@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllProductSlugs } from "@/lib/db";
-import { getAllNews } from "@/lib/news";
+import { getPublishedArticles } from "@/lib/blog/repository";
 
 export const revalidate = 3600;
 
@@ -8,10 +8,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL || "https://www.medaendustri.com";
 
-  // Sabit tarihler yalnızca ilgili içerik gerçekten güncellendiğinde değiştirilir.
   const contentUpdatedAt = new Date("2026-08-05T00:00:00.000Z");
   const legalUpdatedAt = new Date("2026-07-01T00:00:00.000Z");
-  const latestNewsDate = getAllNews()[0]?.date;
+
+  let publishedArticles: Awaited<ReturnType<typeof getPublishedArticles>> = [];
+  try {
+    publishedArticles = await getPublishedArticles();
+  } catch (error) {
+    console.error("Sitemap haberleri alınamadı:", error);
+  }
+
+  const latestNewsDate = publishedArticles[0]?.updatedAt;
 
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -95,9 +102,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
-  const newsPages: MetadataRoute.Sitemap = getAllNews().map((article) => ({
+  const newsPages: MetadataRoute.Sitemap = publishedArticles.map((article) => ({
     url: `${baseUrl}/haberler/${article.slug}`,
-    lastModified: new Date(article.date),
+    lastModified: new Date(article.updatedAt || article.publishedAt || Date.now()),
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));

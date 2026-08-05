@@ -448,3 +448,103 @@ export async function getAllProductSlugs(): Promise<
     created_at: product.created_at,
   }));
 }
+
+/** Admin formunda kategori seçimi için ham category_url listesi */
+export async function getProductCategoryUrls(): Promise<string[]> {
+  if (!isDatabaseConfigured()) return [];
+  const result = await db.execute(
+    "SELECT DISTINCT category_url FROM products WHERE category_url IS NOT NULL AND category_url != '' ORDER BY category_url ASC",
+  );
+  return (result.rows as unknown as Array<{ category_url: string }>).map(
+    (row) => row.category_url,
+  );
+}
+
+export async function getAdminProducts(options?: {
+  search?: string;
+  page?: number;
+  perPage?: number;
+}): Promise<{ products: ParsedProduct[]; total: number; totalPages: number }> {
+  if (!isDatabaseConfigured()) {
+    return { products: [], total: 0, totalPages: 0 };
+  }
+
+  const page = Math.max(1, options?.page || 1);
+  const perPage = Math.min(100, Math.max(1, options?.perPage || 40));
+  const offset = (page - 1) * perPage;
+  const search = options?.search?.trim();
+
+  let whereClause = "";
+  const params: Array<string | number> = [];
+  if (search) {
+    whereClause = " WHERE name LIKE ? OR category_url LIKE ? OR CAST(id AS TEXT) = ?";
+    params.push(`%${search}%`, `%${search}%`, search);
+  }
+
+  const countResult = await db.execute({
+    sql: `SELECT COUNT(*) as count FROM products${whereClause}`,
+    args: params,
+  });
+  const total = Number(countResult.rows[0]?.count || 0);
+  const productsResult = await db.execute({
+    sql: `SELECT * FROM products${whereClause} ORDER BY id DESC LIMIT ? OFFSET ?`,
+    args: [...params, perPage, offset],
+  });
+
+  return {
+    products: (productsResult.rows as unknown as Product[]).map(parseProduct),
+    total,
+    totalPages: Math.max(1, Math.ceil(total / perPage)),
+  };
+}
+
+export async function updateProductById(
+  id: number,
+  input: {
+    name: string;
+    url: string;
+    category_url: string;
+    stock_status: string;
+    main_image: string;
+    specs: Record<string, string>;
+    kit_components: string[];
+    gallery: string[];
+    downloads: Array<{ text: string; link: string }>;
+    performance_data: string;
+  },
+): Promise<ParsedProduct | null> {
+  if (!isDatabaseConfigured()) return null;
+
+  const current = await getProductById(id);
+  if (!current) return null;
+
+  await db.execute({
+    sql: `UPDATE products SET
+      name = ?,
+      url = ?,
+      category_url = ?,
+      stock_status = ?,
+      main_image = ?,
+      specs_json = ?,
+      kit_components_json = ?,
+      gallery_json = ?,
+      downloads_json = ?,
+      performance_data = ?
+      WHERE id = ?`,
+    args: [
+      input.name,
+      input.url,
+      input.category_url,
+      input.stock_status,
+      input.main_image,
+      JSON.stringify(input.specs || {}),
+      JSON.stringify(input.kit_components || []),
+      JSON.stringify(input.gallery.filter(Boolean)),
+      JSON.stringify(input.downloads || []),
+      input.performance_data || "",
+      id,
+    ],
+  });
+
+  return getProductById(id);
+}
